@@ -1,0 +1,118 @@
+package Model;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Doctors")
+public class Doctor implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID", nullable = false)
+    private int id;
+    
+    @Column(name = "Code",nullable = false,unique = true)
+    private int code;
+    
+    @Column(name = "Password", nullable = false)
+    private String password;
+    
+    @Column(name = "DoctorSpecialty", nullable = false)
+    private String Specialty;
+    
+    @Column(name = "Balance", nullable = false)
+    private int balance;
+    
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private DoctorProperties doctorproperties;
+    
+    @OneToMany(mappedBy = "doctor")
+    private List<Booking> booking = new ArrayList<>();
+//    @OneToMany
+//    @JoinTable(
+//            name="Booking",
+//            joinColumns = @JoinColumn( name="Doctor_ID"),
+//            inverseJoinColumns = @JoinColumn( name="Client_ID")
+//        )
+//    private List<Client> clients;
+//    @OneToMany(mappedBy = "doctor1")
+//    private List<Booking> book;
+    
+    public Doctor() {
+    }
+
+    public Doctor(int code, String password, String Specialty) {
+        this.code = code;
+        this.password = password;
+        this.Specialty = Specialty;
+    }
+    
+    public Doctor(int code, String password, String Specialty, DoctorProperties doctorproperties) {
+        this.code = code;
+        this.password = password;
+        this.Specialty = Specialty;
+        this.doctorproperties = doctorproperties;
+    }
+
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getSpecialty() {
+        return Specialty;
+    }
+
+    public void setSpecialty(String Specialty) {
+        this.Specialty = Specialty;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public DoctorProperties getDoctorproperties() {
+        return doctorproperties;
+    }
+
+    public void setDoctorproperties(DoctorProperties doctorproperties) {
+        this.doctorproperties = doctorproperties;
+    }
+    
+}
