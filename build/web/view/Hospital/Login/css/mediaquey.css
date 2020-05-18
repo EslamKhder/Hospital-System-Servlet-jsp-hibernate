@@ -1,0 +1,40 @@
+/* Start Media Query */
+
+/* Mobile And Tablets */
+@media (max-width: 767px)
+{
+    /* Start Contact and About US*/
+    .part_line
+    {
+        right: -19%;
+    }
+    /* Start facebook and Twitter */
+    .fl_fb 
+    {
+        margin-left: 156px;
+        margin-top: 90px;
+    }
+}
+/* from small to medium */
+@media (min-width: 768px) and (max-width: 991px)
+{
+    /* Start Contact and About US*/
+    .part_line
+    {
+        right: -55%;
+    }
+}
+/* from medium screen */
+@media (min-width: 992px) and (max-width: 1199px)
+{
+    /* Start Contact and About US*/
+    .part_line
+    {
+        right: -66%;
+    }
+}
+/* from Large screen */
+@media (min-width: 1200px)
+{
+    
+}
