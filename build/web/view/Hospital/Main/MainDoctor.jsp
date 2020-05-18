@@ -54,7 +54,8 @@
                             <li class="dropdown">
                               <a href="#" class="dropdown-toggle up" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Control Center <span class="caret "><i class="fab fa-windows hidden-xs"></i></span></a>
                               <ul class="dropdown-menu">
-                                  <li><a href="../Services/DoctorReservations.jsp"><i class="fas fa-user-edit"></i> &nbsp; My Reservations</a></li>
+                                  <li><a href="../Services/Doctor/DoctorReservations.jsp"><i class="fas fa-user-edit"></i> &nbsp; My Reservations</a></li>
+                                  <li><a href="../Services/Doctor/Password/EditPassword.jsp"><i class="fas fa-user-edit"></i> &nbsp; UP_DATE Password</a></li>
                               </ul>
                             </li>
                           </ul>

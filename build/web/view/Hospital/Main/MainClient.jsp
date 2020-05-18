@@ -56,7 +56,7 @@
                                   <li><a href="../Services/roombook.jsp"><i class="fas fa-user-plus"></i> &nbsp; Detection Reservation</a></li>
                                 <li><a href=""><i class="fas fa-laptop-medical"></i> &nbsp; pharmacy</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="../Services/ClientReservations.jsp"><i class="fas fa-user-edit"></i> &nbsp; My Reservations</a></li>
+                                <li><a href="../Services/Client/ClientReservations.jsp"><i class="fas fa-user-edit"></i> &nbsp; My Reservations</a></li>
                               </ul>
                             </li>
                           </ul>
