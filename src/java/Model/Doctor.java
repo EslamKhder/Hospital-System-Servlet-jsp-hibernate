@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,11 +34,11 @@ public class Doctor implements Serializable {
     @Column(name = "Balance", nullable = false)
     private int balance;
     
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     private DoctorProperties doctorproperties;
     
-    @OneToMany(mappedBy = "doctor")
-    private List<Booking> booking = new ArrayList<>();
+    @OneToMany(mappedBy = "doctor",cascade = CascadeType.REMOVE)
+    private List<Booking> booking = new ArrayList();
 //    @OneToMany
 //    @JoinTable(
 //            name="Booking",
@@ -114,5 +113,14 @@ public class Doctor implements Serializable {
     public void setDoctorproperties(DoctorProperties doctorproperties) {
         this.doctorproperties = doctorproperties;
     }
+
+    public List<Booking> getBooking() {
+        return booking;
+    }
+
+    public void setBooking(List<Booking> booking) {
+        this.booking = booking;
+    }
+    
     
 }

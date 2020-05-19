@@ -1,0 +1,14 @@
+SMAP
+MainClient_jsp.java
+JSP
+*S JSP
+*F
++ 0 MainClient.jsp
+view/Hospital/Main/MainClient.jsp
+*L
+5,5:44
+10:49,3
+11,37:52
+48:89,3
+49,81:92
+*E

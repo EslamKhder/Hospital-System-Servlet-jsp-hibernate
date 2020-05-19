@@ -26,12 +26,21 @@ import org.hibernate.SessionFactory;
 public class NewMain {
 
     public static void main(String[] args) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String date = sdf.format(new Date());
-            JOptionPane.showMessageDialog(null, date);
-//        SessionFactory sessionf = HibernateUtil.getSessionFactory();
-//        Session s = sessionf.openSession();
-//        s.beginTransaction();
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//            String date = sdf.format(new Date());
+//            JOptionPane.showMessageDialog(null, date);
+        SessionFactory sessionf = HibernateUtil.getSessionFactory();
+        Session s = sessionf.openSession();
+        s.beginTransaction();
+         DoctorProperties dp = new DoctorProperties();
+         dp.setId(2);
+         dp.setGender(Gender.Male);
+         dp.setName("ahmed elghazaly");
+         dp.setPhone("01113903660");
+        Doctor doctor = new Doctor(2000, "2000", "Eyes Doctor", dp);
+        doctor.setId(2);
+        s.update(doctor);
+        s.getTransaction().commit();
 //        Query q;
 //        q = s.createQuery("from Booking where Client_ID = ?");
 //        q.setInteger(0, 23);

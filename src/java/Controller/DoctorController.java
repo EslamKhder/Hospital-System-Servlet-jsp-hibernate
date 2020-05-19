@@ -19,13 +19,26 @@ public class DoctorController {
     public Doctor getDoctorID(SessionFactory sessionf, Doctor doctor) {
         return doctorservices.getDoctorID(sessionf, doctor);
     }
+    public String getPasswordDoctor(SessionFactory sessionf, Doctor doctor){
+        return doctorservices.getPasswordDoctor(sessionf, doctor);
+    }
 
-    public Doctor IsExist(SessionFactory sessionf, Doctor doctor) {
-        return doctorservices.IsExist(sessionf, doctor);
+//    public int codeExist(SessionFactory sessionf, Doctor doctor){
+//        return doctorservices.codeExist(sessionf, doctor);
+//    }
+    public int removeDoctor(SessionFactory sessionf, Doctor doctor){
+        return doctorservices.removeDoctor(sessionf, doctor);
+    }
+    public Doctor isExist(SessionFactory sessionf, Doctor doctor) {
+        return doctorservices.isExist(sessionf, doctor);
     }
     public Doctor getDoctorSpec(SessionFactory sessionf, Doctor doctor){
         return doctorservices.getDoctorSpec(sessionf, doctor);
     }
+    public Doctor getDoctorCode(SessionFactory sessionf, Doctor doctor) {
+        return doctorservices.getDoctorCode(sessionf, doctor);
+    }
+    
     public int editDoctor(SessionFactory sessionfactory, Doctor doctor){
         return doctorservices.editDoctor(sessionfactory, doctor);
     }

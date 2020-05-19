@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DatabaseFiles.ServicesImplementation;
 
 import Controller.DatabaseController;
@@ -15,7 +10,8 @@ import org.hibernate.SessionFactory;
  *
  * @author Eng Eslam khder
  */
-public class AdminServices implements AdminService{
+public class AdminServices implements AdminService {
+
     private DatabaseController dc;
     private Session session;
 
@@ -23,10 +19,15 @@ public class AdminServices implements AdminService{
         dc = new DatabaseController();
         session = null;
     }
+
     @Override
+    // Get Data Of Admin
     public Admin getAdmin(SessionFactory sessionfactory) {
-        session = dc.getSession(sessionfactory);
-        return (Admin) session.get(Admin.class, 1);
+        try {
+            session = dc.getSession(sessionfactory);
+            return (Admin) session.get(Admin.class, 1);
+        } finally {
+            session.close();
+        }
     }
-    
 }

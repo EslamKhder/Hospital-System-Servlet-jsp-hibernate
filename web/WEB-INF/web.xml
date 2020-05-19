@@ -32,6 +32,14 @@
         <servlet-name>ClientBooking</servlet-name>
         <servlet-class>Servlets.Client.ClientBooking</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditDoctorPassword</servlet-name>
+        <servlet-class>Servlets.Doctor.EditDoctorPassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveDoctor</servlet-name>
+        <servlet-class>Servlets.Doctor.RemoveDoctor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginClient</servlet-name>
         <url-pattern>/LoginClient</url-pattern>
@@ -59,6 +67,14 @@
     <servlet-mapping>
         <servlet-name>ClientBooking</servlet-name>
         <url-pattern>/ClientBooking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditDoctorPassword</servlet-name>
+        <url-pattern>/EditDoctorPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveDoctor</servlet-name>
+        <url-pattern>/RemoveDoctor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlets.Doctor;
 
 import Controller.DoctorController;
@@ -15,7 +10,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
 import org.hibernate.SessionFactory;
 
 /**
@@ -33,7 +27,7 @@ public class NewDoctorAccount extends HttpServlet {
         String phone = request.getParameter("phone");
         String gender = request.getParameter("gender");
         String spec = request.getParameter("spec");
-        if (code <= 0) {
+        if (code < 0) {
             response.getWriter().print("code");
         } else if (password.isEmpty()) {
             response.getWriter().print("password");
@@ -62,7 +56,7 @@ public class NewDoctorAccount extends HttpServlet {
         }
     }
 
-    //
+    
     public int InvalidNumber(String num) {
         try {
             return Integer.parseInt(num);

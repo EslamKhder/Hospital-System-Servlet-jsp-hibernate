@@ -172,3 +172,6 @@ body
     border-radius: 25px;
     border: 2px solid powderblue;
 }
+.nav > li {
+    margin-right: 69px;
+}

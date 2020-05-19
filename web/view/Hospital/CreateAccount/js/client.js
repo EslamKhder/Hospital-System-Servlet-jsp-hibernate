@@ -64,9 +64,12 @@ function getInfo() {
         } else if (val === "gender") {
             ge.innerHTML = "Invalid Gender";
             clear(ge);
+        } else if (val === "codeexist") {
+            c.innerHTML = "Code IS Exist";
+            clear(c);
         } else if (val === "success") {
             location.replace("../Main/MainClient.jsp");
-        }
+        } 
     }
 }
 function clear(x) {

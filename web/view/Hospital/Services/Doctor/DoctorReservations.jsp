@@ -101,7 +101,7 @@
                     <c:forEach items="${BOOKING}" var="book" >
                         <div class="row">
                             <div class="cell" data-title="Full Name">
-                                ${book.getId()}
+                                ${book.getClient().getClientproperties().getName()}
                             </div>
                             <div class="cell" data-title="Specialization">
                                 ${book.getClient().getClientproperties().getAge()}

@@ -23,9 +23,24 @@
         <link href="css/mystyle.css" rel="stylesheet" type="text/css"/>
         <!-- font-awesome -->
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
-
+        <style>
+            .myname
+            {
+                position: absolute;
+                background-color: brown;
+                padding: 10px;
+                border: 1px solid white;
+                color: cornsilk;
+                margin: 108px;
+                z-index: 999999;
+                font-size: 25px;
+                font-family: fantasy;
+                letter-spacing: 4px;
+            }
+        </style>
     </head>
     <body id="page-top">
+        <div class="myname">Admin : ${sessionScope.admin.getName()}</div>
         <!-- Loader icon -->
         <div class="se-pre-con"></div>
         <!-- Choose Us Section -->
@@ -62,7 +77,7 @@
                                         <input type="text" class="form-control" id="name" placeholder="Name" >
                                     </div>
                                     <div id="Name"></div>
-                                    
+
                                     <div class="form-group">
                                         <label>Phone Number : </label>
                                         <input type="text" class="form-control" id="phone" placeholder="Phone Number" >
