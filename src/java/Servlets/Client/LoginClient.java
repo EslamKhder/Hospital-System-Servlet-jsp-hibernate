@@ -15,10 +15,10 @@ public class LoginClient extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int code = InvalidNumber(request.getParameter("code"));
+        String code = request.getParameter("code").trim();
         String password = request.getParameter("password");
 
-        if (code < 0) {
+        if (InvalidNumber(code) < 0) {
             response.getWriter().print("code");
         } else if (password.isEmpty()) {
             response.getWriter().print("password");

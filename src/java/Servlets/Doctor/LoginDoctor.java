@@ -15,10 +15,10 @@ public class LoginDoctor extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int code = InvalidNumber(request.getParameter("code"));
+        String code = request.getParameter("code").trim();
         String password = request.getParameter("password");
         String spec = request.getParameter("spec");
-        if (code < 0) {
+        if (InvalidNumber(code) < 0) {
             response.getWriter().print("code");
         } else if (password.isEmpty()) {
             response.getWriter().print("password");

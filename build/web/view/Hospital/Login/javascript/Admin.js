@@ -2,7 +2,7 @@ var request;
 var code, password;
 function login()
 {
-    code = document.getElementById("id").value,
+    code = document.getElementById("code").value,
             password = document.getElementById("password").value;
     var url = "../../../LoginAdmin";
     if (window.XMLHttpRequest) {
@@ -15,7 +15,7 @@ function login()
         request.onreadystatechange = getInfo;
         request.open("post", url, true);
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.send("id=" + code + "&password=" + password);
+        request.send("code=" + code + "&password=" + password);
     } catch (e)
     {
         alert("Unable to connect to server");
@@ -25,12 +25,12 @@ function getInfo() {
     if (this.readyState === 4 && this.status === 200) {
         var val = this.responseText;
         var error = document.getElementById("inv");
-        if (val === "id") {
-            error.innerHTML = "Invalid ID";
+        if (val === "code") {
+            error.innerHTML = "Invalid Code";
         } else if (val === "password") {
             error.innerHTML = "Invalid Password";
         } else if (val === "invalid") {
-            error.innerHTML = "Invalid Email And Password";
+            error.innerHTML = "Invalid Code And Password";
         } else if (val === "success") {
             location.replace("../Main/MainAdmin.jsp");
         }

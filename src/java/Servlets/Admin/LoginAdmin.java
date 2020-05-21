@@ -19,17 +19,17 @@ public class LoginAdmin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            int code = InvalidNumber(request.getParameter("id"));
+            String code = request.getParameter("code").trim();
             String password = request.getParameter("password");
-            if (code <= 0) {
-                response.getWriter().print("id");
+            if (InvalidNumber(code) < 0) {
+                response.getWriter().print("code");
             } else if (password.isEmpty()) {
                 response.getWriter().print("password");
             } else {
                 AdminController admincontroller = new AdminController();
                 SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
                 Admin admin = admincontroller.getAdmin(session);
-                if (admin.getCode() == code && admin.getPassword().equals(password)) {
+                if (admin.getCode().equals(code) && admin.getPassword().equals(password)) {
                     request.getSession().setAttribute("admin", admin);
                     response.getWriter().print("success");
                 } else {
@@ -44,7 +44,7 @@ public class LoginAdmin extends HttpServlet {
     public int InvalidNumber(String num) {
         try {
             return Integer.parseInt(num);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             return -1;
         }
     }

@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class DoctorProperties {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", nullable = false)
+    @Column(name = "ID")
     private int id;
     
     @Column(name = "Phone_Number", nullable = false)
@@ -31,6 +31,7 @@ public class DoctorProperties {
     @Column(name = "Name", nullable = false)
     private String name;
     
+    
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "doctorproperties", fetch = FetchType.LAZY)
     Doctor doctor;
 
@@ -42,8 +43,6 @@ public class DoctorProperties {
         this.gender = gender;
         this.name = name;
     }
-
-    
 
     public int getId() {
         return id;
@@ -84,6 +83,5 @@ public class DoctorProperties {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
-    
     
 }

@@ -5,7 +5,7 @@ function Edit()
     opassword = document.getElementById("opassword").value;
     npassword1 = document.getElementById("npassword1").value;
     npassword2 = document.getElementById("npassword2").value;
-    var url = "../../../../../EditDoctorPassword";
+    var url = "../../../../EditDoctorPassword";
     if (window.XMLHttpRequest) {
         request = new XMLHttpRequest();
     } else if (window.ActiveXObject) {
@@ -48,7 +48,7 @@ function getInfo() {
             OPassword.innerHTML = "Old Password Not Right";
             clear(OPassword);
         } else if (val === "success") {
-            location.replace("../../../Main/MainDoctor.jsp");
+            location.replace("../../Main/MainDoctor.jsp");
             alert("Success UP_DATE");
         }
     }

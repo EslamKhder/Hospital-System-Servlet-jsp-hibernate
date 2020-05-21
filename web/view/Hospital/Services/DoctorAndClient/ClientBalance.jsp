@@ -35,7 +35,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="overlay">
             <div class="wrapper">
                 <div class="logo text-center top-bottom-gap">
-                    <a class="brand-logo">Remove Doctor</a>
+                    <a class="brand-logo">Client Balance</a>
                     <!-- if logo is image enable this
 			<a class="brand-logo" href="#index.html">
 			    <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
@@ -44,21 +44,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="form34">
                     <form>
                         <div>
-                            <p class="text-head">Enter Code : </p>
+                            <p class="text-head">Enter Code  (Client) : </p>
                             <input type="text" id="code" class="input" placeholder="Your Code"/>
                         </div>
                         <div id="Code"></div>
                         <div>
-                            <p class="text-head">Enter Password : </p>
-                            <input type="password" id="password" class="input" placeholder="Your Password"/>
-                        </div>
-                        <div id="Password"></div>
-                        <div>
-                            <p class="text-head">Balance : </p>
-                            <input type="password" id="balance" class="input" placeholder="Your Balance"/>
+                            <p class="text-head">Enter Balance  (Client) : </p>
+                            <input type="text" id="balance" class="input" placeholder="Your Code"/>
                         </div>
                         <div id="Balance"></div>
-                        <div id="Error"></div>
+                        <div>
+                            <p class="text-head">Password (Admin) : </p>
+                            <input type="password" id="password1" class="input" placeholder="Your Password"/>
+                        </div>
+                        <div id="Password1"></div>
+                        <div>
+                            <p class="text-head">Again Password (Admin) : </p>
+                            <input type="password" id="password2" class="input" placeholder="Your Password"/>
+                        </div>
+                        <div id="Password2"></div>
                     </form>
                     <button class="signinbutton btn" onclick="Edit();">Done</button>
                 </div>
@@ -70,7 +74,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <!-- //copyright --> 
         </div>
     </section>
-<script src="js/EditPassword.js"></script>
+<script src="js/ClientBalance.js"></script>
 
 
 </html>

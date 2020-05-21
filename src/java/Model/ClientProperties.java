@@ -19,7 +19,7 @@ public class ClientProperties {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", nullable = false)
+    @Column(name = "ID")
     private int id;
     
     @Column(name = "Name", nullable = false)
@@ -40,7 +40,7 @@ public class ClientProperties {
     
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "clientproperties", fetch = FetchType.LAZY)
     Client client;
-
+    
     public ClientProperties() {
     }
 

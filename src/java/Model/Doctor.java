@@ -1,6 +1,5 @@
 package Model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -15,15 +14,15 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Doctors")
-public class Doctor implements Serializable {
+public class Doctor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", nullable = false)
+    @Column(name = "ID")
     private int id;
     
     @Column(name = "Code",nullable = false,unique = true)
-    private int code;
+    private String code;
     
     @Column(name = "Password", nullable = false)
     private String password;
@@ -38,7 +37,7 @@ public class Doctor implements Serializable {
     private DoctorProperties doctorproperties;
     
     @OneToMany(mappedBy = "doctor",cascade = CascadeType.REMOVE)
-    private List<Booking> booking = new ArrayList();
+    private List<Booking> booking = new ArrayList(); 
 //    @OneToMany
 //    @JoinTable(
 //            name="Booking",
@@ -52,13 +51,13 @@ public class Doctor implements Serializable {
     public Doctor() {
     }
 
-    public Doctor(int code, String password, String Specialty) {
+    public Doctor(String code, String password, String Specialty) {
         this.code = code;
         this.password = password;
         this.Specialty = Specialty;
     }
     
-    public Doctor(int code, String password, String Specialty, DoctorProperties doctorproperties) {
+    public Doctor(String code, String password, String Specialty, DoctorProperties doctorproperties) {
         this.code = code;
         this.password = password;
         this.Specialty = Specialty;
@@ -74,11 +73,11 @@ public class Doctor implements Serializable {
         this.id = id;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

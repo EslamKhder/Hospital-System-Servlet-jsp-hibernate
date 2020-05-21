@@ -109,7 +109,7 @@ public final class loginClient_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            </div>\n");
       out.write("                            <div id=\"inv\"></div>\n");
       out.write("                            <div class=\"links\">\n");
-      out.write("                                <p class=\"right\"><a href=\"../CreateAccount/CreateAccount.jsp\">Create New Account</a></p>\n");
+      out.write("                                <p class=\"right\"><a href=\"../CreateAccount/CreateClientAccount.jsp\">Create New Account</a></p>\n");
       out.write("                                <div class=\"clear\"></div>\n");
       out.write("                            </div>\n");
       out.write("                        </form>\n");

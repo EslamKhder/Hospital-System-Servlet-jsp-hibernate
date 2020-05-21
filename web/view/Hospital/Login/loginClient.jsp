@@ -70,7 +70,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </div>
                             <div id="inv"></div>
                             <div class="links">
-                                <p class="right"><a href="../CreateAccount/CreateAccount.jsp">Create New Account</a></p>
+                                <p class="right"><a href="../CreateAccount/CreateClientAccount.jsp">Create New Account</a></p>
                                 <div class="clear"></div>
                             </div>
                         </form>

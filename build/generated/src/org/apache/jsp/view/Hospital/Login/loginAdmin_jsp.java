@@ -105,7 +105,7 @@ public final class loginAdmin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            \n");
       out.write("                            <div class=\"icon1 one\">\n");
       out.write("                                <span class=\"fa fa-user\"></span>\n");
-      out.write("                                <input type=\"text\" placeholder=\"ID\" id=\"id\" class=\"inputid\" required pattern=\"[0-9]{1,}\" title=\"must include only number\"/>\n");
+      out.write("                                <input type=\"text\" placeholder=\"ID\" id=\"code\" class=\"inputid\" required pattern=\"[0-9]{1,}\" title=\"must include only number\"/>\n");
       out.write("                            </div>\n");
       out.write("                            <div class=\"icon1\">\n");
       out.write("                                <span class=\"fa fa-lock\"></span>\n");

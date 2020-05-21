@@ -10,9 +10,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 public class ClientServices implements ClientService {
 
@@ -28,7 +30,6 @@ public class ClientServices implements ClientService {
         q = null;
     }
 
-    
     // Create New Client Account
     @Override
     public int addClient(Client client, SessionFactory sessionfactory) {
@@ -52,14 +53,30 @@ public class ClientServices implements ClientService {
         try {
             session = dc.getSession(sessionfactory);
             q = session.createQuery("select id from Client where Code=?");
-            q.setInteger(0, client.getCode());
+            q.setString(0, client.getCode());
             return (int) q.list().get(0);
         } finally {
             session.close();
         }
 
     }
-    
+    // Edit Client
+    @Override
+    public int editClient(Client client, SessionFactory sessionfactory){
+        try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
+            session.update(client);
+            session.getTransaction().commit();
+            return 1;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            return 0;
+        } finally {
+            session.close();
+        }
+    }
+
     /* Check IF Client Is Exist Or Not 
        IF Exist (Return All Data Of Client)
        IF Not Exist (Return Null)
@@ -69,7 +86,7 @@ public class ClientServices implements ClientService {
         try {
             session = dc.getSession(sessionfactory);
             q = session.createQuery("from Client where Code=? and Password=?");
-            q.setInteger(0, client.getCode());
+            q.setString(0, client.getCode());
             q.setString(1, client.getPassword());
             clients = q.list();
             if (clients.isEmpty()) {
@@ -103,8 +120,25 @@ public class ClientServices implements ClientService {
             session.close();
         }
     }
-    
-    
+
+    // Get Client By Code 
+    @Override
+    public Client getClientCode(SessionFactory sessionfactory, Client client) {
+        try {
+            session = dc.getSession(sessionfactory);
+            Criteria cri = session.createCriteria(Client.class);
+            cri.add(Restrictions.eq("code", client.getCode()));
+            clients = cri.list();
+            if (clients.isEmpty()) {
+                return null;
+            } else {
+                return clients.get(0);
+            }
+        } finally {
+            session.close();
+        }
+    }
+
     // Reserve A Medical Examination
     @Override
     public int Booking(Doctor doctor, Client client, SessionFactory sessionfactory) {
@@ -137,7 +171,6 @@ public class ClientServices implements ClientService {
 //        return clients.get(0);
 //    }
 
-    
     //  Check If Client Booking Or No
     @Override
     public int isBooking(SessionFactory sessionfactory, Client client, Doctor doctor) {

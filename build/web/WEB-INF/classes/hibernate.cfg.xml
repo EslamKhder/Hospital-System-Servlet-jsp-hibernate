@@ -16,5 +16,6 @@
     <mapping class="Model.ClientProperties"/>
     <mapping class="Model.Pharmacy"/>
     <mapping class="Model.Booking"/>
+    
   </session-factory>
 </hibernate-configuration>

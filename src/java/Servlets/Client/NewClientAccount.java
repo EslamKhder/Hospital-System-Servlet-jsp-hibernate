@@ -18,17 +18,19 @@ public class NewClientAccount extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int code = InvalidNumber(request.getParameter("code").trim());
-        String password = request.getParameter("password").trim();
+        String code = request.getParameter("code").trim();
+        String password = request.getParameter("password");
         String name = request.getParameter("name").trim();
         String phone = request.getParameter("phone").trim();
         String address = request.getParameter("address").trim();
         int age = InvalidNumber(request.getParameter("age").trim());
         String gender = request.getParameter("gender").trim();
-        if (code < 0) {
+        if (InvalidNumber(code) < 0) {
             response.getWriter().print("code");
         } else if (password.isEmpty()) {
             response.getWriter().print("password");
+        } else if (password.toCharArray().length < 7) {
+            response.getWriter().print("numpassword");
         } else if (name.isEmpty() || !(Pattern.matches("[a-zA-Z ]+", name))) {
             response.getWriter().print("name");
         } else if (phone.isEmpty() || phone.toCharArray().length != 11 || InvalidNumber(phone) == -1) {

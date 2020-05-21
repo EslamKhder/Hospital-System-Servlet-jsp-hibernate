@@ -40,6 +40,10 @@
         <servlet-name>RemoveDoctor</servlet-name>
         <servlet-class>Servlets.Doctor.RemoveDoctor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ClientBalance</servlet-name>
+        <servlet-class>Servlets.Client.ClientBalance</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginClient</servlet-name>
         <url-pattern>/LoginClient</url-pattern>
@@ -75,6 +79,10 @@
     <servlet-mapping>
         <servlet-name>RemoveDoctor</servlet-name>
         <url-pattern>/RemoveDoctor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClientBalance</servlet-name>
+        <url-pattern>/ClientBalance</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

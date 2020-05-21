@@ -15,6 +15,9 @@ public interface ClientService {
     // Geting Client Property (ID) 
     public int getClientId(Client client, SessionFactory sessionfactory);
 
+    // Edit Client
+    public int editClient(Client client, SessionFactory sessionfactory);
+
     /* Check IF Client Is Exist Or Not 
        IF Exist (Return All Data Of Client)
        IF Not Exist (Return Null)
@@ -26,6 +29,9 @@ public interface ClientService {
 
     // Get All Properties Of Client
     public ClientProperties getClientProperties(SessionFactory sessionfactory, Client client);
+
+    // Get Client By Code 
+    public Client getClientCode(SessionFactory sessionfactory, Client client);
 
     // Reserve A Medical Examination
     public int Booking(Doctor doctor, Client client, SessionFactory sessionfactory);

@@ -22,6 +22,9 @@ public class ClientController {
     public int getClientId(Client client, SessionFactory sessionfactory) {
         return clientservices.getClientId(client, sessionfactory);
     }
+    public int editClient(Client client, SessionFactory sessionfactory){
+        return clientservices.editClient(client, sessionfactory);
+    }
 //    public Client getClientData(Client client,SessionFactory sessionfactory){
 //        return clientservices.getClientData(client, sessionfactory);
 //    }
@@ -31,6 +34,10 @@ public class ClientController {
     
     public ClientProperties getClientProperties(SessionFactory sessionfactory,Client client){
         return clientservices.getClientProperties(sessionfactory,client);
+    }
+    
+    public Client getClientCode(SessionFactory sessionfactory, Client client){
+        return clientservices.getClientCode(sessionfactory, client);
     }
 //    public int addBooking(SessionFactory sessionfactory, Client client, Doctor doctor) {
 //        return clientservices.addBooking(sessionfactory, client, doctor);

@@ -22,7 +22,7 @@ public class Client {
     private int id;
     
     @Column(name = "Code", nullable = false, unique = true)
-    private int code;
+    private String code;
 
     @Column(name = "Password", nullable = false)
     private String password;
@@ -44,7 +44,7 @@ public class Client {
 
     }
 
-    public Client(int code, String password, ClientProperties clientproperties) {
+    public Client(String code, String password, ClientProperties clientproperties) {
         this.code = code;
         this.password = password;
         this.clientproperties = clientproperties;
@@ -58,11 +58,11 @@ public class Client {
         this.id = id;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

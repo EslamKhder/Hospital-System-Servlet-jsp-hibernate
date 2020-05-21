@@ -49,6 +49,9 @@ function getInfo() {
         } else if (val === "password") {
             pa.innerHTML = "Invalid Password";
             clear(pa);
+        }  else if (val === "numpassword") {
+            pa.innerHTML = "Password Must include More than 7 Char OR Digit";
+            clear(pa);
         } else if (val === "name") {
             n.innerHTML = "Invalid Name";
             clear(n);

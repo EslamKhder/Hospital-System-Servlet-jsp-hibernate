@@ -19,10 +19,10 @@ public class EditDoctorPassword extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int opassword = InvalidNumber(request.getParameter("opassword"));
+        String opassword = request.getParameter("opassword");
         String npassword1 = request.getParameter("npassword1");
         String npassword2 = request.getParameter("npassword2");
-        if (opassword < 0) {
+        if (opassword.isEmpty()) {
             response.getWriter().print("opassword");
         } else if (npassword1.isEmpty()) {
             response.getWriter().print("npassword1");

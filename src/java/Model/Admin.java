@@ -16,7 +16,7 @@ public class Admin {
     @Column(name = "ID")
     private int id;
     @Column(name = "Code")
-    private int code;
+    private String code;
     @Column(name = "Password")
     private String password;
     @Column(name = "Name")
@@ -28,7 +28,7 @@ public class Admin {
     public Admin() {
     }
 
-    public Admin(int code, String password) {
+    public Admin(String code, String password) {
         this.code = code;
         this.password = password;
     }
@@ -41,11 +41,11 @@ public class Admin {
         this.name = name;
     }
     
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

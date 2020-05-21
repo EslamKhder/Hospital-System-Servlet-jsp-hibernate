@@ -54,9 +54,9 @@
                               <a href="#" class="dropdown-toggle up" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Control Center <span class="caret "><i class="fab fa-windows hidden-xs"></i></span></a>
                               <ul class="dropdown-menu">
                                   <li><a href="../CreateAccount/CreateDoctorAccount.jsp"><i class="fas fa-user-plus"></i> &nbsp; Add Doctor</a></li>
-				<li><a href=""><i class="fas fa-trash-alt"></i> &nbsp; Remove Doctor</a></li>
+                                  <li><a href="../Services/DoctorAndClient/RemoveDoctor.jsp"><i class="fas fa-trash-alt"></i> &nbsp; Remove Doctor</a></li>
                                 <li><a href=""><i class="fas fa-laptop-medical"></i> &nbsp; pharmacy</a></li>
-                                <li><a href="IdName/ID.html"><i class="fas fa-dollar-sign"></i> &nbsp; Client Balances</a></li>
+                                <li><a href="../Services/DoctorAndClient/ClientBalance.jsp"><i class="fas fa-dollar-sign"></i> &nbsp; Client Balances</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="IdName/ID_U.html"><i class="fas fa-user-edit"></i> &nbsp; Statistics</a></li>
                               </ul>

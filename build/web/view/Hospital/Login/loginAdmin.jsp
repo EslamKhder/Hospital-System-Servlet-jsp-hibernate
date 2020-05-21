@@ -66,7 +66,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             
                             <div class="icon1 one">
                                 <span class="fa fa-user"></span>
-                                <input type="text" placeholder="ID" id="id" class="inputid" required pattern="[0-9]{1,}" title="must include only number"/>
+                                <input type="text" placeholder="ID" id="code" class="inputid" required pattern="[0-9]{1,}" title="must include only number"/>
                             </div>
                             <div class="icon1">
                                 <span class="fa fa-lock"></span>

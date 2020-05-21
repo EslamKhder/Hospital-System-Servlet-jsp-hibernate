@@ -38,6 +38,7 @@ public class DoctorServices implements DoctorService {
             session.getTransaction().commit();
             return 1;
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString() +" " + e.getMessage());
             return 0;
         } finally {
             session.close();
@@ -63,7 +64,7 @@ public class DoctorServices implements DoctorService {
         try{
             session = dc.getSession(sessionf);
             q = session.createQuery("select password from Doctor where code=?");
-            q.setInteger(0, doctor.getCode());
+            q.setString(0, doctor.getCode());
             return (String)q.list().get(0);
         }finally {
             session.close();
@@ -114,7 +115,7 @@ public class DoctorServices implements DoctorService {
         try {
             session = dc.getSession(sessionf);
             q = session.createQuery("from Doctor where Code=? and Password=? and DoctorSpecialty=?");
-            q.setInteger(0, doctor.getCode());
+            q.setString(0, doctor.getCode());
             q.setString(1, doctor.getPassword());
             q.setString(2, doctor.getSpecialty());
             doctors = q.list();
@@ -134,8 +135,8 @@ public class DoctorServices implements DoctorService {
             session = dc.getSession(sessionf);
             Criteria cri = session.createCriteria(Doctor.class);
             cri.add(Restrictions.eq("Specialty", doctor.getSpecialty()));
-            List<Doctor> l = cri.list();
-            return l.get(0);
+            doctors = cri.list();
+            return doctors.get(0);
         } finally {
             session.close();
         }
