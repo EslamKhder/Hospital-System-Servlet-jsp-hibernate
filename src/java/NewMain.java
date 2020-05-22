@@ -26,8 +26,25 @@ import org.hibernate.SessionFactory;
 public class NewMain {
 
     public static void main(String[] args) {
-        int i = 000001;
-        System.out.println(i);
+
+        SessionFactory sessionf = HibernateUtil.getSessionFactory();
+        Session s = sessionf.openSession();
+        s.beginTransaction();
+        ClientProperties c = (ClientProperties) s.get(ClientProperties.class, 3);
+        s.delete(c);
+//        Booking book = new Booking();
+//         Doctor doctor = new Doctor(); doctor.setId(1);
+//         book.setDoctor(doctor);
+//         book.setClient(c);
+//         c.getBooking().add(book);
+         //book.setClient(c);
+//        ClientProperties cp = new ClientProperties("sooooooooooooo", "0111", 20, Gender.Male, "shiben");
+//        cp.setId(3);
+//        Client c = new Client("4000", "4000", cp);
+//        c.setId(4);
+        s.getTransaction().commit();
+        s.close();
+        //JOptionPane.showMessageDialog(null, c.getClientproperties().getAddress());
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 //            String date = sdf.format(new Date());
 //            JOptionPane.showMessageDialog(null, date);
@@ -58,7 +75,7 @@ public class NewMain {
 //        c.setId(1);
 //        Doctor doo = new Doctor();
 //        doo.setId(1);
-        
+
 //        Booking bb = new Booking();
 //        bb.setId(2);
 //        Pharmacy ph = new Pharmacy();

@@ -27,7 +27,6 @@ public class LoginDoctor extends HttpServlet {
             Doctor doctor = new Doctor(code, password, spec);
             DoctorController doctorcontroller = new DoctorController();
             doctor = doctorcontroller.isExist(session, doctor);
-
             if (doctor != null) {
                 request.getSession().setAttribute("doctor", doctor);
                 response.getWriter().print("success");
@@ -35,7 +34,6 @@ public class LoginDoctor extends HttpServlet {
                 response.getWriter().print("invalid");
             }
         }
-
     }
 
     public int InvalidNumber(String num) {

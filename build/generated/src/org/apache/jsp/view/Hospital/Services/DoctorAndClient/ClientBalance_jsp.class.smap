@@ -1,0 +1,12 @@
+SMAP
+ClientBalance_jsp.java
+JSP
+*S JSP
+*F
++ 0 ClientBalance.jsp
+view/Hospital/Services/DoctorAndClient/ClientBalance.jsp
+*L
+5,27:44
+32:71,3
+33,49:74
+*E

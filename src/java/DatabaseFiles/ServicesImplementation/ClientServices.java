@@ -36,7 +36,7 @@ public class ClientServices implements ClientService {
         try {
             session = dc.getSession(sessionfactory);
             session.beginTransaction();
-            session.save(client);
+            session.persist(client);
             session.getTransaction().commit();
             return 1;
         } catch (Exception e) {

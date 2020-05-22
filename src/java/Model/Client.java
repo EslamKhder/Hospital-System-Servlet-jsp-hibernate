@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,10 +31,10 @@ public class Client {
     @Column(name = "Balance", nullable = false)
     private int balance;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     private ClientProperties clientproperties;
     
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client",cascade = CascadeType.REMOVE)
     private List<Booking> booking = new ArrayList<>();
     
 //    @ManyToOne(cascade = CascadeType.ALL)
@@ -44,6 +45,12 @@ public class Client {
 
     }
 
+    public Client(String code, String password, int balance) {
+        this.code = code;
+        this.password = password;
+        this.balance = balance;
+    }
+    
     public Client(String code, String password, ClientProperties clientproperties) {
         this.code = code;
         this.password = password;

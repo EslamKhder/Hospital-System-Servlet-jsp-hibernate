@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 import org.hibernate.SessionFactory;
 
 public class ClientBalance extends HttpServlet {
@@ -16,6 +17,9 @@ public class ClientBalance extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
+            
+        
         String code = request.getParameter("code").trim();
         int balance = InvalidNumber(request.getParameter("balance").trim());
         String password1 = request.getParameter("password1");
@@ -36,6 +40,7 @@ public class ClientBalance extends HttpServlet {
             Client client = new Client();
             client.setCode(code);
             client = cc.getClientCode(session, client);
+            
             if (client != null) {
                 
                 AdminController am = new AdminController();
@@ -51,6 +56,9 @@ public class ClientBalance extends HttpServlet {
             } else {
                 response.getWriter().print("invalid");
             }
+        }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
         }
     }
 

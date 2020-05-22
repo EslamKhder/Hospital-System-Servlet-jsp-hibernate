@@ -34,11 +34,11 @@ public class DoctorServices implements DoctorService {
         try {
             session = dc.getSession(sessionf);
             session.beginTransaction();
-            session.save(doctor);
+            session.persist(doctor);
             session.getTransaction().commit();
             return 1;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.toString() +" " + e.getMessage());
+            JOptionPane.showMessageDialog(null, e.toString() + "");
             return 0;
         } finally {
             session.close();
