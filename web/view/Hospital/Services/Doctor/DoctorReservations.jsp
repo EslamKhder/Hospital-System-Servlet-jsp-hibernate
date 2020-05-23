@@ -97,9 +97,10 @@
                         <div class="cell">
                             Accept
                         </div>
+
                     </div>
                     <c:forEach items="${BOOKING}" var="book" >
-                        <div class="row">
+                        <div class="row" id="book${book.getClient().getId()}">
                             <div class="cell" data-title="Full Name">
                                 ${book.getClient().getClientproperties().getName()}
                             </div>
@@ -113,14 +114,13 @@
                                 ${book.getClient().getClientproperties().getPhone()}
                             </div>
                             <div class="cell">
-                                <button>Cancel</button>
+                                <button onclick="Booking(${book.getClient().getId()})">Cancel</button>
                             </div>
                             <div class="cell">
                                 <button>Accept</button>
                             </div>
                         </div>
                     </c:forEach>
-
                 </div>
             </div>
         </div>
@@ -136,7 +136,6 @@
         <!--===============================================================================================-->
         <script src="vendor/select2/select2.min.js"></script>
         <!--===============================================================================================-->
-        <script src="js/main.js"></script>
-
+        <script src="js/Reserve.js"></script>
     </body>
 </html>

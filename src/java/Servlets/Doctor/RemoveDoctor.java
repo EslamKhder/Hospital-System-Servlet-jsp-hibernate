@@ -42,6 +42,7 @@ public class RemoveDoctor extends HttpServlet {
                 Admin ad = ac.getAdmin(sessionf);
                 if (ad.getPassword().equals(password2)) {
                     dc.removeDoctor(sessionf, doctor);
+                    request.getSession().setAttribute("doctor", dc.getDoctorID(sessionf, doctor));
                     response.getWriter().print("success");
                 } else {
                     response.getWriter().print("invalid");

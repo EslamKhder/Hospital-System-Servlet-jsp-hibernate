@@ -44,6 +44,14 @@
         <servlet-name>ClientBalance</servlet-name>
         <servlet-class>Servlets.Client.ClientBalance</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CancelBookingClient</servlet-name>
+        <servlet-class>Servlets.Client.CancelBookingClient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CancelBookingDoctor</servlet-name>
+        <servlet-class>Servlets.Doctor.CancelBookingDoctor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginClient</servlet-name>
         <url-pattern>/LoginClient</url-pattern>
@@ -83,6 +91,14 @@
     <servlet-mapping>
         <servlet-name>ClientBalance</servlet-name>
         <url-pattern>/ClientBalance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelBookingClient</servlet-name>
+        <url-pattern>/CancelBookingClient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelBookingDoctor</servlet-name>
+        <url-pattern>/CancelBookingDoctor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -17,8 +17,7 @@ public class ClientBalance extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            
+        
         
         String code = request.getParameter("code").trim();
         int balance = InvalidNumber(request.getParameter("balance").trim());
@@ -48,6 +47,7 @@ public class ClientBalance extends HttpServlet {
                 if (admin.getPassword().equals(password2)) {
                     client.setBalance(balance + client.getBalance());
                     cc.editClient(client, session);
+                    request.getSession().setAttribute("client", client);
                     response.getWriter().print("success");
                 } else {
                     response.getWriter().print("invalidadmin");
@@ -57,9 +57,7 @@ public class ClientBalance extends HttpServlet {
                 response.getWriter().print("invalid");
             }
         }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.toString());
-        }
+
     }
 
     public int InvalidNumber(String num) {

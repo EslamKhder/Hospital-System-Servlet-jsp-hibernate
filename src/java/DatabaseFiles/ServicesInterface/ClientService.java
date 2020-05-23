@@ -17,6 +17,9 @@ public interface ClientService {
 
     // Edit Client
     public int editClient(Client client, SessionFactory sessionfactory);
+    
+    // Edit Client
+    public int removeBooking(Doctor doctor,Client client, SessionFactory sessionfactory);
 
     /* Check IF Client Is Exist Or Not 
        IF Exist (Return All Data Of Client)

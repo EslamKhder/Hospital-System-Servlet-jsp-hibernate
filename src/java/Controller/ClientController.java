@@ -25,6 +25,9 @@ public class ClientController {
     public int editClient(Client client, SessionFactory sessionfactory){
         return clientservices.editClient(client, sessionfactory);
     }
+    public int removeBooking(Doctor doctor,Client client, SessionFactory sessionfactory) {
+        return clientservices.removeBooking(doctor, client, sessionfactory);
+    }
 //    public Client getClientData(Client client,SessionFactory sessionfactory){
 //        return clientservices.getClientData(client, sessionfactory);
 //    }

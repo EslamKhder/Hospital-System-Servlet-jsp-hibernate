@@ -96,7 +96,7 @@ public final class MainClient_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <li class=\"dropdown\">\n");
       out.write("                              <a class=\"dropdown-toggle up\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Control Center <span class=\"caret \"><i class=\"fab fa-windows hidden-xs\"></i></span></a>\n");
       out.write("                              <ul class=\"dropdown-menu\">\n");
-      out.write("                                  <li><a href=\"../Services/roombook.jsp\"><i class=\"fas fa-user-plus\"></i> &nbsp; Detection Reservation</a></li>\n");
+      out.write("                                  <li><a href=\"../Services/Client/roombook.jsp\"><i class=\"fas fa-user-plus\"></i> &nbsp; Detection Reservation</a></li>\n");
       out.write("                                <li><a href=\"\"><i class=\"fas fa-laptop-medical\"></i> &nbsp; pharmacy</a></li>\n");
       out.write("                                <li role=\"separator\" class=\"divider\"></li>\n");
       out.write("                                <li><a href=\"../Services/Client/ClientReservations.jsp\"><i class=\"fas fa-user-edit\"></i> &nbsp; My Reservations</a></li>\n");

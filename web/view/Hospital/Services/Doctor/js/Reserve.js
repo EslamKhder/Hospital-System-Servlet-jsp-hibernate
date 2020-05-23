@@ -1,9 +1,9 @@
 var request;
-var spec;
-function Booking()
+var book;
+function Booking(idclient)
 {
-    spec = document.getElementById("spec").value;
-    var url = "../../../ClientBooking";
+    book = document.getElementById("book"+idclient);
+    var url = "../../../../CancelBookingDoctor";
     if (window.XMLHttpRequest) {
         request = new XMLHttpRequest();
     } else if (window.ActiveXObject) {
@@ -14,7 +14,7 @@ function Booking()
         request.onreadystatechange = getInfo;
         request.open("post", url, true);
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.send("spec=" + spec);
+        request.send("idclient=" + idclient);
     } catch (e)
     {
         alert("Unable to connect to server");
@@ -23,17 +23,8 @@ function Booking()
 function getInfo() {
     if (this.readyState === 4 && this.status === 200) {
         var val = this.responseText;
-        var error = document.getElementById("inv");
         if (val === "success") {
-            error.innerHTML = "Success Booking";
-        } else if (val === "invalid") {
-            error.innerHTML = "You Already Booked it";
+            book.style.display = "none";
         }
     }
-    clear(error);
-}
-function clear(x) {
-    setTimeout(function () {
-        x.innerHTML = "";
-    }, 2000);
 }

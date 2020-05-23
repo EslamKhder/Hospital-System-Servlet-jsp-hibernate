@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class MainAdmin_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class MainDoctor_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -46,6 +46,7 @@ public final class MainAdmin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
+      out.write("    \n");
       out.write("    <head>\n");
       out.write("        <meta charset=\"utf-8\" />\n");
       out.write("        <meta name=\"description\" content=\"\" />\n");
@@ -65,7 +66,7 @@ public final class MainAdmin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        <div class=\"doller\">");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.admin.getMoney()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.doctor.getBalance()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write(" <i class=\"fas fa-dollar-sign\"></i></div>\n");
       out.write("<!-- Start NavBar -->\n");
       out.write("            <nav class=\"navbar navbar-inverse\">\n");
@@ -80,28 +81,24 @@ public final class MainAdmin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <span class=\"icon-bar\"></span>\n");
       out.write("                        <span class=\"icon-bar\"></span>\n");
       out.write("                      </button>\n");
-      out.write("                      <a class=\"navbar-brand\" href=\"\">");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.admin.getName()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("</a>\n");
+      out.write("                      <a class=\"navbar-brand\">Hospital</a>\n");
       out.write("                    </div>\n");
       out.write("                    <!-- Collect the nav links, forms, and other content for toggling -->\n");
       out.write("                        <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n");
       out.write("                            \n");
       out.write("                          <ul class=\"nav navbar-nav\">\n");
-      out.write("                            <li class=\"active\"><a href=\"\">Doctors <i class=\"fas fa-user-friends\"></i><span class=\"sr-only\">(current)</span></a></li>\n");
+      out.write("                              <li class=\"active\"><a>");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.doctor.getDoctorproperties().getName()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write(" <i class=\"fas fa-user-md\"></i><span class=\"sr-only\">(current)</span></a></li>\n");
       out.write("                          </ul>\n");
       out.write("                          <ul class=\"nav navbar-nav navbar-right\">\n");
       out.write("                          \n");
-      out.write("                            <li class=\"call\"><a href=\"\">Clients <i class=\"fas fa-user-friends\"></i></a></li>\n");
+      out.write("                            <li class=\"call\"><a href=\"ShowAllClient\">My Profile<i class=\"fas fa-user-friends\"></i></a></li>\n");
       out.write("                            <li class=\"dropdown\">\n");
       out.write("                              <a href=\"#\" class=\"dropdown-toggle up\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Control Center <span class=\"caret \"><i class=\"fab fa-windows hidden-xs\"></i></span></a>\n");
       out.write("                              <ul class=\"dropdown-menu\">\n");
-      out.write("                                  <li><a href=\"../CreateAccount/CreateDoctorAccount.jsp\"><i class=\"fas fa-user-plus\"></i> &nbsp; Add Doctor</a></li>\n");
-      out.write("                                  <li><a href=\"../Services/DoctorAndClient/RemoveDoctor.jsp\"><i class=\"fas fa-trash-alt\"></i> &nbsp; Remove Doctor</a></li>\n");
-      out.write("                                <li><a href=\"\"><i class=\"fas fa-laptop-medical\"></i> &nbsp; pharmacy</a></li>\n");
-      out.write("                                <li><a href=\"../Services/DoctorAndClient/ClientBalance.jsp\"><i class=\"fas fa-dollar-sign\"></i> &nbsp; Client Balances</a></li>\n");
-      out.write("                                <li role=\"separator\" class=\"divider\"></li>\n");
-      out.write("                                <li><a href=\"IdName/ID_U.html\"><i class=\"fas fa-user-edit\"></i> &nbsp; Statistics</a></li>\n");
+      out.write("                                  <li><a href=\"../Services/Doctor/DoctorReservations.jsp\"><i class=\"fas fa-user-edit\"></i> &nbsp; My Reservations</a></li>\n");
+      out.write("                                  <li><a href=\"../Services/DoctorAndClient/EditPassword.jsp\"><i class=\"fas fa-user-edit\"></i> &nbsp; UP_DATE Password</a></li>\n");
       out.write("                              </ul>\n");
       out.write("                            </li>\n");
       out.write("                          </ul>\n");
@@ -171,7 +168,7 @@ public final class MainAdmin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <script src=\"js/bootstrap.min.js\"></script>\n");
       out.write("        <script src=\"js/plugins.js\"></script>\n");
       out.write("    </body>\n");
-      out.write("</html>");
+      out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

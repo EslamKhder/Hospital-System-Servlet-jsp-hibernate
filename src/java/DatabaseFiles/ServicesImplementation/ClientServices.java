@@ -10,7 +10,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.swing.JOptionPane;
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -60,16 +62,36 @@ public class ClientServices implements ClientService {
         }
 
     }
+
     // Edit Client
     @Override
-    public int editClient(Client client, SessionFactory sessionfactory){
+    public int editClient(Client client, SessionFactory sessionfactory) {
         try {
             session = dc.getSession(sessionfactory);
             session.beginTransaction();
             session.update(client);
             session.getTransaction().commit();
             return 1;
-        } catch (Exception e) {
+        } finally {
+            session.close();
+        }
+    }
+
+    // Edit Client
+    @Override
+    public int removeBooking(Doctor doctor, Client client, SessionFactory sessionfactory) {
+        try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
+            Criteria cri = session.createCriteria(Booking.class);
+            cri.add(Restrictions.eq("date", new Date()));
+            cri.add(Restrictions.eq("client", client));
+            cri.add(Restrictions.eq("doctor", doctor));
+            booking = cri.list();
+            session.delete(cri.list().get(0));
+            session.getTransaction().commit();
+            return 1;
+        } catch (HibernateException e) {
             session.getTransaction().rollback();
             return 0;
         } finally {
@@ -218,6 +240,11 @@ public class ClientServices implements ClientService {
         } finally {
             session.close();
         }
+    }
+
+    public String Date() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(new Date());
     }
 }
 //    @Override

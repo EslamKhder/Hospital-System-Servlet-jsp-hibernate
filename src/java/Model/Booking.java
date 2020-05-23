@@ -52,6 +52,14 @@ public class Booking {
         time = new Date();
     }
 
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
     public Date getDate() {
         return date;
     }
