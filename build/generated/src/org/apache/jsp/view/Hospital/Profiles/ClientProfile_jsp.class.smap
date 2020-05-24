@@ -1,0 +1,20 @@
+SMAP
+ClientProfile_jsp.java
+JSP
+*S JSP
+*F
++ 0 ClientProfile.jsp
+view/Hospital/Profiles/ClientProfile.jsp
+*L
+5,29:44
+34,3:73,3
+37:82
+38:83,3
+39,6:86
+45:92,3
+46,3:95
+49:98,3
+50,3:101
+53:104,3
+54,12:107
+*E

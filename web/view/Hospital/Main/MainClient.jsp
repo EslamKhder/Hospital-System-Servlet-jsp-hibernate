@@ -49,7 +49,7 @@
                           </ul>
                           <ul class="nav navbar-nav navbar-right">
                           
-                            <li class="call"><a href="">My Profile<i class="fas fa-user-friends"></i></a></li>
+                              <li class="call"><a href="../Profiles/ClientProfile.jsp">My Profile<i class="fas fa-user-friends"></i></a></li>
                             <li class="dropdown">
                               <a class="dropdown-toggle up" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Control Center <span class="caret "><i class="fab fa-windows hidden-xs"></i></span></a>
                               <ul class="dropdown-menu">
