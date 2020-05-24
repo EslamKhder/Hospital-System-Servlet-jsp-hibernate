@@ -51,7 +51,16 @@ public class ClientController {
     public int isBooking(SessionFactory sessionfactory,Client client,Doctor doctor) {
         return clientservices.isBooking(sessionfactory, client, doctor);
     }
-    public List<Booking> myBooking(SessionFactory sessionfactory, Client client) {
-        return clientservices.myBooking(sessionfactory, client);
+    public List<Booking> myBookingtoday(SessionFactory sessionfactory, Client client) {
+        return clientservices.myBookingtoday(sessionfactory, client);
+    }
+    public List<Booking> allmyBooking(SessionFactory sessionfactory, Client client) {
+        return clientservices.allmyBooking(sessionfactory, client);
+    }
+    public Booking myBooking(SessionFactory sessionfactory, Client client, Doctor doctor) {
+        return clientservices.myBooking(sessionfactory, client, doctor);
+    }
+    public int editBooking(SessionFactory sessionfactory,Booking book){
+        return clientservices.editBooking(sessionfactory, book);
     }
 }

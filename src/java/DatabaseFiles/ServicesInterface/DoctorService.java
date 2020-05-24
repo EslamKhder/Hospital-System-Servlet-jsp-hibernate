@@ -1,7 +1,9 @@
 package DatabaseFiles.ServicesInterface;
 
 import Model.Booking;
+import Model.Client;
 import Model.Doctor;
+import Model.Pharmacy;
 import java.util.List;
 import org.hibernate.SessionFactory;
 
@@ -41,5 +43,6 @@ public interface DoctorService {
 
     // Get ALL DoctorBooking ToDay
     public List<Booking> myBooking(SessionFactory session, Doctor doctor);
-
+    // Give Medicine
+    public int giveMedicine(SessionFactory session,Pharmacy pharmcy);
 }

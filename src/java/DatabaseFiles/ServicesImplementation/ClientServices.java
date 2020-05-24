@@ -221,7 +221,29 @@ public class ClientServices implements ClientService {
 
     // Get ALL ClientBooking ToDay
     @Override
-    public List<Booking> myBooking(SessionFactory sessionfactory, Client client) {
+    public List<Booking> myBookingtoday(SessionFactory sessionfactory, Client client) {
+        try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String date = sdf.format(new Date());
+            q = session.createQuery("from Booking where Date = ?");
+            q.setString(0, date);
+            booking = q.list();
+            if (booking.isEmpty()) {
+                return null;
+            } else {
+                booking = (List<Booking>) booking.parallelStream()
+                        .filter(x -> (client.getId() == x.getClient().getId() && x.getAcceptdoctor() == 0)).collect(Collectors.toList());
+                return booking;
+            }
+        } finally {
+            session.close();
+        }
+    }
+    // Get ALL ClientBooking ToDay
+    @Override
+    public List<Booking> allmyBooking(SessionFactory sessionfactory, Client client) {
         try {
             session = dc.getSession(sessionfactory);
             session.beginTransaction();
@@ -242,6 +264,46 @@ public class ClientServices implements ClientService {
         }
     }
 
+    // Get The Booking of The Doctor Today
+    @Override
+    public Booking myBooking(SessionFactory sessionfactory, Client client, Doctor doctor) {
+        try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String date = sdf.format(new Date());
+            q = session.createQuery("from Booking where Date = ?");
+            q.setString(0, date);
+            booking = q.list();
+            if (booking.isEmpty()) {
+                return null;
+            } else {
+                booking = (List<Booking>) booking.parallelStream()
+                        .filter(x -> (client.getId() == x.getClient().getId() && (doctor.getId() == x.getDoctor().getId())))
+                        .collect(Collectors.toList());
+                return booking.get(0);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
+            return booking.get(0);
+        } finally {
+            session.close();
+        }
+    }
+
+    // Edit Booking Of Client
+    @Override
+    public int editBooking(SessionFactory sessionfactory,Booking book){
+        try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
+            session.update(book);
+            session.getTransaction().commit();
+            return 1;
+        } finally {
+            session.close();
+        }
+    }
     public String Date() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(new Date());

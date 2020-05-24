@@ -3,6 +3,7 @@ package Controller;
 import DatabaseFiles.ServicesImplementation.DoctorServices;
 import Model.Booking;
 import Model.Doctor;
+import Model.Pharmacy;
 import java.util.List;
 import org.hibernate.SessionFactory;
 
@@ -38,7 +39,6 @@ public class DoctorController {
     public Doctor getDoctorCode(SessionFactory sessionf, Doctor doctor) {
         return doctorservices.getDoctorCode(sessionf, doctor);
     }
-    
     public int editDoctor(SessionFactory sessionfactory, Doctor doctor){
         return doctorservices.editDoctor(sessionfactory, doctor);
     }
@@ -47,5 +47,8 @@ public class DoctorController {
     }
     public List<Booking> myBooking(SessionFactory sessionfactory, Doctor doctor) {
         return doctorservices.myBooking(sessionfactory, doctor);
+    }
+    public int giveMedicine(SessionFactory sessionfactory, Pharmacy pharmcy) {
+        return doctorservices.giveMedicine(sessionfactory, pharmcy);
     }
 }

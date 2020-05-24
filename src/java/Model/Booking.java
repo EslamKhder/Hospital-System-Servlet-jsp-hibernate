@@ -3,14 +3,17 @@ package Model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -44,8 +47,14 @@ public class Booking {
     @JoinColumn(name = "Doctor_ID")
     private Doctor doctor;
     
-    @OneToMany(mappedBy = "booking")
-    private List<Pharmacy> pharmacies = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Pharmacy pharmacy;
+    
+    @Column(name = "Accept_Doctor")
+    private int acceptdoctor;
+
+    @Column(name = "Accept_Medicine")
+    private int acceptmedicine;
     
     public Booking() {
         date = new Date();
@@ -92,12 +101,29 @@ public class Booking {
         this.doctor = doctor;
     }
 
-    public List<Pharmacy> getPharmacies() {
-        return pharmacies;
+    public Pharmacy getPharmacy() {
+        return pharmacy;
     }
 
-    public void setPharmacies(List<Pharmacy> pharmacies) {
-        this.pharmacies = pharmacies;
+    public void setPharmacy(Pharmacy pharmacy) {
+        this.pharmacy = pharmacy;
     }
+
+    public int getAcceptdoctor() {
+        return acceptdoctor;
+    }
+
+    public void setAcceptdoctor(int acceptdoctor) {
+        this.acceptdoctor = acceptdoctor;
+    }
+
+    public int getAcceptmedicine() {
+        return acceptmedicine;
+    }
+
+    public void setAcceptmedicine(int acceptmedicine) {
+        this.acceptmedicine = acceptmedicine;
+    }
+
     
 }

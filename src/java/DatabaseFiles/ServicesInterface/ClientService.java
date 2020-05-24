@@ -17,9 +17,9 @@ public interface ClientService {
 
     // Edit Client
     public int editClient(Client client, SessionFactory sessionfactory);
-    
+
     // Edit Client
-    public int removeBooking(Doctor doctor,Client client, SessionFactory sessionfactory);
+    public int removeBooking(Doctor doctor, Client client, SessionFactory sessionfactory);
 
     /* Check IF Client Is Exist Or Not 
        IF Exist (Return All Data Of Client)
@@ -43,5 +43,13 @@ public interface ClientService {
     public int isBooking(SessionFactory sessionfactory, Client client, Doctor doctor);
 
     // Get ALL ClientBooking ToDay
-    public List<Booking> myBooking(SessionFactory sessionfactory, Client client);
+    public List<Booking> myBookingtoday(SessionFactory sessionfactory, Client client);
+
+    // Get All Booking
+    public List<Booking> allmyBooking(SessionFactory sessionfactory, Client client);
+    // Get The Booking of The Doctor Today
+    public Booking myBooking(SessionFactory sessionfactory, Client client, Doctor doctor);
+    
+    // Edit Booking Of Client
+    public int editBooking(SessionFactory sessionfactory,Booking book);
 }

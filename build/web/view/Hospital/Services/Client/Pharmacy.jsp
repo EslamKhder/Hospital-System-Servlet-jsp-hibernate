@@ -1,16 +1,15 @@
 <%-- 
-    Document   : DoctorReservations
-    Created on : May 18, 2020, 2:10:33 AM
+    Document   : ClientReservations
+    Created on : May 17, 2020, 8:34:39 PM
     Author     : Eng Eslam khder
 --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="javax.swing.JOptionPane"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="Controller.DoctorController"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.List"%>
 <%@page import="org.hibernate.SessionFactory"%>
+<%@page import="java.util.List"%>
 <%@page import="Model.Booking"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Controller.ClientController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,23 +33,31 @@
         <link rel="stylesheet" type="text/css" href="util.css">
         <link rel="stylesheet" type="text/css" href="SDData.css">
         <!--===============================================================================================-->
-        <style>
-            .myname
-            {
-                position: absolute;
-                background-color: brown;
-                padding: 10px;
-                border: 1px solid white;
-                color: cornsilk;
-                margin: 20px;
-                font-size: 25px;
-                font-family: fantasy;
-                letter-spacing: 4px;
-            }
-        </style>
     </head>
+    <style>
+        .myname
+        {
+            position: absolute;
+            background-color: brown;
+            padding: 10px;
+            border: 1px solid white;
+            color: cornsilk;
+            margin: 20px;
+            font-size: 25px;
+            font-family: fantasy;
+            letter-spacing: 4px;
+        }
+    </style>
     <body>
-        <div class="myname">${sessionScope.doctor.getDoctorproperties().getName()}</div>
+        <div class="myname">${sessionScope.client.getClientproperties().getName()}</div>
+        <jsp:useBean class="Model.Client" scope="session" id="client" />
+        <%
+            ClientController cc = new ClientController();
+            List<Booking> booking = new ArrayList();
+            SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
+            booking = cc.allmyBooking(sessionf, client);
+            pageContext.setAttribute("BOOKING", booking);
+        %>
         <div class="limiter">
             <div class="container-table100">
                 <div class="wrap-table100">
@@ -63,76 +70,45 @@
                            font-size: 60px;
                            color: white;
                            ">
-                            DoctorReservations
+                            My Reservations
                         </p>
                     </div>
-                </div>
-                <jsp:useBean class="Model.Doctor" scope="session" id="doctor" />
-                <%
-                    DoctorController dc = new DoctorController();
-                    List<Booking> booking = new ArrayList();
-                    SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
-                    booking = dc.myBooking(sessionf, doctor);
-                    pageContext.setAttribute("BOOKING", booking);
-                %>
-                <div class="table">
+                    <div class="table">
 
-                    <div class="row header">
-
-                        <div class="cell">
-                            FULL NAME
+                        <div class="row header">
+                            <div class="cell">
+                                Medicine Name
+                            </div>
+                            <div class="cell">
+                                Doctor Name
+                            </div>
+                            <div class="cell">
+                                SPECIALIZATION
+                            </div>
+                            <div class="cell">
+                                Date
+                            </div>
                         </div>
-                        <div class="cell">
-                            Age
-                        </div>
-                        <div class="cell">
-                            ADDRESS
-                        </div>
-                        <div class="cell">
-                            PHONE NUMBER
-                        </div>
-                        <div class="cell">
-                            Cancel Reservation
-                        </div>
-                        <div class="cell">
-                            Accept
-                        </div>
-
+                        <c:forEach items="${BOOKING}" var="book" >
+                            <div class="row" id="book${book.getDoctor().getId()}">
+                                <div class="cell" data-title="Full Name">
+                                    ${book.getPharmacy().getMedicine()}
+                                </div>
+                                <div class="cell" data-title="Address">
+                                    ${book.getDoctor().getDoctorproperties().getName()}
+                                </div>
+                                <div class="cell" data-title="Address">
+                                    ${book.getDoctor().getSpecialty()}
+                                </div>
+                                <div class="cell" data-title="Phone Number">
+                                    ${book.getDate()}
+                                </div>
+                            </div>
+                        </c:forEach>
                     </div>
-
-                    <c:forEach items="${BOOKING}" var="book" >
-                        <div class="row" id="book${book.getClient().getId()}">
-                            <div class="cell" data-title="Full Name">
-                                ${book.getClient().getClientproperties().getName()}
-                            </div>
-                            <div class="cell" data-title="Specialization">
-                                ${book.getClient().getClientproperties().getAge()}
-                            </div>
-                            <div class="cell" data-title="Salary">
-                                ${book.getClient().getClientproperties().getAddress()}
-                            </div>
-                            <div class="cell" data-title="Address">
-                                ${book.getClient().getClientproperties().getPhone()}
-                            </div>
-                            <div class="cell">
-                                <button onclick="Booking(${book.getClient().getId()})">Cancel</button>
-                            </div>
-                            <div class="cell">
-                                <button onclick="display(${book.getClient().getId()})">Accept</button>
-                            </div>
-                        </div>
-                        <div class="pharmacy" id="ph${book.getClient().getId()}">
-                            <label>Medicine : </label>
-                            <textarea id="medicine${book.getClient().getId()}"></textarea>
-                            <button onclick="getMedicine(${book.getClient().getId()})">Done</button>
-                        </div>
-                            
-                    </c:forEach>
-
                 </div>
             </div>
         </div>
-
         <!--===============================================================================================-->	
         <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
         <!--===============================================================================================-->
@@ -142,7 +118,6 @@
         <script src="vendor/select2/select2.min.js"></script>
         <!--===============================================================================================-->
         <script src="js/Reserve.js"></script>
-        <script src="js/script.js"></script>
-        <script src="js/GetMedicine.js"></script>
+
     </body>
 </html>

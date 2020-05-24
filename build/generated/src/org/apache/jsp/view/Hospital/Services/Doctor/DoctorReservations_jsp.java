@@ -166,11 +166,11 @@ public final class DoctorReservations_jsp extends org.apache.jasper.runtime.Http
       out.write("                        <div class=\"cell\">\n");
       out.write("                            Accept\n");
       out.write("                        </div>\n");
+      out.write("\n");
       out.write("                    </div>\n");
       out.write("                    ");
       if (_jspx_meth_c_forEach_0(_jspx_page_context))
         return;
-      out.write("\n");
       out.write("\n");
       out.write("                </div>\n");
       out.write("            </div>\n");
@@ -187,8 +187,7 @@ public final class DoctorReservations_jsp extends org.apache.jasper.runtime.Http
       out.write("        <!--===============================================================================================-->\n");
       out.write("        <script src=\"vendor/select2/select2.min.js\"></script>\n");
       out.write("        <!--===============================================================================================-->\n");
-      out.write("        <script src=\"js/main.js\"></script>\n");
-      out.write("\n");
+      out.write("        <script src=\"js/Reserve.js\"></script>\n");
       out.write("    </body>\n");
       out.write("</html>");
     } catch (Throwable t) {
@@ -220,7 +219,10 @@ public final class DoctorReservations_jsp extends org.apache.jasper.runtime.Http
       if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\n");
-          out.write("                        <div class=\"row\">\n");
+          out.write("                        \n");
+          out.write("                        <div class=\"row\" id=\"book");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${book.getClient().getId()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\">\n");
           out.write("                            <div class=\"cell\" data-title=\"Full Name\">\n");
           out.write("                                ");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${book.getClient().getClientproperties().getName()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -242,7 +244,9 @@ public final class DoctorReservations_jsp extends org.apache.jasper.runtime.Http
           out.write("\n");
           out.write("                            </div>\n");
           out.write("                            <div class=\"cell\">\n");
-          out.write("                                <button>Cancel</button>\n");
+          out.write("                                <button onclick=\"Booking(");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${book.getClient().getId()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write(")\">Cancel</button>\n");
           out.write("                            </div>\n");
           out.write("                            <div class=\"cell\">\n");
           out.write("                                <button>Accept</button>\n");

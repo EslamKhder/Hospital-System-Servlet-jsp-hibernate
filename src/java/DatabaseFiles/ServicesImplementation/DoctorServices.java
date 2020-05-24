@@ -3,7 +3,9 @@ package DatabaseFiles.ServicesImplementation;
 import Controller.DatabaseController;
 import DatabaseFiles.ServicesInterface.DoctorService;
 import Model.Booking;
+import Model.Client;
 import Model.Doctor;
+import Model.Pharmacy;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -57,16 +59,16 @@ public class DoctorServices implements DoctorService {
             session.close();
         }
     }
-    
+
     // Get Password Of Doctor
     @Override
-    public String getPasswordDoctor(SessionFactory sessionf, Doctor doctor){
-        try{
+    public String getPasswordDoctor(SessionFactory sessionf, Doctor doctor) {
+        try {
             session = dc.getSession(sessionf);
             q = session.createQuery("select password from Doctor where code=?");
             q.setString(0, doctor.getCode());
-            return (String)q.list().get(0);
-        }finally {
+            return (String) q.list().get(0);
+        } finally {
             session.close();
         }
     }
@@ -88,20 +90,20 @@ public class DoctorServices implements DoctorService {
 //            session.close();
 //        }
 //    }
-    
+
     //Remove Doctor
     @Override
-    public int removeDoctor(SessionFactory sessionf, Doctor doctor){
+    public int removeDoctor(SessionFactory sessionf, Doctor doctor) {
         try {
-        session = dc.getSession(sessionf);
-        session.beginTransaction();
-        session.delete(doctor);
-        session.getTransaction().commit();
-        return 1;
+            session = dc.getSession(sessionf);
+            session.beginTransaction();
+            session.delete(doctor);
+            session.getTransaction().commit();
+            return 1;
         } catch (Exception e) {
             session.getTransaction().rollback();
             return 0;
-        }finally {
+        } finally {
             session.close();
         }
     }
@@ -141,6 +143,7 @@ public class DoctorServices implements DoctorService {
             session.close();
         }
     }
+
     // Get Data Of Doctor by Use Property (Doctor Code)
     @Override
     public Doctor getDoctorCode(SessionFactory sessionf, Doctor doctor) {
@@ -148,17 +151,18 @@ public class DoctorServices implements DoctorService {
             session = dc.getSession(sessionf);
             Criteria cri = session.createCriteria(Doctor.class);
             cri.add(Restrictions.eq("code", doctor.getCode()));
-            doctors= cri.list();
-            if(doctors.isEmpty()){
+            doctors = cri.list();
+            if (doctors.isEmpty()) {
                 return null;
             } else {
                 return doctors.get(0);
             }
-            
+
         } finally {
             session.close();
         }
     }
+
     // UpDate Infromation Of Data
     @Override
     public int editDoctor(SessionFactory sessionfactory, Doctor doctor) {
@@ -203,11 +207,28 @@ public class DoctorServices implements DoctorService {
                 return null;
             } else {
                 booking = (List<Booking>) booking.parallelStream()
-                        .filter(x -> (doctor.getId() == x.getDoctor().getId())).collect(Collectors.toList());
+                        .filter(x -> (doctor.getId() == x.getDoctor().getId() && x.getAcceptdoctor() == 0)).collect(Collectors.toList());
                 return booking;
             }
         } finally {
             session.close();
         }
+    }
+
+    @Override
+    public int giveMedicine(SessionFactory sessionfactory, Pharmacy pharmcy) {
+        try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
+            session.save(pharmcy);
+            session.getTransaction().commit();
+            return 1;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            return 0;
+        } finally {
+            session.close();
+        }
+
     }
 }

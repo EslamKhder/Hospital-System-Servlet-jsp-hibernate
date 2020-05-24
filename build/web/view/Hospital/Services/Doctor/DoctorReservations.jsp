@@ -63,7 +63,7 @@
                            font-size: 60px;
                            color: white;
                            ">
-                            DOCTOR DATA
+                            DoctorReservations
                         </p>
                     </div>
                 </div>
@@ -99,6 +99,7 @@
                         </div>
 
                     </div>
+
                     <c:forEach items="${BOOKING}" var="book" >
                         <div class="row" id="book${book.getClient().getId()}">
                             <div class="cell" data-title="Full Name">
@@ -117,16 +118,20 @@
                                 <button onclick="Booking(${book.getClient().getId()})">Cancel</button>
                             </div>
                             <div class="cell">
-                                <button>Accept</button>
+                                <button onclick="display(${book.getClient().getId()})">Accept</button>
                             </div>
                         </div>
+                        <div class="pharmacy" id="ph${book.getClient().getId()}">
+                            <label>Medicine : </label>
+                            <textarea id="medicine${book.getClient().getId()}"></textarea>
+                            <button onclick="getMedicine(${book.getClient().getId()})">Done</button>
+                        </div>
+                            
                     </c:forEach>
+
                 </div>
             </div>
         </div>
-
-
-
 
         <!--===============================================================================================-->	
         <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -137,5 +142,7 @@
         <script src="vendor/select2/select2.min.js"></script>
         <!--===============================================================================================-->
         <script src="js/Reserve.js"></script>
+        <script src="js/script.js"></script>
+        <script src="js/GetMedicine.js"></script>
     </body>
 </html>
