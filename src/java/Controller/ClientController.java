@@ -57,6 +57,9 @@ public class ClientController {
     public List<Booking> allmyBooking(SessionFactory sessionfactory, Client client) {
         return clientservices.allmyBooking(sessionfactory, client);
     }
+    public List<Booking> allBooking(SessionFactory sessionfactory) {
+        return clientservices.allBooking(sessionfactory);
+    }
     public Booking myBooking(SessionFactory sessionfactory, Client client, Doctor doctor) {
         return clientservices.myBooking(sessionfactory, client, doctor);
     }

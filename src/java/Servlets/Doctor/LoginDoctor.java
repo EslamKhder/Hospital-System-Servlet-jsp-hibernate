@@ -10,11 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.SessionFactory;
 
 public class LoginDoctor extends HttpServlet {
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         String code = request.getParameter("code").trim();
         String password = request.getParameter("password");
         String spec = request.getParameter("spec");

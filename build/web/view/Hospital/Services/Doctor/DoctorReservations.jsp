@@ -50,7 +50,7 @@
         </style>
     </head>
     <body>
-        <div class="myname">${sessionScope.doctor.getDoctorproperties().getName()}</div>
+        <div class="myname">Dr : ${sessionScope.doctor.getDoctorproperties().getName()}</div>
         <div class="limiter">
             <div class="container-table100">
                 <div class="wrap-table100">

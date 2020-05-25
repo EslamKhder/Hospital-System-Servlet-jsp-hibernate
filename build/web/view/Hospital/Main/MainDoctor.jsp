@@ -46,7 +46,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                     <ul class="nav navbar-nav">
-                        <li class="active"><a>${sessionScope.doctor.getDoctorproperties().getName()} <i class="fas fa-user-md"></i><span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a>Dr : ${sessionScope.doctor.getDoctorproperties().getName()} <i class="fas fa-user-md"></i><span class="sr-only">(current)</span></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="call"><a href="../Profiles/DoctorProfile.jsp">My Profile<i class="fas fa-user-friends"></i></a></li>

@@ -56,6 +56,10 @@
         <servlet-name>GetMedicine</servlet-name>
         <servlet-class>Servlets.Doctor.GetMedicine</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AcceptMedicine</servlet-name>
+        <servlet-class>Servlets.Admin.AcceptMedicine</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginClient</servlet-name>
         <url-pattern>/LoginClient</url-pattern>
@@ -107,6 +111,10 @@
     <servlet-mapping>
         <servlet-name>GetMedicine</servlet-name>
         <url-pattern>/GetMedicine</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AcceptMedicine</servlet-name>
+        <url-pattern>/AcceptMedicine</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

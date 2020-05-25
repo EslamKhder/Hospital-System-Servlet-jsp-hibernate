@@ -247,10 +247,7 @@ public class ClientServices implements ClientService {
         try {
             session = dc.getSession(sessionfactory);
             session.beginTransaction();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String date = sdf.format(new Date());
-            q = session.createQuery("from Booking where Date = ?");
-            q.setString(0, date);
+            q = session.createQuery("from Booking");
             booking = q.list();
             if (booking.isEmpty()) {
                 return null;
@@ -259,6 +256,19 @@ public class ClientServices implements ClientService {
                         .filter(x -> (client.getId() == x.getClient().getId())).collect(Collectors.toList());
                 return booking;
             }
+        } finally {
+            session.close();
+        }
+    }
+    // Get ALL Booking Booking
+    @Override
+    public List<Booking> allBooking(SessionFactory sessionfactory) {
+        try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
+            q = session.createQuery("from Booking");
+            booking = q.list();
+            return booking;
         } finally {
             session.close();
         }

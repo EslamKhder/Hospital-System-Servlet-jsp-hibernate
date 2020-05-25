@@ -29,7 +29,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link rel="stylesheet" href="css/style.css" type="text/css"/>
 <!-- font-awesome-icons -->
 </head>
-<div class="myname">${sessionScope.doctor.getDoctorproperties().getName()}</div>
+<div class="myname">Admin : ${sessionScope.admin.getName()}</div>
 
     <section class="signin-form">
         <div class="overlay">

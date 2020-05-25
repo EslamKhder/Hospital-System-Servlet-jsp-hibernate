@@ -55,7 +55,7 @@
             ClientController cc = new ClientController();
             List<Booking> booking = new ArrayList();
             SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
-            booking = cc.allmyBooking(sessionf, client);
+            booking = cc.allBooking(sessionf);
             pageContext.setAttribute("BOOKING", booking);
         %>
         <div class="limiter">

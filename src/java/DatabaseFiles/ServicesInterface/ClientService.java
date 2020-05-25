@@ -47,9 +47,13 @@ public interface ClientService {
 
     // Get All Booking
     public List<Booking> allmyBooking(SessionFactory sessionfactory, Client client);
+
+    // Get ALL Booking Booking
+    public List<Booking> allBooking(SessionFactory sessionfactory);
+
     // Get The Booking of The Doctor Today
     public Booking myBooking(SessionFactory sessionfactory, Client client, Doctor doctor);
-    
+
     // Edit Booking Of Client
-    public int editBooking(SessionFactory sessionfactory,Booking book);
+    public int editBooking(SessionFactory sessionfactory, Booking book);
 }
