@@ -30,8 +30,10 @@ public class NewMain {
         SessionFactory sessionf = HibernateUtil.getSessionFactory();
         Session s = sessionf.openSession();
         s.beginTransaction();
-        ClientProperties c = (ClientProperties) s.get(ClientProperties.class, 3);
+        Doctor c = (Doctor) s.get(Doctor.class, 2);
         s.delete(c);
+        s.getTransaction().commit();
+        s.close();
 //        Booking book = new Booking();
 //         Doctor doctor = new Doctor(); doctor.setId(1);
 //         book.setDoctor(doctor);
@@ -42,8 +44,8 @@ public class NewMain {
 //        cp.setId(3);
 //        Client c = new Client("4000", "4000", cp);
 //        c.setId(4);
-        s.getTransaction().commit();
-        s.close();
+//        s.getTransaction().commit();
+//        s.close();
         //JOptionPane.showMessageDialog(null, c.getClientproperties().getAddress());
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 //            String date = sdf.format(new Date());

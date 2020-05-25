@@ -229,6 +229,21 @@ public class DoctorServices implements DoctorService {
         } finally {
             session.close();
         }
-
+    }
+    // Get All Doctor
+    @Override
+    public List<Doctor> allDoctor(SessionFactory sessionf){
+        try {
+            session = dc.getSession(sessionf);
+            q = session.createQuery("from Doctor");
+            doctors = q.list();
+            if(doctors.isEmpty()){
+                return null;
+            } else {
+                return doctors;
+            }
+        } finally {
+            session.close();
+        }
     }
 }

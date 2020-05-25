@@ -4,7 +4,10 @@
     Author     : Eng Eslam khder
 --%>
 
-<%@page import="java.util.stream.Collectors"%>
+<%@page import="Model.Client"%>
+<%@page import="Controller.DoctorController"%>
+<%@page import="Model.Doctor"%>
+<%@page import="javax.print.Doc"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="org.hibernate.SessionFactory"%>
 <%@page import="java.util.List"%>
@@ -48,46 +51,51 @@
             font-family: fantasy;
             letter-spacing: 4px;
         }
-        .pass
+        .pharmacy
         {
-            margin-left: 100px;
-            margin-top: -21px;
+            background-color: #c4d3f6;
+            width: 40%;
+            height: 292px;
+            padding: 35px;
+            position: absolute;
+            top: 149px;
+            left: 414px;
             border: 1px solid brown;
-            width: 332px;
             display: none;
         }
-        .pass input
+        .pharmacy label
         {
-            width: 246px;
-            padding: 10px;
-            display: inline;
+            font-size: 20px;
+            color: brown;
         }
-        .pass button
+        .pharmacy textarea
         {
-            display: inline;
+            margin: 32px 0px;
             border: 1px solid brown;
-            padding: 5px;
-        }
-        .pass div
-        {
-            margin-left: 100px;
+            width: 288px;
+            height: 116px;
+            resize: none;
+            font-size: 17px;
             font-weight: bold;
         }
-        .row .cell {
-            width: 184px;
-            padding-left: 40px;
-            padding-left: 13px;
+        .pharmacy button
+        {
+            position: relative;
+            left: 400px;
+            font-size: 20px;
+            border: 1px solid brown;
+            padding: 5px;
+            width: 87px;
         }
     </style>
     <body>
-        <div class="myname">Admin : ${sessionScope.admin.getName()}</div>
-        <jsp:useBean class="Model.Client" scope="session" id="client" />
+        <div class="myname">${sessionScope.admin.getName()}</div>
         <%
+            int i = 0;
             ClientController cc = new ClientController();
+            List<Booking> booking = new ArrayList();
             SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
-            List<Booking> booking = cc.allBooking(sessionf);
-            booking = (List<Booking>) booking.parallelStream()
-                    .filter(x -> (x.getAcceptdoctor() == 1 && x.getAcceptmedicine() == 0)).collect(Collectors.toList());
+            booking = cc.allBooking(sessionf);
             pageContext.setAttribute("BOOKING", booking);
         %>
         <div class="limiter">
@@ -102,56 +110,66 @@
                            font-size: 60px;
                            color: white;
                            ">
-                            My Reservations
+                            Statistics
                         </p>
                     </div>
+
                     <div class="table">
 
                         <div class="row header">
                             <div class="cell">
-                                NAME (Doctor)
+                                Name (Doctor)
+                            </div>
+                            <div class="cell">
+                                Name (Client)
                             </div>
                             <div class="cell">
                                 Specialtion
                             </div>
                             <div class="cell">
-                                NAME (Client)
-                            </div>
-                            <div class="cell">
-                                Medicine
-                            </div>
-                            <div class="cell">
                                 DATE
                             </div>
                             <div class="cell">
-                                Services
+                                Address (Client)
+                            </div>
+                            <div class="cell">
+                                PHONE NUMBER (Client)
+                            </div>
+                            <div class="cell">
+                                PHONE NUMBER (Doctor)
+                            </div>
+                            
+                            <div class="cell">
+                                Age (Client)
                             </div>
                         </div>
+
                         <c:forEach items="${BOOKING}" var="book" >
-                            <div class="row" id="book${book.getId()}">
+                            <div class="row">
                                 <div class="cell">
                                     ${book.getDoctor().getDoctorproperties().getName()}
-                                </div>
-                                <div class="cell">
-                                    ${book.getDoctor().getSpecialty()}
                                 </div>
                                 <div class="cell">
                                     ${book.getClient().getClientproperties().getName()}
                                 </div>
                                 <div class="cell">
-                                    ${book.getPharmacy().getMedicine()}
+                                    ${book.getDoctor().getSpecialty()}
                                 </div>
                                 <div class="cell">
                                     ${book.getDate()}
                                 </div>
-
-                                <div class="cell" >
-                                    <button id="ac${book.getId()}" onclick="accept(${book.getId()})">Accept</button>
-                                    <div class="pass" id="pass${book.getId()}">
-                                        <input type="password" id="password${book.getId()}" placeholder="Password"/>
-                                        <button onclick="medicine(${book.getId()},${book.getClient().getId()},'${book.getDate()}',${book.getDoctor().getId()})">Done</button>
-                                        <div id="inv${book.getId()}"></div>
-                                    </div>
+                                <div class="cell">
+                                    ${book.getClient().getClientproperties().getAddress()}
+                                </div>
+                                <div class="cell">
+                                    ${book.getClient().getClientproperties().getPhone()}
+                                </div>
+                                <div class="cell">
+                                    ${book.getDoctor().getDoctorproperties().getPhone()}
+                                </div>
+                                
+                                <div class="cell">
+                                    ${book.getClient().getClientproperties().getAge()}
                                 </div>
                             </div>
                         </c:forEach>
@@ -167,7 +185,8 @@
         <!--===============================================================================================-->
         <script src="vendor/select2/select2.min.js"></script>
         <!--===============================================================================================-->
-        <script src="js/javascript.js"></script>
-        <script src="js/Medicine.js"></script>
+        <script src="js/Reserve.js"></script>
+        <script src="js/script.js"></script>
+
     </body>
 </html>

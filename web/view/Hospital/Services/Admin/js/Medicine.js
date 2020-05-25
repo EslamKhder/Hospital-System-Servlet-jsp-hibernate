@@ -1,6 +1,6 @@
 var request;
-var password, book, inv;
-function medicine(idbook,idclient, date)
+var password, book, inv;alert(10);
+function medicine(idbook,idclient, date,iddoctor)
 {
     password = document.getElementById("password" + idbook).value,
             book = document.getElementById("book" + idbook),
@@ -16,7 +16,7 @@ function medicine(idbook,idclient, date)
         request.onreadystatechange = getInfo;
         request.open("post", url, true);
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.send("idclient=" + idclient + "&password=" + password + "&date=" + date);
+        request.send("idclient=" + idclient + "&password=" + password + "&date=" + date +"&iddoctor=" + iddoctor);
     } catch (e)
     {
         alert("Unable to connect to server");

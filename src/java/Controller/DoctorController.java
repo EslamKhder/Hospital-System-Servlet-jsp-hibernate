@@ -51,4 +51,7 @@ public class DoctorController {
     public int giveMedicine(SessionFactory sessionfactory, Pharmacy pharmcy) {
         return doctorservices.giveMedicine(sessionfactory, pharmcy);
     }
+    public List<Doctor> allDoctor(SessionFactory sessionf){
+        return doctorservices.allDoctor(sessionf);
+    }
 }

@@ -31,7 +31,7 @@ public class Client {
     @Column(name = "Balance", nullable = false)
     private int balance;
 
-    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.PERSIST)
     private ClientProperties clientproperties;
     
     @OneToMany(mappedBy = "client",cascade = CascadeType.REMOVE)

@@ -4,6 +4,7 @@
     Author     : Eng Eslam khder
 --%>
 
+<%@page import="java.util.stream.Collectors"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="org.hibernate.SessionFactory"%>
 <%@page import="java.util.List"%>
@@ -92,6 +93,7 @@
             List<Booking> booking = new ArrayList();
             SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
             booking = cc.allmyBooking(sessionf, client);
+            booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1).collect(Collectors.toList());
             pageContext.setAttribute("BOOKING", booking);
         %>
         <div class="limiter">
@@ -129,7 +131,7 @@
                             </div>
                         </div>
                         <c:forEach items="${BOOKING}" var="book" >
-                            <div class="row" id="book${book.getDoctor().getId()}">
+                            <div class="row" id="book${book.getId()}">
                                 <div class="cell">
                                     ${book.getDoctor().getDoctorproperties().getName()}
                                 </div>
@@ -143,12 +145,12 @@
                                     ${book.getDate()}
                                 </div>
                                 <div class="cell" >
-                                    <button onclick="display1(${book.getClient().getId()})">Show Medicine</button>
+                                    <button onclick="display1(${book.getId()})">Show Medicine</button>
                                 </div>
-                                <div class="pharmacy" id="ph${book.getClient().getId()}">
+                                <div class="pharmacy" id="ph${book.getId()}">
                                     <label>Medicine : </label>
                                     <textarea disabled>${book.getPharmacy().getMedicine()}</textarea>
-                                    <button onclick=" display2(${book.getClient().getId()})">OK</button>
+                                    <button onclick=" display2(${book.getId()})">OK</button>
                                 </div>
                             </div>
                         </c:forEach>

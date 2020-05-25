@@ -149,7 +149,7 @@
                                     <button id="ac${book.getId()}" onclick="accept(${book.getId()})">Accept</button>
                                     <div class="pass" id="pass${book.getId()}">
                                         <input type="password" id="password${book.getId()}" placeholder="Password"/>
-                                        <button onclick="medicine(${book.getId()},${book.getClient().getId()},'${book.getDate()}'">Done</button>
+                                        <button onclick="medicine(${book.getId()},${book.getClient().getId()},'${book.getDate()}',${book.getDoctor().getId()})">Done</button>
                                         <div id="inv${book.getId()}"></div>
                                     </div>
                                 </div>

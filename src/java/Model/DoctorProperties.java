@@ -32,7 +32,7 @@ public class DoctorProperties {
     private String name;
     
     
-    @OneToOne(cascade = CascadeType.REMOVE, mappedBy = "doctorproperties", fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.REMOVE, mappedBy = "doctorproperties")
     Doctor doctor;
 
     public DoctorProperties() {

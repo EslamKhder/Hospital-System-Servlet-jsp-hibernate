@@ -4,6 +4,7 @@ import Controller.ClientController;
 import Controller.DoctorController;
 import Model.Booking;
 import Model.Client;
+import Model.Doctor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -25,6 +26,7 @@ public class AcceptMedicine extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int idclient = Integer.parseInt(request.getParameter("idclient"));
+        int iddoctor = Integer.parseInt(request.getParameter("iddoctor"));
         String password = request.getParameter("password");
         String date = request.getParameter("date");
         if (password.isEmpty()) {
@@ -41,6 +43,10 @@ public class AcceptMedicine extends HttpServlet {
                 book.get(0).setAcceptmedicine(1);
                 cc.editBooking(session, book.get(0));
                 DoctorController dc = new DoctorController();
+                request.getSession().setAttribute("client", cc.getClientData(client, session));
+                Doctor doctor = new Doctor();
+                doctor.setId(iddoctor);
+                request.getSession().setAttribute("doctor", dc.getDoctorID(session, doctor));
                 response.getWriter().print("success");
             } else {
                 response.getWriter().print("password");

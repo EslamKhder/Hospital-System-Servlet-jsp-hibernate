@@ -34,7 +34,7 @@ public class Doctor {
     @Column(name = "Balance", nullable = false)
     private int balance;
     
-    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.PERSIST)
     private DoctorProperties doctorproperties;
     
     @OneToMany(mappedBy = "doctor",cascade = CascadeType.REMOVE)

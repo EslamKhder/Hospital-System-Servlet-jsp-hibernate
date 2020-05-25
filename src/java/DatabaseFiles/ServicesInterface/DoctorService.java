@@ -45,4 +45,6 @@ public interface DoctorService {
     public List<Booking> myBooking(SessionFactory session, Doctor doctor);
     // Give Medicine
     public int giveMedicine(SessionFactory session,Pharmacy pharmcy);
+    // Get All Doctor
+    public List<Doctor> allDoctor(SessionFactory session);
 }

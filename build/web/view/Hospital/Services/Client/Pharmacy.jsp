@@ -4,6 +4,8 @@
     Author     : Eng Eslam khder
 --%>
 
+<%@page import="java.util.stream.Collectors"%>
+<%@page import="java.util.stream.Collector"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="org.hibernate.SessionFactory"%>
 <%@page import="java.util.List"%>
@@ -56,6 +58,7 @@
             List<Booking> booking = new ArrayList();
             SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
             booking = cc.allBooking(sessionf);
+            booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1).collect(Collectors.toList());
             pageContext.setAttribute("BOOKING", booking);
         %>
         <div class="limiter">

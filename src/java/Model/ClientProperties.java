@@ -38,7 +38,7 @@ public class ClientProperties {
     @Column(name = "Address", nullable = false)
     private String address;
     
-    @OneToOne(cascade = CascadeType.REMOVE, mappedBy = "clientproperties", fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.REMOVE, mappedBy = "clientproperties")
     Client client;
     
     public ClientProperties() {

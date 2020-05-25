@@ -47,7 +47,7 @@ public class Booking {
     @JoinColumn(name = "Doctor_ID")
     private Doctor doctor;
     
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Pharmacy pharmacy;
     
     @Column(name = "Accept_Doctor")
