@@ -4,6 +4,7 @@
     Author     : Eng Eslam khder
 --%>
 
+<%@page import="java.util.stream.Collectors"%>
 <%@page import="Model.Client"%>
 <%@page import="Controller.DoctorController"%>
 <%@page import="Model.Doctor"%>
@@ -96,7 +97,11 @@
             List<Booking> booking = new ArrayList();
             SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
             booking = cc.allBooking(sessionf);
-            pageContext.setAttribute("BOOKING", booking);
+            if (booking != null) {
+                booking = booking.parallelStream().filter(x -> x.getAcceptdoctor() == 1).collect(Collectors.toList());
+                pageContext.setAttribute("BOOKING", booking);
+            }
+
         %>
         <div class="limiter">
             <div class="container-table100">
@@ -138,7 +143,7 @@
                             <div class="cell">
                                 PHONE NUMBER (Doctor)
                             </div>
-                            
+
                             <div class="cell">
                                 Age (Client)
                             </div>
@@ -167,7 +172,7 @@
                                 <div class="cell">
                                     ${book.getDoctor().getDoctorproperties().getPhone()}
                                 </div>
-                                
+
                                 <div class="cell">
                                     ${book.getClient().getClientproperties().getAge()}
                                 </div>

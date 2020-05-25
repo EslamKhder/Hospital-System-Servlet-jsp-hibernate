@@ -41,7 +41,6 @@ public class EditDoctorPassword extends HttpServlet {
             if (password.equals(opassword)) {
                 doctor.setPassword(npassword2);
                 dc.editDoctor(sessionf, doctor);
-                request.getSession().setAttribute("doctor", dc.getDoctorID(sessionf, doctor));
                 response.getWriter().print("success");
             } else {
                 response.getWriter().print("opasswordinvalid");

@@ -27,7 +27,7 @@ public class LoginDoctor extends HttpServlet {
             DoctorController doctorcontroller = new DoctorController();
             doctor = doctorcontroller.isExist(session, doctor);
             if (doctor != null) {
-                request.getSession().setAttribute("doctor", doctor);
+                request.getSession().setAttribute("doctor",doctor);
                 response.getWriter().print("success");
             } else {
                 response.getWriter().print("invalid");

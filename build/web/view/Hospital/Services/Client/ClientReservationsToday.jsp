@@ -4,6 +4,7 @@
     Author     : Eng Eslam khder
 --%>
 
+<%@page import="javax.swing.JOptionPane"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="org.hibernate.SessionFactory"%>
 <%@page import="java.util.List"%>
@@ -56,7 +57,7 @@
             List<Booking> booking = new ArrayList();
             SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
             booking = cc.myBookingtoday(sessionf, client);
-            pageContext.setAttribute("BOOKING", booking);
+            pageContext.setAttribute("BOOKING", booking);   
         %>
         <div class="limiter">
             <div class="container-table100">

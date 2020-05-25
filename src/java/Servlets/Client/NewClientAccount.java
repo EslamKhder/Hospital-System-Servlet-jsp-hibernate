@@ -54,7 +54,7 @@ public class NewClientAccount extends HttpServlet {
             SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
             if (clientcontroller.addClient(client, session) == 1) {
                 client.setId(clientcontroller.getClientId(client, session));
-                request.getSession().setAttribute("client", client);
+                request.getSession().setAttribute("client",client);
                 response.getWriter().print("success");
             } else {
                 response.getWriter().print("codeexist");

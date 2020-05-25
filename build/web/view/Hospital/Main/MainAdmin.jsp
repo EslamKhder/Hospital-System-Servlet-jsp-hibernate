@@ -56,8 +56,8 @@
                                   <li><a href="../CreateAccount/CreateDoctorAccount.jsp"><i class="fas fa-user-plus"></i> &nbsp; Add Doctor</a></li>
                                   <li><a href="../Services/DoctorAndClient/RemoveDoctor.jsp"><i class="fas fa-trash-alt"></i> &nbsp; Remove Doctor</a></li>
                                   <li><a href="../Services/Admin/Pharmecy.jsp"><i class="fas fa-laptop-medical"></i> &nbsp; pharmacy</a></li>
-                                <li><a href="../Services/DoctorAndClient/ClientBalance.jsp"><i class="fas fa-dollar-sign"></i> &nbsp; Client Balances</a></li>
                                 <li role="separator" class="divider"></li>
+                                <li><a href="../Services/Admin/AvailablePhysicians.jsp"><i class="fas fa-user-edit"></i> &nbsp; Available Physicians</a></li>
                                 <li><a href="../Services/Admin/Statistics.jsp"><i class="fas fa-user-edit"></i> &nbsp; Statistics</a></li>
                               </ul>
                             </li>

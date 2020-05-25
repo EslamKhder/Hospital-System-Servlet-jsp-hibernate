@@ -28,6 +28,7 @@ function getInfo() {
             error.innerHTML = "Money is not enough";
         } else if (val === "success") {
             error.innerHTML = "Success Booking";
+            
         } else if (val === "invalid") {
             error.innerHTML = "You Already Booked it";
         }

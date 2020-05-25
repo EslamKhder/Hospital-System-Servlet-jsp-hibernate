@@ -92,9 +92,6 @@
                             PHONE NUMBER
                         </div>
                         <div class="cell">
-                            Cancel Reservation
-                        </div>
-                        <div class="cell">
                             Accept
                         </div>
 
@@ -113,9 +110,6 @@
                             </div>
                             <div class="cell" data-title="Address">
                                 ${book.getClient().getClientproperties().getPhone()}
-                            </div>
-                            <div class="cell">
-                                <button onclick="Booking(${book.getClient().getId()})">Cancel</button>
                             </div>
                             <div class="cell">
                                 <button onclick="display(${book.getClient().getId()})">Accept</button>

@@ -29,7 +29,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link rel="stylesheet" href="css/style.css" type="text/css"/>
 <!-- font-awesome-icons -->
 </head>
-<div class="myname">Admin : ${sessionScope.admin.getName()}</div>
+<div class="myname">${sessionScope.client.getClientproperties().getName()}</div>
 
     <section class="signin-form">
         <div class="overlay">
@@ -43,14 +43,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
                 <div class="form34">
                     <form>
-                        <div>
-                            <p class="text-head">Enter Code  (Client) : </p>
-                            <input type="text" id="code" class="input" placeholder="Your Code"/>
-                        </div>
-                        <div id="Code"></div>
+                        
                         <div>
                             <p class="text-head">Enter Balance  (Client) : </p>
-                            <input type="text" id="balance" class="input" placeholder="Your Code"/>
+                            <input type="text" id="balance" class="input" placeholder="Balance"/>
                         </div>
                         <div id="Balance"></div>
                         <div>

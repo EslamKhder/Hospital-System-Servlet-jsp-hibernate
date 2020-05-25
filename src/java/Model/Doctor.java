@@ -34,21 +34,15 @@ public class Doctor {
     @Column(name = "Balance", nullable = false)
     private int balance;
     
+    @Column(name = "Available")
+    private int available;
+    
     @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     private DoctorProperties doctorproperties;
     
     @OneToMany(mappedBy = "doctor",cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
     private List<Booking> booking = new ArrayList(); 
-//    @OneToMany
-//    @JoinTable(
-//            name="Booking",
-//            joinColumns = @JoinColumn( name="Doctor_ID"),
-//            inverseJoinColumns = @JoinColumn( name="Client_ID")
-//        )
-//    private List<Client> clients;
-//    @OneToMany(mappedBy = "doctor1")
-//    private List<Booking> book;
-    
+
     public Doctor() {
     }
 
@@ -121,6 +115,13 @@ public class Doctor {
     public void setBooking(List<Booking> booking) {
         this.booking = booking;
     }
-    
+
+    public int getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(int available) {
+        this.available = available;
+    }
     
 }

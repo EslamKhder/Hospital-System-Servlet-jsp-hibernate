@@ -40,11 +40,6 @@ public class AcceptMedicine extends HttpServlet {
                 book = book.parallelStream().filter(x -> x.getClient().getId() == idclient && x.getDate().toString().equals(date)).collect(Collectors.toList());
                 book.get(0).setAcceptmedicine(1);
                 cc.editBooking(session, book.get(0));
-                DoctorController dc = new DoctorController();
-                request.getSession().setAttribute("client", cc.getClientData(client, session));
-                Doctor doctor = new Doctor();
-                doctor.setId(iddoctor);
-                request.getSession().setAttribute("doctor", dc.getDoctorID(session, doctor));
                 response.getWriter().print("success");
             } else {
                 response.getWriter().print("password");

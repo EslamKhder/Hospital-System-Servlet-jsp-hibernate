@@ -93,8 +93,11 @@
             List<Booking> booking = new ArrayList();
             SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
             booking = cc.allmyBooking(sessionf, client);
-            booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1).collect(Collectors.toList());
-            pageContext.setAttribute("BOOKING", booking);
+            if (booking != null) {
+                booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1).collect(Collectors.toList());
+                pageContext.setAttribute("BOOKING", booking);
+            }
+
         %>
         <div class="limiter">
             <div class="container-table100">

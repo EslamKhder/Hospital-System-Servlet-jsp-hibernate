@@ -1,5 +1,5 @@
 var request;
-var password, book, inv;alert(10);
+var password, book, inv;
 function medicine(idbook,idclient, date,iddoctor)
 {
     password = document.getElementById("password" + idbook).value,

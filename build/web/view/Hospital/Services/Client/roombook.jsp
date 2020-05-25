@@ -4,6 +4,11 @@
     Author     : Eng Eslam khder
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.List"%>
+<%@page import="Model.Doctor"%>
+<%@page import="Controller.DoctorController"%>
+<%@page import="org.hibernate.SessionFactory"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -84,14 +89,22 @@
                 <i class="fas fa-syringe"></i>
                 <i class="fas fa-stethoscope"></i>
             </div>
+            <%
+                SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
+                DoctorController dc = new DoctorController();
+                List<Doctor> doctor = dc.allDoctor(sessionf);
+                pageContext.setAttribute("DOCTORS", doctor);
+            %>
             <form>
                 <h1>CHECKUP</h1>
                 <div class="info">
                     <select id="spec" class="cars">
-                        <option value="Eyes Doctor">Eyes Doctor</option>
-                        <option value="Analysis Doctor">Analysis Doctor</option>
-                        <option value="Rumor Doctor">Rumor Doctor</option>
-                        <option value="Pharmacist">Pharmacist</option>
+                        <c:forEach items="${DOCTORS}" var="doctor">
+                            <c:set var="ava" value="${doctor.getAvailable()}" />
+                            <c:if test="${ava == 1}">
+                            <option value="${doctor.getSpecialty()}">${doctor.getSpecialty()}</option>
+                            </c:if>
+                        </c:forEach>
                     </select>
                 </div>
             </form>

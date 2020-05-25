@@ -86,9 +86,12 @@
             ClientController cc = new ClientController();
             SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
             List<Booking> booking = cc.allBooking(sessionf);
-            booking = (List<Booking>) booking.parallelStream()
+            if(booking != null){
+                booking = (List<Booking>) booking.parallelStream()
                     .filter(x -> (x.getAcceptdoctor() == 1 && x.getAcceptmedicine() == 0)).collect(Collectors.toList());
             pageContext.setAttribute("BOOKING", booking);
+            }
+            
         %>
         <div class="limiter">
             <div class="container-table100">

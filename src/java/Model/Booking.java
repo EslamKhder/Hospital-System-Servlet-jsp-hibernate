@@ -113,7 +113,7 @@ public class Booking {
     public void setAcceptdoctor(int acceptdoctor) {
         this.acceptdoctor = acceptdoctor;
     }
-
+    
     public int getAcceptmedicine() {
         return acceptmedicine;
     }

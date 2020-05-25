@@ -49,16 +49,16 @@
         <servlet-class>Servlets.Client.CancelBookingClient</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CancelBookingDoctor</servlet-name>
-        <servlet-class>Servlets.Doctor.CancelBookingDoctor</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>GetMedicine</servlet-name>
         <servlet-class>Servlets.Doctor.GetMedicine</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AcceptMedicine</servlet-name>
         <servlet-class>Servlets.Admin.AcceptMedicine</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AvailablePhysicians</servlet-name>
+        <servlet-class>Servlets.Admin.AvailablePhysicians</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginClient</servlet-name>
@@ -105,16 +105,16 @@
         <url-pattern>/CancelBookingClient</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CancelBookingDoctor</servlet-name>
-        <url-pattern>/CancelBookingDoctor</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>GetMedicine</servlet-name>
         <url-pattern>/GetMedicine</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AcceptMedicine</servlet-name>
         <url-pattern>/AcceptMedicine</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AvailablePhysicians</servlet-name>
+        <url-pattern>/AvailablePhysicians</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

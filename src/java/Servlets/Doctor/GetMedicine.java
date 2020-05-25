@@ -37,8 +37,6 @@ public class GetMedicine extends HttpServlet {
             cc.editBooking(session, book);
             doctor.setBalance(doctor.getBalance() + 100);
             dc.editDoctor(session, doctor);
-            request.getSession().setAttribute("client", cc.getClientData(client, session));
-            request.getSession().setAttribute("doctor", dc.getDoctorID(session, doctor));
             response.getWriter().print("success");
         }
 
