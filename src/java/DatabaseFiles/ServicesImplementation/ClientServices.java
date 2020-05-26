@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.swing.JOptionPane;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -210,6 +211,7 @@ public class ClientServices implements ClientService {
                     .filter(x -> (x.getAcceptmedicine() == 0 && x.getAcceptdoctor() == 1)).collect(Collectors.toList());
             return booking;
         }
+        JOptionPane.showMessageDialog(null, booking.size());
         return null;
     }
 

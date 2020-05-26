@@ -48,6 +48,7 @@ public class EditDoctorPassword extends HttpServlet {
 
         }
     }
+
     public int InvalidNumber(String num) {
         try {
             return Integer.parseInt(num);

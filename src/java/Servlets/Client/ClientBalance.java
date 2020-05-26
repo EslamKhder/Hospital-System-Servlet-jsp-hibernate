@@ -31,22 +31,21 @@ public class ClientBalance extends HttpServlet {
         } else if (!(password1.equals(password2))) {
             response.getWriter().print("identical");
         } else {
-                SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
-                ClientController cc = new ClientController();
-                Client client = (Client) request.getSession().getAttribute("client");
+            SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
+            ClientController cc = new ClientController();
+            Client client = (Client) request.getSession().getAttribute("client");
 
-                AdminController am = new AdminController();
-                Admin admin = am.getAdmin(session);
-                if (admin.getPassword().equals(password2)) {
-                    client.setBalance(balance + client.getBalance());
-                    cc.editClient(client, session);
-                    request.getSession().removeAttribute("client");
-                    request.getSession().setAttribute("client",client);
-                    response.getWriter().print("success");
-                } else {
-                    response.getWriter().print("invalidadmin");
-                }
-            
+            AdminController am = new AdminController();
+            Admin admin = am.getAdmin(session);
+            if (admin.getPassword().equals(password2)) {
+                client.setBalance(balance + client.getBalance());
+                cc.editClient(client, session);
+                request.getSession().removeAttribute("client");
+                request.getSession().setAttribute("client", client);
+                response.getWriter().print("success");
+            } else {
+                response.getWriter().print("invalidadmin");
+            }
 
         }
     }

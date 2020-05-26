@@ -33,7 +33,7 @@ public class NewDoctorAccount extends HttpServlet {
             response.getWriter().print("password");
         } else if (password.toCharArray().length < 7) {
             response.getWriter().print("numpassword");
-        }else if (name.isEmpty() || !(Pattern.matches("[a-zA-Z ]+", name))) {
+        } else if (name.isEmpty() || !(Pattern.matches("[a-zA-Z ]+", name))) {
             response.getWriter().print("name");
         } else if (InvalidNumber(phone) == -1 || phone.isEmpty() || phone.toCharArray().length != 11) {
             response.getWriter().print("phone");

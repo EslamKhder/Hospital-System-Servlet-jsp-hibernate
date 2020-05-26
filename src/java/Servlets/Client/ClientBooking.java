@@ -18,14 +18,14 @@ public class ClientBooking extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            
+
             String spec = request.getParameter("spec");
             Client client = (Client) request.getSession().getAttribute("client");
             if (client.getBalance() < 100) {
                 response.getWriter().print("ivbalance");
             } else {
                 SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
-                
+
                 Doctor doctor = new Doctor();
                 doctor.setSpecialty(spec);
                 DoctorController dc = new DoctorController();
