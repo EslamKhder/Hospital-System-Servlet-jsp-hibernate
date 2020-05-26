@@ -135,6 +135,7 @@ public class ClientServices implements ClientService {
         return clients.get(0);
     }
 
+    // Get Client (Data)
     @Override
     public Client getClientData(Client client, SessionFactory sessionfactory) {
         try {
@@ -180,6 +181,81 @@ public class ClientServices implements ClientService {
             session.close();
         }
         return clients.get(0);
+    }
+
+    // Get ALL Booking Booking
+    @Override
+    public List<Booking> allBooking(SessionFactory sessionfactory) {
+        try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
+            q = session.createQuery("from Booking");
+            booking = q.list();
+            if (booking.isEmpty()) {
+                return null;
+            }
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+        return booking;
+    }
+
+    @Override
+    public List<Booking> PharmecyBooking(SessionFactory sessionfactory) {
+        booking = this.allBooking(sessionfactory);
+        if (booking != null) {
+            booking = (List<Booking>) booking.parallelStream()
+                    .filter(x -> (x.getAcceptmedicine() == 0 && x.getAcceptdoctor() == 1)).collect(Collectors.toList());
+            return booking;
+        }
+        return null;
+    }
+
+    // Get ALL Booking (Doctor And Client)
+    @Override
+    public List<Booking> statisticsBooking(SessionFactory sessionfactory) {
+        booking = this.allBooking(sessionfactory);
+        if (booking != null) {
+            booking = booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1 && x.getAcceptdoctor() == 1)
+                    .collect(Collectors.toList());
+            return booking;
+        }
+        return null;
+    }
+
+    // Get ALL ClientBooking 
+    @Override
+    public List<Booking> allClientReservation(SessionFactory sessionfactory) {
+        booking = this.allBooking(sessionfactory);
+        if (booking != null) {
+            booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1).collect(Collectors.toList());
+            return booking;
+        }
+        return null;
+    }
+
+    // Get ALL ClientBooking ToDay
+    @Override
+    public List<Booking> clientReservationsToday(SessionFactory sessionfactory, Client client) {
+        booking = this.allBooking(sessionfactory);
+        if (booking != null) {
+            booking = (List<Booking>) booking.parallelStream()
+                    .filter(x -> (client.getId() == x.getClient().getId() && x.getAcceptdoctor() == 0)).collect(Collectors.toList());
+            return booking;
+        }
+        return null;
+    }
+
+    @Override
+    public List<Booking> Pharmecy(SessionFactory sessionfactory, Client client) {
+        booking = this.allBooking(sessionfactory);
+        if (booking != null) {
+            booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1 && client.getId() == x.getId()).collect(Collectors.toList());
+            return booking;
+        }
+        return null;
     }
 
     // Reserve A Medical Examination
@@ -228,71 +304,6 @@ public class ClientServices implements ClientService {
         return 0;
     }
 
-    // Get ALL ClientBooking ToDay
-    @Override
-    public List<Booking> myBookingtoday(SessionFactory sessionfactory, Client client) {
-        try {
-            session = dc.getSession(sessionfactory);
-            session.beginTransaction();
-
-            q = session.createQuery("from Booking where Date = ?");
-            q.setString(0, this.Date());
-            booking = q.list();
-            if (booking.isEmpty()) {
-                return null;
-            } else {
-                booking = (List<Booking>) booking.parallelStream()
-                        .filter(x -> (client.getId() == x.getClient().getId() && x.getAcceptdoctor() == 0)).collect(Collectors.toList());
-            }
-        } catch (Exception e) {
-            session.getTransaction().rollback();
-        } finally {
-            session.close();
-        }
-        return booking;
-    }
-
-    // Get ALL ClientBooking ToDay
-    @Override
-    public List<Booking> allmyBooking(SessionFactory sessionfactory, Client client) {
-        try {
-            session = dc.getSession(sessionfactory);
-            session.beginTransaction();
-            q = session.createQuery("from Booking");
-            booking = q.list();
-            if (booking.isEmpty()) {
-                return null;
-            } else {
-                booking = (List<Booking>) booking.parallelStream()
-                        .filter(x -> (client.getId() == x.getClient().getId())).collect(Collectors.toList());
-            }
-        } catch (Exception e) {
-            session.getTransaction().rollback();
-        } finally {
-            session.close();
-        }
-        return booking;
-    }
-
-    // Get ALL Booking Booking
-    @Override
-    public List<Booking> allBooking(SessionFactory sessionfactory) {
-        try {
-            session = dc.getSession(sessionfactory);
-            session.beginTransaction();
-            q = session.createQuery("from Booking");
-            booking = q.list();
-            if (booking.isEmpty()) {
-                return null;
-            }
-        } catch (Exception e) {
-            session.getTransaction().rollback();
-        } finally {
-            session.close();
-        }
-        return booking;
-    }
-
     // Get The Booking of The Doctor Today
     @Override
     public Booking myBooking(SessionFactory sessionfactory, Client client, Doctor doctor) {
@@ -316,6 +327,19 @@ public class ClientServices implements ClientService {
             session.close();
         }
         return booking.get(0);
+    }
+
+    // Get the only Booking of Client 
+    @Override
+    public List<Booking> onlyBooking(SessionFactory sessionfactory, Client client, Doctor doctor) {
+        booking = this.allBooking(sessionfactory);
+        if (booking != null) {
+            booking = booking.parallelStream().filter(x -> x.getClient().getId() == client.getId()
+                    && x.getDate().toString().equals(this.Date())
+                    && x.getDoctor().getId() == doctor.getId()).collect(Collectors.toList());
+            return booking;
+        }
+        return null;
     }
 
     // Edit Booking Of Client

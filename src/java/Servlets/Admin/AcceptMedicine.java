@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 import org.hibernate.SessionFactory;
 
 /**
@@ -36,8 +37,9 @@ public class AcceptMedicine extends HttpServlet {
             ClientController cc = new ClientController();
             client = cc.getClientData(client, session);
             if (client.getPassword().equals(password)) {
-                List<Booking> book = cc.allBooking(session);
-                book = book.parallelStream().filter(x -> x.getClient().getId() == idclient && x.getDate().toString().equals(date)).collect(Collectors.toList());
+                Doctor doctor = new Doctor();
+                doctor.setId(iddoctor);
+                List<Booking> book = cc.onlyBooking(session, client, doctor);
                 book.get(0).setAcceptmedicine(1);
                 cc.editBooking(session, book.get(0));
                 response.getWriter().print("success");

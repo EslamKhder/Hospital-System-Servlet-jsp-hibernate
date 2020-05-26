@@ -57,11 +57,8 @@
             ClientController cc = new ClientController();
             List<Booking> booking = new ArrayList();
             SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
-            booking = cc.allBooking(sessionf);
-            if (booking != null) {
-                booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1).collect(Collectors.toList());
-                pageContext.setAttribute("BOOKING", booking);
-            }
+            booking = cc.Pharmecy(sessionf,client);
+            pageContext.setAttribute("BOOKING", booking);
 
         %>
         <div class="limiter">

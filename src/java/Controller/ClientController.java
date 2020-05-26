@@ -52,16 +52,28 @@ public class ClientController {
         return clientservices.Booking(doctor, client, sessionfactory);
     }
 
+    public List<Booking> PharmecyBooking(SessionFactory sessionfactory) {
+        return clientservices.PharmecyBooking(sessionfactory);
+    }
+
+    public List<Booking> statisticsBooking(SessionFactory sessionfactory) {
+        return clientservices.statisticsBooking(sessionfactory);
+    }
+
+    public List<Booking> allClientReservation(SessionFactory sessionfactory) {
+        return clientservices.allClientReservation(sessionfactory);
+    }
+
+    public List<Booking> clientReservationsToday(SessionFactory sessionfactory, Client client) {
+        return clientservices.clientReservationsToday(sessionfactory, client);
+    }
+
+    public List<Booking> Pharmecy(SessionFactory sessionfactory, Client client) {
+        return clientservices.Pharmecy(sessionfactory, client);
+    }
+
     public int isBooking(SessionFactory sessionfactory, Client client, Doctor doctor) {
         return clientservices.isBooking(sessionfactory, client, doctor);
-    }
-
-    public List<Booking> myBookingtoday(SessionFactory sessionfactory, Client client) {
-        return clientservices.myBookingtoday(sessionfactory, client);
-    }
-
-    public List<Booking> allmyBooking(SessionFactory sessionfactory, Client client) {
-        return clientservices.allmyBooking(sessionfactory, client);
     }
 
     public List<Booking> allBooking(SessionFactory sessionfactory) {
@@ -71,7 +83,9 @@ public class ClientController {
     public Booking myBooking(SessionFactory sessionfactory, Client client, Doctor doctor) {
         return clientservices.myBooking(sessionfactory, client, doctor);
     }
-
+    public List<Booking> onlyBooking(SessionFactory sessionfactory, Client client, Doctor doctor){
+        return clientservices.onlyBooking(sessionfactory, client, doctor);
+    }
     public int editBooking(SessionFactory sessionfactory, Booking book) {
         return clientservices.editBooking(sessionfactory, book);
     }

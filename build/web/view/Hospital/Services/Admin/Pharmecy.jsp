@@ -4,6 +4,7 @@
     Author     : Eng Eslam khder
 --%>
 
+<%@page import="javax.swing.JOptionPane"%>
 <%@page import="java.util.stream.Collectors"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="org.hibernate.SessionFactory"%>
@@ -81,17 +82,11 @@
     </style>
     <body>
         <div class="myname">Admin : ${sessionScope.admin.getName()}</div>
-        <jsp:useBean class="Model.Client" scope="session" id="client" />
         <%
             ClientController cc = new ClientController();
             SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
-            List<Booking> booking = cc.allBooking(sessionf);
-            if(booking != null){
-                booking = (List<Booking>) booking.parallelStream()
-                    .filter(x -> (x.getAcceptdoctor() == 1 && x.getAcceptmedicine() == 0)).collect(Collectors.toList());
-            pageContext.setAttribute("BOOKING", booking);
-            }
-            
+            List<Booking> booking = cc.PharmecyBooking(sessionf);
+            pageContext.setAttribute("BOOKING", booking);            
         %>
         <div class="limiter">
             <div class="container-table100">

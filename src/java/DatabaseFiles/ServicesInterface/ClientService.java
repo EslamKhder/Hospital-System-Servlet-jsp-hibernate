@@ -27,7 +27,7 @@ public interface ClientService {
      */
     public Client IsExist(Client client, SessionFactory sessionfactory);
 
-    // Check IF Client Is Exist Or Not
+    // Get Client (Data)
     public Client getClientData(Client client, SessionFactory sessionfactory);
 
     // Get All Properties Of Client
@@ -36,20 +36,29 @@ public interface ClientService {
     // Get Client By Code 
     public Client getClientCode(SessionFactory sessionfactory, Client client);
 
+    public List<Booking> PharmecyBooking(SessionFactory sessionfactory);
+
+    // Get ALL Booking (Doctor And Client)
+    public List<Booking> statisticsBooking(SessionFactory sessionfactory);
+
+    // Get ALL ClientBooking
+    public List<Booking> allClientReservation(SessionFactory sessionfactory);
+
+    // Get ALL ClientBooking ToDay
+    public List<Booking> clientReservationsToday(SessionFactory sessionfactory, Client client);
+
+    public List<Booking> Pharmecy(SessionFactory sessionfactory, Client client);
+    
+    public List<Booking> allBooking(SessionFactory sessionfactory);
+
     // Reserve A Medical Examination
     public int Booking(Doctor doctor, Client client, SessionFactory sessionfactory);
 
     //  Check If Client Booking Or No
     public int isBooking(SessionFactory sessionfactory, Client client, Doctor doctor);
 
-    // Get ALL ClientBooking ToDay
-    public List<Booking> myBookingtoday(SessionFactory sessionfactory, Client client);
-
-    // Get All Booking
-    public List<Booking> allmyBooking(SessionFactory sessionfactory, Client client);
-
-    // Get ALL Booking Booking
-    public List<Booking> allBooking(SessionFactory sessionfactory);
+    // Get the only Booking of Client 
+    public List<Booking> onlyBooking(SessionFactory sessionfactory, Client client, Doctor doctor);
 
     // Get The Booking of The Doctor Today
     public Booking myBooking(SessionFactory sessionfactory, Client client, Doctor doctor);
