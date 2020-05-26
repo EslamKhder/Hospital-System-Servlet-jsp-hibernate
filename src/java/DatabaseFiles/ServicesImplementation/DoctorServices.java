@@ -7,6 +7,7 @@ import Model.Client;
 import Model.Doctor;
 import Model.Pharmacy;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,10 +25,14 @@ public class DoctorServices implements DoctorService {
     private Query q;
     private List<Doctor> doctors;
     private List<Booking> booking;
+    private String result;
+    private int out;
 
     public DoctorServices() {
         dc = new DatabaseController();
         session = null;
+        q = null;
+        doctors = new ArrayList();
     }
 
     // Create New Doctor Account
@@ -40,7 +45,7 @@ public class DoctorServices implements DoctorService {
             session.getTransaction().commit();
             return 1;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.toString() + "");
+            session.getTransaction().rollback();
             return 0;
         } finally {
             session.close();
@@ -54,10 +59,13 @@ public class DoctorServices implements DoctorService {
         try {
             session = dc.getSession(sessionf);
             doctor = (Doctor) session.get(Doctor.class, doctor.getId());
-            return doctor;
+
+        } catch (Exception e) {
+            session.getTransaction().rollback();
         } finally {
             session.close();
         }
+        return doctor;
     }
 
     // Get Password Of Doctor
@@ -67,29 +75,14 @@ public class DoctorServices implements DoctorService {
             session = dc.getSession(sessionf);
             q = session.createQuery("select password from Doctor where code=?");
             q.setString(0, doctor.getCode());
-            return (String) q.list().get(0);
+            result = (String) q.list().get(0);
+        } catch (Exception e) {
+            session.getTransaction().rollback();
         } finally {
             session.close();
         }
+        return result;
     }
-    // Check If Code Is Exist
-//    @Override
-//    public int codeExist(SessionFactory sessionf, Doctor doctor){
-//        try{
-//            session = dc.getSession(sessionf);
-//            q = session.createQuery("select code from Doctor");
-//            q.setInteger(0, doctor.getCode());
-//            List<Integer> codes = q.list();
-//            for(int c:codes){
-//                if(c == doctor.getCode()){
-//                    return 1;
-//                }
-//            }
-//            return 0;
-//        }finally {
-//            session.close();
-//        }
-//    }
 
     //Remove Doctor
     @Override
@@ -124,10 +117,12 @@ public class DoctorServices implements DoctorService {
             if (doctors.isEmpty()) {
                 return null;
             }
-            return doctors.get(0);
+        } catch (Exception e) {
+            session.getTransaction().rollback();
         } finally {
             session.close();
         }
+        return doctors.get(0);
     }
 
     // Get Data Of Doctor by Use Property (DoctorSpecialty)
@@ -138,10 +133,13 @@ public class DoctorServices implements DoctorService {
             Criteria cri = session.createCriteria(Doctor.class);
             cri.add(Restrictions.eq("Specialty", doctor.getSpecialty()));
             doctors = cri.list();
-            return doctors.get(0);
+
+        } catch (Exception e) {
+            session.getTransaction().rollback();
         } finally {
             session.close();
         }
+        return doctors.get(0);
     }
 
     // Get Data Of Doctor by Use Property (Doctor Code)
@@ -154,13 +152,14 @@ public class DoctorServices implements DoctorService {
             doctors = cri.list();
             if (doctors.isEmpty()) {
                 return null;
-            } else {
-                return doctors.get(0);
             }
 
+        } catch (Exception e) {
+            session.getTransaction().rollback();
         } finally {
             session.close();
         }
+        return doctors.get(0);
     }
 
     // UpDate Infromation Of Data
@@ -174,6 +173,7 @@ public class DoctorServices implements DoctorService {
             session.getTransaction().commit();
             return 1;
         } catch (Exception e) {
+            session.getTransaction().rollback();
             return 0;
         } finally {
             session.close();
@@ -187,10 +187,13 @@ public class DoctorServices implements DoctorService {
             session = dc.getSession(sessionf);
             q = session.createQuery("select id from Doctor where DoctorSpecialty=?");
             q.setString(0, doctor.getSpecialty());
-            return (int) q.list().get(0);
+            out = (int) q.list().get(0);
+        } catch (Exception e) {
+            session.getTransaction().rollback();
         } finally {
             session.close();
         }
+        return out;
     }
 
     // Get ALL DoctorBooking ToDay
@@ -198,21 +201,21 @@ public class DoctorServices implements DoctorService {
     public List<Booking> myBooking(SessionFactory sessionfactory, Doctor doctor) {
         try {
             session = dc.getSession(sessionfactory);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String date = sdf.format(new Date());
             q = session.createQuery("from Booking where Date = ?");
-            q.setString(0, date);
+            q.setString(0, this.Date());
             booking = q.list();
             if (booking.isEmpty()) {
                 return null;
             } else {
                 booking = (List<Booking>) booking.parallelStream()
                         .filter(x -> (doctor.getId() == x.getDoctor().getId() && x.getAcceptdoctor() == 0)).collect(Collectors.toList());
-                return booking;
             }
+        } catch (Exception e) {
+            session.getTransaction().rollback();
         } finally {
             session.close();
         }
+        return booking;
     }
 
     @Override
@@ -230,20 +233,28 @@ public class DoctorServices implements DoctorService {
             session.close();
         }
     }
+
     // Get All Doctor
     @Override
-    public List<Doctor> allDoctor(SessionFactory sessionf){
+    public List<Doctor> allDoctor(SessionFactory sessionf) {
         try {
             session = dc.getSession(sessionf);
             q = session.createQuery("from Doctor");
             doctors = q.list();
-            if(doctors.isEmpty()){
+            if (doctors.isEmpty()) {
                 return null;
-            } else {
-                return doctors;
             }
+
+        } catch (Exception e) {
+            session.getTransaction().rollback();
         } finally {
             session.close();
         }
+        return doctors;
+    }
+
+    public String Date() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(new Date());
     }
 }

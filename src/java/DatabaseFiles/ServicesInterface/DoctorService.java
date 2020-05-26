@@ -1,7 +1,6 @@
 package DatabaseFiles.ServicesInterface;
 
 import Model.Booking;
-import Model.Client;
 import Model.Doctor;
 import Model.Pharmacy;
 import java.util.List;
@@ -17,9 +16,6 @@ public interface DoctorService {
 
     // Get Password Of Doctor
     public String getPasswordDoctor(SessionFactory session, Doctor doctor);
-
-    // Check If Code Is Exist
-//    public int codeExist(SessionFactory session, Doctor doctor);
 
     /* Check IF Doctor Is Exist Or Not 
        IF Exist (Return All Data Of Doctor)

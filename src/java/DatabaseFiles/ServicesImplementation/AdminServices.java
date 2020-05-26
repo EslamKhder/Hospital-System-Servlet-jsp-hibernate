@@ -14,6 +14,7 @@ public class AdminServices implements AdminService {
 
     private DatabaseController dc;
     private Session session;
+    private Admin admin;
 
     public AdminServices() {
         dc = new DatabaseController();
@@ -25,9 +26,12 @@ public class AdminServices implements AdminService {
     public Admin getAdmin(SessionFactory sessionfactory) {
         try {
             session = dc.getSession(sessionfactory);
-            return (Admin) session.get(Admin.class, 1);
+            admin =  (Admin) session.get(Admin.class, 1);
+        } catch (Exception e) {
+            session.getTransaction().rollback();
         } finally {
             session.close();
         }
+        return admin;
     }
 }

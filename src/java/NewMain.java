@@ -1,6 +1,7 @@
 
 import Controller.ClientController;
 import Controller.DoctorController;
+import DatabaseFiles.ServicesImplementation.ClientServices;
 import HibernateFiles.HibernateUtil;
 import Model.Booking;
 import Model.Client;
@@ -27,13 +28,15 @@ public class NewMain {
 
     public static void main(String[] args) {
 
+        ClientServices cs = new ClientServices();
         SessionFactory sessionf = HibernateUtil.getSessionFactory();
         Session s = sessionf.openSession();
-        s.beginTransaction();
-        Doctor c = (Doctor) s.get(Doctor.class, 2);
-        s.delete(c);
-        s.getTransaction().commit();
-        s.close();
+        Client client = new Client();
+        client.setCode("00000");
+        
+//        Doctor c = (Doctor) s.get(Doctor.class, 1);
+//        s.close();
+        JOptionPane.showMessageDialog(null,cs.getClientId(client, sessionf));
 //        Booking book = new Booking();
 //         Doctor doctor = new Doctor(); doctor.setId(1);
 //         book.setDoctor(doctor);

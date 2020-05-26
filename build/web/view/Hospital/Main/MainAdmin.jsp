@@ -25,7 +25,7 @@
         <!--[endif]-->
     </head>
     <body>
-        <div class="doller">Admin : ${sessionScope.admin.getMoney()} <i class="fas fa-dollar-sign"></i></div>
+        <div class="doller">${sessionScope.admin.getMoney()} <i class="fas fa-dollar-sign"></i></div>
 <!-- Start NavBar -->
             <nav class="navbar navbar-inverse">
                   <div class="container-fluid">
@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                      <a class="navbar-brand" href="">${sessionScope.admin.getName()}</a>
+                      <a class="navbar-brand" href="">Admin : ${sessionScope.admin.getName()}</a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

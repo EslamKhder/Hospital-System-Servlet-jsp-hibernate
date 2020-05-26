@@ -34,10 +34,10 @@ public class Doctor {
     @Column(name = "Balance", nullable = false)
     private int balance;
     
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     private DoctorProperties doctorproperties;
     
-    @OneToMany(mappedBy = "doctor",cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "doctor",cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
     private List<Booking> booking = new ArrayList(); 
 //    @OneToMany
 //    @JoinTable(
