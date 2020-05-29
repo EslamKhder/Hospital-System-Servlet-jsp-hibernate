@@ -53,8 +53,7 @@
                     </div>
 
                     <div class="btn"><a href="../Main/MainDoctor.jsp">Main</a></div>
-                    <div class="btn"><a href="">UP_Date</a></div>
-                    <div class="btn"><a href="">Delete</a></div>
+                    <div class="btn"><a href="../Services/DoctorAndClient/EditDoctor.jsp">UP_Date</a></div>
                 </div>
             </div>
         </div>

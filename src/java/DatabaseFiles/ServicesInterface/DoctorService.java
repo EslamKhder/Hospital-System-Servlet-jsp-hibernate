@@ -2,6 +2,7 @@ package DatabaseFiles.ServicesInterface;
 
 import Model.Booking;
 import Model.Doctor;
+import Model.DoctorProperties;
 import Model.Pharmacy;
 import java.util.List;
 import org.hibernate.SessionFactory;
@@ -16,7 +17,11 @@ public interface DoctorService {
 
     // Get Password Of Doctor
     public String getPasswordDoctor(SessionFactory session, Doctor doctor);
-
+    // Get DoctorProperties
+    public DoctorProperties getDoctorProperties(SessionFactory session, Doctor doctor);
+    // Edit DoctorProperties
+    public int editDoctorProperties(SessionFactory session, DoctorProperties doctor);
+    
     /* Check IF Doctor Is Exist Or Not 
        IF Exist (Return All Data Of Doctor)
        IF Not Exist (Return Null)
@@ -43,4 +48,5 @@ public interface DoctorService {
     public int giveMedicine(SessionFactory session,Pharmacy pharmcy);
     // Get All Doctor
     public List<Doctor> allDoctor(SessionFactory session);
+    
 }

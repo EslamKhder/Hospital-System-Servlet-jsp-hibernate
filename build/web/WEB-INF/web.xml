@@ -60,6 +60,18 @@
         <servlet-name>AvailablePhysicians</servlet-name>
         <servlet-class>Servlets.Admin.AvailablePhysicians</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RemoveClient</servlet-name>
+        <servlet-class>Servlets.Client.RemoveClient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditClient</servlet-name>
+        <servlet-class>Servlets.Client.EditClient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditDoctor</servlet-name>
+        <servlet-class>Servlets.Doctor.EditDoctor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginClient</servlet-name>
         <url-pattern>/LoginClient</url-pattern>
@@ -115,6 +127,18 @@
     <servlet-mapping>
         <servlet-name>AvailablePhysicians</servlet-name>
         <url-pattern>/AvailablePhysicians</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveClient</servlet-name>
+        <url-pattern>/RemoveClient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditClient</servlet-name>
+        <url-pattern>/EditClient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditDoctor</servlet-name>
+        <url-pattern>/EditDoctor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

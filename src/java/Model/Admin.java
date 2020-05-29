@@ -21,10 +21,6 @@ public class Admin {
     private String password;
     @Column(name = "Name")
     private String name;
-    
-    @Column(name = "money")
-    private String money;
-    
     public Admin() {
     }
 
@@ -65,12 +61,4 @@ public class Admin {
         this.password = password;
     }
 
-    public String getMoney() {
-        return money;
-    }
-
-    public void setMoney(String money) {
-        this.money = money;
-    }
-    
 }

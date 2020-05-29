@@ -4,6 +4,7 @@ import Controller.DatabaseController;
 import DatabaseFiles.ServicesInterface.DoctorService;
 import Model.Booking;
 import Model.Doctor;
+import Model.DoctorProperties;
 import Model.Pharmacy;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class DoctorServices implements DoctorService {
     private List<Booking> booking;
     private String result;
     private int out;
+    private DoctorProperties doctorproperties;
 
     public DoctorServices() {
         dc = new DatabaseController();
@@ -81,7 +83,36 @@ public class DoctorServices implements DoctorService {
         }
         return result;
     }
-
+    // Get DoctorProperties
+    @Override
+    public DoctorProperties getDoctorProperties(SessionFactory sessionfactory, Doctor doctor){
+        try {
+            session = dc.getSession(sessionfactory);
+            doctorproperties = (DoctorProperties) session.get(DoctorProperties.class, doctor.getDoctorproperties().getId());
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+        return doctorproperties;
+    }
+    
+    // Edit DoctorProperties
+    @Override
+    public int editDoctorProperties(SessionFactory sessionfactory, DoctorProperties doctor){
+        try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
+            session.update(doctor);
+            session.getTransaction().commit();
+            return 1;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            return 0;
+        } finally {
+            session.close();
+        }
+    }
     //Remove Doctor
     @Override
     public int removeDoctor(SessionFactory sessionf, Doctor doctor) {

@@ -72,10 +72,40 @@ public class ClientServices implements ClientService {
         }
         return result;
     }
+// Geting ClientProperties 
 
+    public ClientProperties getClientProperties(Client client, SessionFactory sessionfactory){
+        try {
+            session = dc.getSession(sessionfactory);
+            clientproperties = (ClientProperties) session.get(ClientProperties.class, client.getClientproperties().getId());
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+        return clientproperties;
+    }
     // Edit Client
     @Override
+
     public int editClient(Client client, SessionFactory sessionfactory) {
+        try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
+            session.update(client);
+            session.getTransaction().commit();
+            return 1;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            return 0;
+        } finally {
+            session.close();
+        }
+    }
+
+    // Edit ClientProperties
+    @Override
+    public int editClientProperties(ClientProperties client, SessionFactory sessionfactory) {
         try {
             session = dc.getSession(sessionfactory);
             session.beginTransaction();
@@ -102,6 +132,22 @@ public class ClientServices implements ClientService {
             cri.add(Restrictions.eq("doctor", doctor));
             booking = cri.list();
             session.delete(cri.list().get(0));
+            session.getTransaction().commit();
+            return 1;
+        } catch (HibernateException e) {
+            session.getTransaction().rollback();
+            return 0;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public int removeClient(Client client, SessionFactory sessionfactory) {
+        try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
+            session.delete(client.getClientproperties());
             session.getTransaction().commit();
             return 1;
         } catch (HibernateException e) {

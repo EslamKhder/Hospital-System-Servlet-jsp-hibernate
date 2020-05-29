@@ -25,7 +25,6 @@
         <!--[endif]-->
     </head>
     <body>
-        <div class="doller">${sessionScope.admin.getMoney()} <i class="fas fa-dollar-sign"></i></div>
 <!-- Start NavBar -->
             <nav class="navbar navbar-inverse">
                   <div class="container-fluid">

@@ -15,10 +15,19 @@ public interface ClientService {
     // Geting Client Property (ID) 
     public int getClientId(Client client, SessionFactory sessionfactory);
 
+    // Geting ClientProperties 
+    public ClientProperties getClientProperties(Client client, SessionFactory sessionfactory);
+    
     // Edit Client
     public int editClient(Client client, SessionFactory sessionfactory);
 
-    // Edit Client
+    // Edit ClientProperties
+    public int editClientProperties(ClientProperties client, SessionFactory sessionfactory);
+    
+    // Remove Client
+    public int removeClient(Client client, SessionFactory sessionfactory);
+
+    // Remove Booking of Client
     public int removeBooking(Doctor doctor, Client client, SessionFactory sessionfactory);
 
     /* Check IF Client Is Exist Or Not 
@@ -48,7 +57,7 @@ public interface ClientService {
     public List<Booking> clientReservationsToday(SessionFactory sessionfactory, Client client);
 
     public List<Booking> Pharmecy(SessionFactory sessionfactory, Client client);
-    
+
     public List<Booking> allBooking(SessionFactory sessionfactory);
 
     // Reserve A Medical Examination

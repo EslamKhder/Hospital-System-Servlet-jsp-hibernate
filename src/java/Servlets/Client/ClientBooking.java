@@ -17,7 +17,6 @@ public class ClientBooking extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
 
             String spec = request.getParameter("spec");
             Client client = (Client) request.getSession().getAttribute("client");
@@ -41,8 +40,5 @@ public class ClientBooking extends HttpServlet {
                     response.getWriter().print("success");
                 }
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.toString() + " ");
-        }
     }
 }

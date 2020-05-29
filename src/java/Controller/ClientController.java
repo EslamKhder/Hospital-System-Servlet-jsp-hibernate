@@ -23,11 +23,15 @@ public class ClientController {
     public Client IsExist(Client client, SessionFactory sessionfactory) {
         return clientservices.IsExist(client, sessionfactory);
     }
-
+    public int removeClient(Client client, SessionFactory sessionfactory){
+        return clientservices.removeClient(client, sessionfactory);
+    }
     public int getClientId(Client client, SessionFactory sessionfactory) {
         return clientservices.getClientId(client, sessionfactory);
     }
-
+    public int editClientProperties(ClientProperties client, SessionFactory sessionfactory){
+        return clientservices.editClientProperties(client, sessionfactory);
+    }
     public int editClient(Client client, SessionFactory sessionfactory) {
         return clientservices.editClient(client, sessionfactory);
     }
