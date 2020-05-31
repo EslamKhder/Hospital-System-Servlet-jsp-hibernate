@@ -74,4 +74,7 @@ public interface ClientService {
 
     // Edit Booking Of Client
     public int editBooking(SessionFactory sessionfactory, Booking book);
+    
+    // All Client
+    public List<Client> Clients(SessionFactory sessionfactory);
 }

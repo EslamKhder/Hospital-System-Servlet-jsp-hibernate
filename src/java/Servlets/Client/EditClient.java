@@ -30,7 +30,6 @@ public class EditClient extends HttpServlet {
         } else if (address.isEmpty()) {
             response.getWriter().print("address");
         } else {
-
             SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
             Client c = (Client)request.getSession().getAttribute("client");
             ClientController cc = new ClientController();
@@ -41,7 +40,6 @@ public class EditClient extends HttpServlet {
             cc.editClientProperties(clientproperties, session);
             c.setClientproperties(clientproperties);
             response.getWriter().print("success");
-
         }
     }
     public int InvalidNumber(String num) {

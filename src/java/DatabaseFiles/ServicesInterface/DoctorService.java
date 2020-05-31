@@ -48,5 +48,5 @@ public interface DoctorService {
     public int giveMedicine(SessionFactory session,Pharmacy pharmcy);
     // Get All Doctor
     public List<Doctor> allDoctor(SessionFactory session);
-    
+
 }

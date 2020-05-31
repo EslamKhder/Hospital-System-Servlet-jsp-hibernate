@@ -406,6 +406,24 @@ public class ClientServices implements ClientService {
             session.close();
         }
     }
+    // All Client
+    @Override
+    public List<Client> Clients(SessionFactory sessionfactory){
+        try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
+            q = session.createQuery("from Client");
+            clients = q.list();
+            if(clients.isEmpty()){
+                return null;
+            }
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+        return clients;
+    }
 
     public String Date() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

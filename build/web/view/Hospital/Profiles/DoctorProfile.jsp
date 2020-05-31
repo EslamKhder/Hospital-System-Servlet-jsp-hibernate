@@ -39,10 +39,6 @@
 
                     <div class="data">
                         <div class="inner-data">
-                            <span>Password </span>
-                            <p>${sessionScope.doctor.getPassword()}</p>
-                        </div>
-                        <div class="inner-data">
                             <span>Balance</span>
                             <p>${sessionScope.doctor.getBalance()}</p>
                         </div>
@@ -52,8 +48,7 @@
                         </div>
                     </div>
 
-                    <div class="btn"><a href="../Main/MainDoctor.jsp">Main</a></div>
-                    <div class="btn"><a href="../Services/DoctorAndClient/EditDoctor.jsp">UP_Date</a></div>
+                        <div class="btn"><a href="../../../../DoctorProfile?id=2">Main</a></div>
                 </div>
             </div>
         </div>

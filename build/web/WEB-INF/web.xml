@@ -72,6 +72,14 @@
         <servlet-name>EditDoctor</servlet-name>
         <servlet-class>Servlets.Doctor.EditDoctor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ClientProfile</servlet-name>
+        <servlet-class>Servlets.Client.ClientProfile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DoctorProfile</servlet-name>
+        <servlet-class>Servlets.Doctor.DoctorProfile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginClient</servlet-name>
         <url-pattern>/LoginClient</url-pattern>
@@ -139,6 +147,14 @@
     <servlet-mapping>
         <servlet-name>EditDoctor</servlet-name>
         <url-pattern>/EditDoctor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClientProfile</servlet-name>
+        <url-pattern>/ClientProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoctorProfile</servlet-name>
+        <url-pattern>/DoctorProfile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

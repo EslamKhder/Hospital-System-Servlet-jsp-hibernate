@@ -93,4 +93,7 @@ public class ClientController {
     public int editBooking(SessionFactory sessionfactory, Booking book) {
         return clientservices.editBooking(sessionfactory, book);
     }
+    public List<Client> Clients(SessionFactory sessionfactory){
+        return clientservices.Clients(sessionfactory);
+    }
 }

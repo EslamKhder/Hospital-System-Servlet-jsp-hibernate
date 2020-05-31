@@ -38,17 +38,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                      <a class="navbar-brand" href="">Admin : ${sessionScope.admin.getName()}</a>
+                      <a class="navbar-brand">Admin : ${sessionScope.admin.getName()}</a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             
                           <ul class="nav navbar-nav">
-                            <li class="active"><a href="">Doctors <i class="fas fa-user-friends"></i><span class="sr-only">(current)</span></a></li>
+                              <li class="active"><a href="../Services/Doctor/AllDoctorProfile.jsp">Doctors <i class="fas fa-user-friends"></i><span class="sr-only">(current)</span></a></li>
                           </ul>
                           <ul class="nav navbar-nav navbar-right">
                           
-                            <li class="call"><a href="">Clients <i class="fas fa-user-friends"></i></a></li>
+                              <li class="call"><a href="../Services/Client/AllClientProfile.jsp">Clients <i class="fas fa-user-friends"></i></a></li>
                             <li class="dropdown">
                               <a href="#" class="dropdown-toggle up" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Control Center <span class="caret "><i class="fab fa-windows hidden-xs"></i></span></a>
                               <ul class="dropdown-menu">

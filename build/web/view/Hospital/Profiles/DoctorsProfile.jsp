@@ -1,6 +1,6 @@
 <%-- 
-    Document   : MainAdmin
-    Created on : May 8, 2020, 9:22:48 AM
+    Document   : DoctorProfile
+    Created on : May 25, 2020, 12:30:56 AM
     Author     : Eng Eslam khder
 --%>
 
@@ -14,9 +14,9 @@
         <link rel="stylesheet" href="css/style.css">
         <style>
             .container{
-                height: 415px;
+                height: 400px;
             }
-            .btn a{
+           .btn a{
                 text-decoration: none;
             }
         </style>
@@ -31,26 +31,20 @@
 
                 <div class="content">
                     <div class="sub-content">
-                        <h1>${sessionScope.client.getClientproperties().getName()}</h1>
-                        <span>${sessionScope.client.getClientproperties().getGender()}</span>
-                        <p>${sessionScope.client.getClientproperties().getPhone()}</p>
-                        <span class="location"><i class="fa fa-map-marker" aria-hidden="true"></i>
-                            ${sessionScope.client.getClientproperties().getAddress()}
-                        </span>
+                        <h1>Dr: ${sessionScope.DOCTOR.getDoctorproperties().getName()}</h1>
+                        <span>${sessionScope.DOCTOR.getDoctorproperties().getGender()}</span>
+                        <p>${sessionScope.DOCTOR.getDoctorproperties().getPhone()}</p>
+                        <span class="location">${sessionScope.DOCTOR.getSpecialty()}</span>
                     </div>
 
                     <div class="data">
                         <div class="inner-data">
-                            <span>Age </span>
-                            <p>${sessionScope.client.getClientproperties().getAge()}</p>
-                        </div>
-                        <div class="inner-data">
                             <span>Balance</span>
-                            <p>${sessionScope.client.getBalance()}</p>
+                            <p>${sessionScope.DOCTOR.getBalance()}</p>
                         </div>
                         <div class="inner-data">
                             <span>Code</span>
-                            <p>${sessionScope.client.getCode()}</p>
+                            <p>${sessionScope.DOCTOR.getCode()}</p>
                         </div>
                     </div>
 
