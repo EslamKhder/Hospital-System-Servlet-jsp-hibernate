@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
 import org.hibernate.SessionFactory;
 
 public class ClientBalance extends HttpServlet {
@@ -34,14 +33,12 @@ public class ClientBalance extends HttpServlet {
             SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
             ClientController cc = new ClientController();
             Client client = (Client) request.getSession().getAttribute("client");
-
             AdminController am = new AdminController();
             Admin admin = am.getAdmin(session);
             if (admin.getPassword().equals(password2)) {
-                client.setBalance(balance + client.getBalance());
+                int bal = cc.getClientBalance(client, session);
+                client.setBalance(balance + bal);
                 cc.editClient(client, session);
-                request.getSession().removeAttribute("client");
-                request.getSession().setAttribute("client", client);
                 response.getWriter().print("success");
             } else {
                 response.getWriter().print("invalidadmin");

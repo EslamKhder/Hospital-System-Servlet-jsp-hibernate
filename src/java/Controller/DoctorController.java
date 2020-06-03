@@ -3,6 +3,7 @@ package Controller;
 import DatabaseFiles.ServicesImplementation.DoctorServices;
 import Model.Booking;
 import Model.Doctor;
+import Model.DoctorProperties;
 import Model.Pharmacy;
 import java.util.List;
 import org.hibernate.SessionFactory;
@@ -26,7 +27,16 @@ public class DoctorController {
     public String getPasswordDoctor(SessionFactory sessionf, Doctor doctor) {
         return doctorservices.getPasswordDoctor(sessionf, doctor);
     }
-
+    public DoctorProperties getDoctorProperties(SessionFactory session, Doctor doctor){
+        return doctorservices.getDoctorProperties(session, doctor);
+    }
+    public int getDoctorBalance(Doctor doctor, SessionFactory sessionfactory){
+        return doctorservices.getDoctorBalance(doctor, sessionfactory);
+    }
+    public int editDoctorProperties(SessionFactory session, DoctorProperties doctor){
+        return doctorservices.editDoctorProperties(session, doctor);
+    }
+    
     public int removeDoctor(SessionFactory sessionf, Doctor doctor) {
         return doctorservices.removeDoctor(sessionf, doctor);
     }
@@ -61,5 +71,8 @@ public class DoctorController {
 
     public List<Doctor> allDoctor(SessionFactory sessionf) {
         return doctorservices.allDoctor(sessionf);
+    }
+    public List<Doctor> availableDoctor(SessionFactory sessionf) {
+        return doctorservices.availableDoctor(sessionf);
     }
 }

@@ -87,11 +87,12 @@
     </style>
     <body>
         <div class="myname">${sessionScope.client.getClientproperties().getName()}</div>
+        <jsp:useBean class="Model.Client" scope="session" id="client" />
         <%
             ClientController cc = new ClientController();
             List<Booking> booking = new ArrayList();
             SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
-            booking = cc.allClientReservation(sessionf);
+            booking = cc.allClientReservation(sessionf,client);
             pageContext.setAttribute("BOOKING", booking);
 
         %>

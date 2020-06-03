@@ -23,11 +23,18 @@ public class ClientController {
     public Client IsExist(Client client, SessionFactory sessionfactory) {
         return clientservices.IsExist(client, sessionfactory);
     }
-
+    public int removeClient(Client client, SessionFactory sessionfactory){
+        return clientservices.removeClient(client, sessionfactory);
+    }
     public int getClientId(Client client, SessionFactory sessionfactory) {
         return clientservices.getClientId(client, sessionfactory);
     }
-
+    public int editClientProperties(ClientProperties client, SessionFactory sessionfactory){
+        return clientservices.editClientProperties(client, sessionfactory);
+    }
+    public int getClientBalance(Client client, SessionFactory sessionfactory) {
+        return clientservices.getClientBalance(client, sessionfactory);
+    }
     public int editClient(Client client, SessionFactory sessionfactory) {
         return clientservices.editClient(client, sessionfactory);
     }
@@ -60,8 +67,8 @@ public class ClientController {
         return clientservices.statisticsBooking(sessionfactory);
     }
 
-    public List<Booking> allClientReservation(SessionFactory sessionfactory) {
-        return clientservices.allClientReservation(sessionfactory);
+    public List<Booking> allClientReservation(SessionFactory sessionfactory, Client client) {
+        return clientservices.allClientReservation(sessionfactory, client);
     }
 
     public List<Booking> clientReservationsToday(SessionFactory sessionfactory, Client client) {
@@ -88,5 +95,8 @@ public class ClientController {
     }
     public int editBooking(SessionFactory sessionfactory, Booking book) {
         return clientservices.editBooking(sessionfactory, book);
+    }
+    public List<Client> Clients(SessionFactory sessionfactory){
+        return clientservices.Clients(sessionfactory);
     }
 }
