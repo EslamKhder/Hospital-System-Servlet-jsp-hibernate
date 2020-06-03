@@ -17,13 +17,16 @@ public interface ClientService {
 
     // Geting ClientProperties 
     public ClientProperties getClientProperties(Client client, SessionFactory sessionfactory);
-    
+
+    //Get Client Balance
+    public int getClientBalance(Client client, SessionFactory sessionfactory);
+
     // Edit Client
     public int editClient(Client client, SessionFactory sessionfactory);
 
     // Edit ClientProperties
     public int editClientProperties(ClientProperties client, SessionFactory sessionfactory);
-    
+
     // Remove Client
     public int removeClient(Client client, SessionFactory sessionfactory);
 
@@ -51,7 +54,7 @@ public interface ClientService {
     public List<Booking> statisticsBooking(SessionFactory sessionfactory);
 
     // Get ALL ClientBooking
-    public List<Booking> allClientReservation(SessionFactory sessionfactory);
+    public List<Booking> allClientReservation(SessionFactory sessionfactory, Client client);
 
     // Get ALL ClientBooking ToDay
     public List<Booking> clientReservationsToday(SessionFactory sessionfactory, Client client);
@@ -74,7 +77,7 @@ public interface ClientService {
 
     // Edit Booking Of Client
     public int editBooking(SessionFactory sessionfactory, Booking book);
-    
+
     // All Client
     public List<Client> Clients(SessionFactory sessionfactory);
 }

@@ -32,6 +32,9 @@ public class ClientController {
     public int editClientProperties(ClientProperties client, SessionFactory sessionfactory){
         return clientservices.editClientProperties(client, sessionfactory);
     }
+    public int getClientBalance(Client client, SessionFactory sessionfactory) {
+        return clientservices.getClientBalance(client, sessionfactory);
+    }
     public int editClient(Client client, SessionFactory sessionfactory) {
         return clientservices.editClient(client, sessionfactory);
     }
@@ -64,8 +67,8 @@ public class ClientController {
         return clientservices.statisticsBooking(sessionfactory);
     }
 
-    public List<Booking> allClientReservation(SessionFactory sessionfactory) {
-        return clientservices.allClientReservation(sessionfactory);
+    public List<Booking> allClientReservation(SessionFactory sessionfactory, Client client) {
+        return clientservices.allClientReservation(sessionfactory, client);
     }
 
     public List<Booking> clientReservationsToday(SessionFactory sessionfactory, Client client) {

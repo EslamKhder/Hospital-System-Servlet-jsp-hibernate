@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.swing.JOptionPane;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -74,7 +73,8 @@ public class ClientServices implements ClientService {
     }
 // Geting ClientProperties 
 
-    public ClientProperties getClientProperties(Client client, SessionFactory sessionfactory){
+    @Override
+    public ClientProperties getClientProperties(Client client, SessionFactory sessionfactory) {
         try {
             session = dc.getSession(sessionfactory);
             clientproperties = (ClientProperties) session.get(ClientProperties.class, client.getClientproperties().getId());
@@ -85,6 +85,24 @@ public class ClientServices implements ClientService {
         }
         return clientproperties;
     }
+
+    //Get Client Balance
+    @Override
+    public int getClientBalance(Client client, SessionFactory sessionfactory) {
+        try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
+            q = session.createQuery("select balance from Client where id=?");
+            q.setInteger(0, client.getId());
+            result = (int)q.list().get(0);
+        } catch (HibernateException e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
     // Edit Client
     @Override
 
@@ -257,7 +275,6 @@ public class ClientServices implements ClientService {
                     .filter(x -> (x.getAcceptmedicine() == 0 && x.getAcceptdoctor() == 1)).collect(Collectors.toList());
             return booking;
         }
-        JOptionPane.showMessageDialog(null, booking.size());
         return null;
     }
 
@@ -275,10 +292,11 @@ public class ClientServices implements ClientService {
 
     // Get ALL ClientBooking 
     @Override
-    public List<Booking> allClientReservation(SessionFactory sessionfactory) {
+    public List<Booking> allClientReservation(SessionFactory sessionfactory, Client client) {
         booking = this.allBooking(sessionfactory);
         if (booking != null) {
-            booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1).collect(Collectors.toList());
+            booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1
+            && x.getClient().getId() == client.getId()).collect(Collectors.toList());
             return booking;
         }
         return null;
@@ -300,12 +318,11 @@ public class ClientServices implements ClientService {
     public List<Booking> Pharmecy(SessionFactory sessionfactory, Client client) {
         booking = this.allBooking(sessionfactory);
         if (booking != null) {
-            booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1 && client.getId() == x.getId()).collect(Collectors.toList());
+            booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1 && client.getId() == x.getClient().getId()).collect(Collectors.toList());
             return booking;
         }
         return null;
     }
-
     // Reserve A Medical Examination
     @Override
     public int Booking(Doctor doctor, Client client, SessionFactory sessionfactory) {
@@ -406,15 +423,16 @@ public class ClientServices implements ClientService {
             session.close();
         }
     }
+
     // All Client
     @Override
-    public List<Client> Clients(SessionFactory sessionfactory){
+    public List<Client> Clients(SessionFactory sessionfactory) {
         try {
             session = dc.getSession(sessionfactory);
             session.beginTransaction();
             q = session.createQuery("from Client");
             clients = q.list();
-            if(clients.isEmpty()){
+            if (clients.isEmpty()) {
                 return null;
             }
         } catch (Exception e) {

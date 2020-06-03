@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.swing.JOptionPane;
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -83,9 +85,10 @@ public class DoctorServices implements DoctorService {
         }
         return result;
     }
+
     // Get DoctorProperties
     @Override
-    public DoctorProperties getDoctorProperties(SessionFactory sessionfactory, Doctor doctor){
+    public DoctorProperties getDoctorProperties(SessionFactory sessionfactory, Doctor doctor) {
         try {
             session = dc.getSession(sessionfactory);
             doctorproperties = (DoctorProperties) session.get(DoctorProperties.class, doctor.getDoctorproperties().getId());
@@ -96,10 +99,28 @@ public class DoctorServices implements DoctorService {
         }
         return doctorproperties;
     }
-    
+    //Get Doctor Balance
+
+    @Override
+    public int getDoctorBalance(Doctor doctor, SessionFactory sessionfactory) {
+        try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
+            q = session.createQuery("select balance from Doctor where id=?");
+            q.setInteger(0, doctor.getId());
+            out = (int)q.list().get(0);
+
+        } catch (HibernateException e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+        return out;
+    }
+
     // Edit DoctorProperties
     @Override
-    public int editDoctorProperties(SessionFactory sessionfactory, DoctorProperties doctor){
+    public int editDoctorProperties(SessionFactory sessionfactory, DoctorProperties doctor) {
         try {
             session = dc.getSession(sessionfactory);
             session.beginTransaction();
@@ -113,6 +134,7 @@ public class DoctorServices implements DoctorService {
             session.close();
         }
     }
+
     //Remove Doctor
     @Override
     public int removeDoctor(SessionFactory sessionf, Doctor doctor) {
@@ -281,6 +303,19 @@ public class DoctorServices implements DoctorService {
         }
         return doctors;
     }
+
+    // Get Doctors who are Available
+    @Override
+    public List<Doctor> availableDoctor(SessionFactory sessionf) {
+            doctors = this.allDoctor(sessionf);
+            if (doctors.isEmpty()) {
+                return null;
+            } else {
+                doctors = doctors.parallelStream().filter(x -> x.getAvailable() == 1).collect(Collectors.toList());
+            }        
+        return doctors;
+    }
+
     public String Date() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(new Date());

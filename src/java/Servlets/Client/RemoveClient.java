@@ -23,15 +23,11 @@ public class RemoveClient extends HttpServlet {
         if (password.isEmpty()) {
             response.getWriter().print("password");
         } else {
+            ClientController cc = new ClientController();
             SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
             Client c = (Client)request.getSession().getAttribute("client");
-            Client client = new Client();
-            client.setCode(c.getCode());
-            client.setPassword(password);
-            ClientController cc = new ClientController();
-            client = cc.IsExist(client, session);
-            
-            if(client != null){
+            Client client = cc.getClientData(c, session);
+            if(client.getPassword().equals(password)){
                 cc.removeClient(client, session);
                 request.getSession().removeAttribute("client");
                 response.getWriter().print("success");

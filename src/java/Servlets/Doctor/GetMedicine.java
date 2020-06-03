@@ -35,11 +35,11 @@ public class GetMedicine extends HttpServlet {
             book.setAcceptdoctor(1);
             book.setPharmacy(pharmacy);
             cc.editBooking(session, book);
-            doctor.setBalance(doctor.getBalance() + 100);
+            int balance = dc.getDoctorBalance(doctor, session);
+            doctor.setBalance(balance + 100);
             dc.editDoctor(session, doctor);
             response.getWriter().print("success");
         }
-
     }
 
 }

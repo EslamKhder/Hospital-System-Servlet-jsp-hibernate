@@ -4,6 +4,7 @@
     Author     : Eng Eslam khder
 --%>
 
+<%@page import="javax.swing.JOptionPane"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.List"%>
 <%@page import="Model.Doctor"%>
@@ -92,7 +93,7 @@
             <%
                 SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
                 DoctorController dc = new DoctorController();
-                List<Doctor> doctor = dc.allDoctor(sessionf);
+                List<Doctor> doctor = dc.availableDoctor(sessionf);
                 pageContext.setAttribute("DOCTORS", doctor);
             %>
             <form>
@@ -100,14 +101,12 @@
                 <div class="info">
                     <select id="spec" class="cars">
                         <c:forEach items="${DOCTORS}" var="doctor">
-                            <c:set var="ava" value="${doctor.getAvailable()}" />
-                            <c:if test="${ava == 1}">
                             <option value="${doctor.getSpecialty()}">${doctor.getSpecialty()}</option>
-                            </c:if>
                         </c:forEach>
                     </select>
                 </div>
             </form>
+            
             <div id="inv"></div>
             <button class="sub" onclick="Booking();">SUBMIT</button>
 

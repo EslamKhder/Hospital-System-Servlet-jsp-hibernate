@@ -54,7 +54,9 @@
                         </div>
                     </div>
 
-                        <div class="btn"><a href="../Main/MainAdmin.jsp">Main</a></div>
+                        <div class="btn"><a href="../Main/MainClient.jsp">Main</a></div>
+                        <div class="btn"><a href="../Services/DoctorAndClient/EditClient.jsp">UP_Date</a></div>
+                        <div class="btn"><a href="../Services/DoctorAndClient/YourPassword.jsp">Delete</a></div>
                 </div>
             </div>
         </div>

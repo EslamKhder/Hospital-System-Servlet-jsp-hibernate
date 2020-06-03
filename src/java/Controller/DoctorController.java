@@ -30,6 +30,9 @@ public class DoctorController {
     public DoctorProperties getDoctorProperties(SessionFactory session, Doctor doctor){
         return doctorservices.getDoctorProperties(session, doctor);
     }
+    public int getDoctorBalance(Doctor doctor, SessionFactory sessionfactory){
+        return doctorservices.getDoctorBalance(doctor, sessionfactory);
+    }
     public int editDoctorProperties(SessionFactory session, DoctorProperties doctor){
         return doctorservices.editDoctorProperties(session, doctor);
     }
@@ -68,5 +71,8 @@ public class DoctorController {
 
     public List<Doctor> allDoctor(SessionFactory sessionf) {
         return doctorservices.allDoctor(sessionf);
+    }
+    public List<Doctor> availableDoctor(SessionFactory sessionf) {
+        return doctorservices.availableDoctor(sessionf);
     }
 }
