@@ -160,7 +160,7 @@
             <div id="inv"></div>
         </form>
         <button class="bu1" onclick="Done()">Done</button>
-        <button class="bu2"><a href="../../Main/MainAdmin.jsp">Main Page</a></button>
+        <button class="bu2"><a>Main Page</a></button>
         <script src="js/Available.js"></script>
     </body>
 </html>

@@ -17,7 +17,7 @@ public class LoginClient extends HttpServlet {
 
         String code = request.getParameter("code").trim();
         String password = request.getParameter("password");
-        
+
         if (InvalidNumber(code) < 0) {
             response.getWriter().print("code");
         } else if (password.isEmpty()) {

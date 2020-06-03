@@ -3,12 +3,14 @@ package Servlets.Client;
 import Controller.ClientController;
 import Controller.DoctorController;
 import Model.Client;
+import Model.ClientProperties;
 import Model.Doctor;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 import org.hibernate.SessionFactory;
 
 /**
@@ -28,8 +30,7 @@ public class CancelBookingClient extends HttpServlet {
         doctor.setId(Integer.parseInt(iddoctor));
         ClientController cc = new ClientController();
         cc.removeBooking(doctor, client, session);
-        int balance = cc.getClientBalance(client, session);
-        client.setBalance(balance + 100);
+        client.setBalance(client.getBalance() + 100);
         cc.editClient(client, session);
         response.getWriter().print("success");
     }

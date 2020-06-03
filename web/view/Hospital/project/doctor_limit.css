@@ -1,0 +1,82 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+body{
+  background-image: url("doc3.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.myButton {
+	box-shadow:inset 1px 34px 0px -35px #b54b3a;
+	background-color:#a73f2d;
+  border-radius: 50px;
+	border:1px solid #241d13;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+  font-style: italic;
+	font-family:Arial;
+	font-size:30px;
+	font-weight:bold;
+	padding:15px 23px;
+  margin: 25px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #7a2a1d;
+}
+.myButton:hover {
+  	background:linear-gradient(to bottom, #f24437 5%, #c62d1f 100%);
+	background-color:#b34332;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+.myButton1 {
+	box-shadow:inset 1px 34px 0px -35px #b54b3a;
+	background-color:#2e466e;
+  border-radius: 50px;
+	border:1px solid #241d13;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+  font-style: italic;
+	font-family:Arial;
+	font-size:30px;
+	font-weight:bold;
+	padding:15px 23px;
+//  margin-top: 300px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #7a2a1d;
+}
+.myButton1:hover {
+	background:linear-gradient(to bottom, #f24437 5%, #c62d1f 100%);
+	background-color:#b34332;
+}
+.myButton1:active {
+	position:relative;
+	top:1px;
+}
+.aa{
+  color:#783152;
+  margin-left: 350px;
+}
+.a1{
+  padding-top: 330px;
+  margin-left: 500px;
+}
+b{
+  text-align: center;
+  margin-left: 600px;
+  color: #000;
+  font-size: 50px;
+}
+.footer{
+  text-align: center;
+  color: red;
+  font-style: italic;
+  font-size: 20px;
+  background-color: #0dc;
+  width:1536px;
+  margin-top: 0px;
+}

@@ -1,0 +1,170 @@
+body{
+    padding: 0px 0px;
+    margin: 0px 0px;
+    overflow: hidden;
+}
+*{
+    box-sizing: border-box;
+}
+.home h1{
+     position: absolute;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 80px;
+    z-index: 2;
+    margin: 0px 300px;
+    padding: 30px 100px;
+}
+nav .div1 ul{
+    list-style-type: none;
+    margin: 0px 0px;
+    padding-left: 250px;
+    padding-right: 0px;
+    padding-top: 90px;
+     }
+nav .div1 ul li{
+    display: inline;
+    padding: 50px 10px;
+    margin: 20px 30px;
+    text-transform:uppercase;
+    margin: 0px 60px;
+}
+nav .div1 ul li a {
+    position: absolute;
+    z-index: 2;
+    color: white;
+    text-align: right;
+    text-decoration:none;
+    padding: 5px 15px;
+    margin: 10px 20px;
+    border-radius: 5px;
+}
+nav .div1 ul li a:hover {
+    color: white;
+    border: 1px solid black;
+}
+nav .total .div1 ul li a.S {
+        padding-left: 60px;
+}
+nav .div2{
+    display: inline;
+    padding-left: 30px;
+    padding-top: 0px;
+    padding-bottom: 30px;
+    
+
+}
+nav .div2 ul{
+    list-style-type: none;
+    margin: 0px 0px;
+    padding-left: 750px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+     }
+nav .div2 ul li{
+    display: block;
+    padding: 50px 10px;
+    margin: 20px 30px;
+    text-transform:uppercase;
+}
+nav .div2 ul li a {
+    position: absolute;
+    z-index: 2;
+    color: white;
+    text-align: right;
+    text-decoration:none;
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+nav .div2 ul li a:hover {
+    color: white;
+    border: 1px solid black;
+}
+nav .total{
+    display: inline;
+}
+nav
+{
+    background: url(Manager.jpg);
+    background-size: cover;
+     height: 800px;
+    width: 100%;
+    background-attachment: fixed;
+}
+nav .image { 
+    position: absolute;
+    height: 400px;
+    width: 100%;
+    display:inline; 
+    z-index: 0;
+    margin: -90px 0px;
+}
+.overlay{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    opacity: 0.3;
+    background:black;
+    z-index: 1;
+}
+
+
+.clearfix
+{
+    clear: both;
+}
+.div1 .home .shop
+{
+  position: absolute;
+    margin-top: 350px;
+    margin-left: 560px;
+    border: 2px solid black;
+    text-decoration: none;
+    padding: 5px 15px;
+    border-radius:2px;
+    z-index: 2;
+    color: white;
+
+}
+.div1 .home .shop:hover
+{
+    border-radius:20px;
+    background:white;
+    color: black;
+}
+.h h1{
+     position: absolute;
+    text-align: center;
+    color:white;
+    font-weight: bold;
+    font-size: 80px;
+    z-index: 3;
+    padding-top: 236px;
+    padding-left: 309px;
+    font-family: fantasy;
+    text-transform: uppercase;
+    
+}
+
+ a.sign
+{
+  position: absolute;
+    margin-top: 358px;
+    margin-left: 474px;
+    border: 2px solid black;
+    text-decoration: none;
+    padding: 5px 15px;
+    border-radius:2px;
+    z-index: 2;
+    color: white;
+
+}
+a.sign:hover
+{
+    color: black;
+    border: 1px solid black;
+}

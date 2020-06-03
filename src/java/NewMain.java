@@ -30,15 +30,13 @@ public class NewMain {
 
         ClientServices cs = new ClientServices();
         SessionFactory sessionf = HibernateUtil.getSessionFactory();
-        ClientController cc = new ClientController();
+        Session s = sessionf.openSession();
         Client client = new Client();
-        client.setId(2);
+        client.setCode("00000");
         
-//        Session s = sessionf.openSession();
-//        client.setCode("00000");
 //        Doctor c = (Doctor) s.get(Doctor.class, 1);
 //        s.close();
-        JOptionPane.showMessageDialog(null,cc.Pharmecy(sessionf, client).size());
+        JOptionPane.showMessageDialog(null,cs.getClientId(client, sessionf));
 //        Booking book = new Booking();
 //         Doctor doctor = new Doctor(); doctor.setId(1);
 //         book.setDoctor(doctor);
