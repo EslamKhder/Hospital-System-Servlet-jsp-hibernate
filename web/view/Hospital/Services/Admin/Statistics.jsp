@@ -35,8 +35,8 @@
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="util.css">
-        <link rel="stylesheet" type="text/css" href="SDData.css">
+        <link rel="stylesheet" type="text/css" href="view/Hospital/Services/Admin/util.css">
+        <link rel="stylesheet" type="text/css" href="view/Hospital/Services/Admin/SDData.css">
         <!--===============================================================================================-->
     </head>
     <style>
@@ -91,15 +91,6 @@
     </style>
     <body>
         <div class="myname">${sessionScope.admin.getName()}</div>
-        <%
-            int i = 0;
-            ClientController cc = new ClientController();
-            List<Booking> booking = new ArrayList();
-            SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
-            booking = cc.statisticsBooking(sessionf);
-            pageContext.setAttribute("BOOKING", booking);
-
-        %>
         <div class="limiter">
             <div class="container-table100">
                 <div class="wrap-table100">
@@ -187,8 +178,6 @@
         <!--===============================================================================================-->
         <script src="vendor/select2/select2.min.js"></script>
         <!--===============================================================================================-->
-        <script src="js/Reserve.js"></script>
-        <script src="js/script.js"></script>
 
     </body>
 </html>

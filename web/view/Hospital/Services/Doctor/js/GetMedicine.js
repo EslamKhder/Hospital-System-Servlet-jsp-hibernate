@@ -5,7 +5,7 @@ function getMedicine(idclient)
     el = document.getElementById("ph"+idclient);
     book = document.getElementById("book"+idclient),
     medicine = document.getElementById("medicine"+idclient).value;
-    var url = "../../../../GetMedicine";
+    var url = "GetMedicine";
     if (window.XMLHttpRequest) {
         request = new XMLHttpRequest();
     } else if (window.ActiveXObject) {

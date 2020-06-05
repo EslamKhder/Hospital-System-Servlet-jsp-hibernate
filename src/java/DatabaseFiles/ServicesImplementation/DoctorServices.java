@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.swing.JOptionPane;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -108,7 +107,7 @@ public class DoctorServices implements DoctorService {
             session.beginTransaction();
             q = session.createQuery("select balance from Doctor where id=?");
             q.setInteger(0, doctor.getId());
-            out = (int)q.list().get(0);
+            out = (int) q.list().get(0);
 
         } catch (HibernateException e) {
             session.getTransaction().rollback();
@@ -307,12 +306,12 @@ public class DoctorServices implements DoctorService {
     // Get Doctors who are Available
     @Override
     public List<Doctor> availableDoctor(SessionFactory sessionf) {
-            doctors = this.allDoctor(sessionf);
-            if (doctors.isEmpty()) {
-                return null;
-            } else {
-                doctors = doctors.parallelStream().filter(x -> x.getAvailable() == 1).collect(Collectors.toList());
-            }        
+        doctors = this.allDoctor(sessionf);
+        if (doctors.isEmpty()) {
+            return null;
+        } else {
+            doctors = doctors.parallelStream().filter(x -> x.getAvailable() == 1).collect(Collectors.toList());
+        }
         return doctors;
     }
 

@@ -3,7 +3,7 @@ var spec;
 function Booking()
 {
     spec = document.getElementById("spec").value;
-    var url = "../../../../ClientBooking";
+    var url = "ClientBooking";
     if (window.XMLHttpRequest) {
         request = new XMLHttpRequest();
     } else if (window.ActiveXObject) {

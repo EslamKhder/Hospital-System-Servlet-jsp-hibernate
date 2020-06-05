@@ -33,8 +33,8 @@
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="util.css">
-        <link rel="stylesheet" type="text/css" href="SDData.css">
+        <link rel="stylesheet" type="text/css" href="view/Hospital/Services/Client/util.css">
+        <link rel="stylesheet" type="text/css" href="view/Hospital/Services/Client/SDData.css">
         <!--===============================================================================================-->
     </head>
     <style>
@@ -53,15 +53,7 @@
     </style>
     <body>
         <div class="myname">${sessionScope.client.getClientproperties().getName()}</div>
-        <jsp:useBean class="Model.Client" scope="session" id="client" />
-        <%
-            ClientController cc = new ClientController();
-            List<Booking> booking = new ArrayList();
-            SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
-            booking = cc.Pharmecy(sessionf,client);
-            pageContext.setAttribute("BOOKING", booking);
-
-        %>
+        
         <div class="limiter">
             <div class="container-table100">
                 <div class="wrap-table100">
@@ -121,7 +113,6 @@
         <!--===============================================================================================-->
         <script src="vendor/select2/select2.min.js"></script>
         <!--===============================================================================================-->
-        <script src="js/Reserve.js"></script>
 
     </body>
 </html>

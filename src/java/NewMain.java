@@ -27,18 +27,19 @@ import org.hibernate.SessionFactory;
 public class NewMain {
 
     public static void main(String[] args) {
-
         ClientServices cs = new ClientServices();
         SessionFactory sessionf = HibernateUtil.getSessionFactory();
-        ClientController cc = new ClientController();
+        DoctorController dc = new DoctorController();
+//        ClientController cc = new ClientController();
         Client client = new Client();
-        client.setId(2);
-        
+        client.setId(1);
 //        Session s = sessionf.openSession();
 //        client.setCode("00000");
 //        Doctor c = (Doctor) s.get(Doctor.class, 1);
 //        s.close();
-        JOptionPane.showMessageDialog(null,cc.Pharmecy(sessionf, client).size());
+//for(int i =0;i<dc.availableDoctor(sessionf).size();i++){
+    JOptionPane.showMessageDialog(null,dc.availableDoctor(sessionf).size());
+//}
 //        Booking book = new Booking();
 //         Doctor doctor = new Doctor(); doctor.setId(1);
 //         book.setDoctor(doctor);

@@ -15,7 +15,7 @@
 <html>
     <head>
         <title>Checkup</title>
-        <link rel="stylesheet" href="roombook.css" type="text/css">
+        <link rel="stylesheet" href="view/Hospital/Services/Client/roombook.css" type="text/css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
         <style>
@@ -90,12 +90,6 @@
                 <i class="fas fa-syringe"></i>
                 <i class="fas fa-stethoscope"></i>
             </div>
-            <%
-                SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
-                DoctorController dc = new DoctorController();
-                List<Doctor> doctor = dc.availableDoctor(sessionf);
-                pageContext.setAttribute("DOCTORS", doctor);
-            %>
             <form>
                 <h1>CHECKUP</h1>
                 <div class="info">
@@ -103,6 +97,7 @@
                         <c:forEach items="${DOCTORS}" var="doctor">
                             <option value="${doctor.getSpecialty()}">${doctor.getSpecialty()}</option>
                         </c:forEach>
+                        <c:remove var="DOCTORS" />
                     </select>
                 </div>
             </form>
@@ -111,10 +106,10 @@
             <button class="sub" onclick="Booking();">SUBMIT</button>
 
             <div class="bu">
-                <button class="b1"><a href="../../Main/MainClient.jsp">GO TO MAIN PAGE</a></button>
+                <button class="b1"><a href="view/Hospital/Main/MainClient.jsp">GO TO MAIN PAGE</a></button>
                 <button class="b2">LOG OUT</button>
             </div>
         </div>
-        <script src="js/Booking.js"></script>
+        <script src="view/Hospital/Services/Client/js/Booking.js"></script>
     </body>
 </html>

@@ -4,7 +4,7 @@ function Booking(x)
 {
     iddoctor = x;
     book = document.getElementById("book"+x);
-    var url = "../../../../CancelBookingClient";
+    var url = "CancelBookingClient";
     if (window.XMLHttpRequest) {
         request = new XMLHttpRequest();
     } else if (window.ActiveXObject) {

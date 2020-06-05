@@ -59,17 +59,11 @@
         </style>
     </head>
     <body>
-        <%
-            SessionFactory sessionfactory = (SessionFactory) application.getAttribute("factory");
-            DoctorController dc = new DoctorController();
-            List<Doctor> doctors = dc.allDoctor(sessionfactory);
-            pageContext.setAttribute("DOCTOR", doctors);
-        %>
-        <c:forEach items="${DOCTOR}" var="doctor">
+        <c:forEach items="${DOCTORS}" var="doctor">
             <div class="prof">
                 <div class="name">${doctor.getDoctorproperties().getName()}</div>
                 <div class="show">
-                    <a href="../../../../DoctorProfile?id=${doctor.getId()}" >Show Profile</a>
+                    <a href="DoctorProfile?id=${doctor.getId()}" >Show Profile</a>
                 </div>
             </div>
         </c:forEach>

@@ -32,8 +32,8 @@
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="util.css">
-        <link rel="stylesheet" type="text/css" href="SDData.css">
+        <link rel="stylesheet" type="text/css" href="view/Hospital/Services/Admin/util.css">
+        <link rel="stylesheet" type="text/css" href="view/Hospital/Services/Admin/SDData.css">
         <!--===============================================================================================-->
     </head>
     <style>
@@ -82,12 +82,6 @@
     </style>
     <body>
         <div class="myname">Admin : ${sessionScope.admin.getName()}</div>
-        <%
-            ClientController cc = new ClientController();
-            SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
-            List<Booking> booking = cc.PharmecyBooking(sessionf);
-            pageContext.setAttribute("BOOKING", booking);            
-        %>
         <div class="limiter">
             <div class="container-table100">
                 <div class="wrap-table100">
@@ -165,7 +159,7 @@
         <!--===============================================================================================-->
         <script src="vendor/select2/select2.min.js"></script>
         <!--===============================================================================================-->
-        <script src="js/javascript.js"></script>
-        <script src="js/Medicine.js"></script>
+        <script src="view/Hospital/Services/Admin/js/javascript.js"></script>
+        <script src="view/Hospital/Services/Admin/js/Medicine.js"></script>
     </body>
 </html>

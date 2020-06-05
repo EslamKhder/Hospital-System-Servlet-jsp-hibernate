@@ -31,8 +31,8 @@
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="util.css">
-        <link rel="stylesheet" type="text/css" href="SDData.css">
+        <link rel="stylesheet" type="text/css" href="view/Hospital/Services/Doctor/util.css">
+        <link rel="stylesheet" type="text/css" href="view/Hospital/Services/Doctor/SDData.css">
         <!--===============================================================================================-->
         <style>
             .myname
@@ -67,14 +67,6 @@
                         </p>
                     </div>
                 </div>
-                <jsp:useBean class="Model.Doctor" scope="session" id="doctor" />
-                <%
-                    DoctorController dc = new DoctorController();
-                    List<Booking> booking = new ArrayList();
-                    SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
-                    booking = dc.myBooking(sessionf, doctor);
-                    pageContext.setAttribute("BOOKING", booking);
-                %>
                 <div class="table">
 
                     <div class="row header">
@@ -120,7 +112,7 @@
                             <textarea id="medicine${book.getClient().getId()}"></textarea>
                             <button onclick="getMedicine(${book.getClient().getId()})">Done</button>
                         </div>
-                            
+
                     </c:forEach>
 
                 </div>
@@ -135,8 +127,7 @@
         <!--===============================================================================================-->
         <script src="vendor/select2/select2.min.js"></script>
         <!--===============================================================================================-->
-        <script src="js/Reserve.js"></script>
-        <script src="js/script.js"></script>
-        <script src="js/GetMedicine.js"></script>
+        <script src="view/Hospital/Services/Doctor/js/script.js"></script>
+        <script src="view/Hospital/Services/Doctor/js/GetMedicine.js"></script> 
     </body>
 </html>

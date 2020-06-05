@@ -44,20 +44,20 @@
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             
                           <ul class="nav navbar-nav">
-                              <li class="active"><a href="../Services/Doctor/AllDoctorProfile.jsp">Doctors <i class="fas fa-user-friends"></i><span class="sr-only">(current)</span></a></li>
+                              <li class="active"><a href="../../../AllDoctorProfile">Doctors <i class="fas fa-user-friends"></i><span class="sr-only">(current)</span></a></li>
                           </ul>
                           <ul class="nav navbar-nav navbar-right">
                           
-                              <li class="call"><a href="../Services/Client/AllClientProfile.jsp">Clients <i class="fas fa-user-friends"></i></a></li>
+                              <li class="call"><a href="../../../AllClientProfile">Clients <i class="fas fa-user-friends"></i></a></li>
                             <li class="dropdown">
                               <a href="#" class="dropdown-toggle up" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Control Center <span class="caret "><i class="fab fa-windows hidden-xs"></i></span></a>
                               <ul class="dropdown-menu">
                                   <li><a href="../CreateAccount/CreateDoctorAccount.jsp"><i class="fas fa-user-plus"></i> &nbsp; Add Doctor</a></li>
                                   <li><a href="../Services/DoctorAndClient/RemoveDoctor.jsp"><i class="fas fa-trash-alt"></i> &nbsp; Remove Doctor</a></li>
-                                  <li><a href="../Services/Admin/Pharmecy.jsp"><i class="fas fa-laptop-medical"></i> &nbsp; pharmacy</a></li>
+                                  <li><a href="../../../Pharmecy"><i class="fas fa-laptop-medical"></i> &nbsp; pharmacy</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="../Services/Admin/AvailablePhysicians.jsp"><i class="fas fa-user-edit"></i> &nbsp; Available Physicians</a></li>
-                                <li><a href="../Services/Admin/Statistics.jsp"><i class="fas fa-user-edit"></i> &nbsp; Statistics</a></li>
+                                <li><a href="../../../Statistics"><i class="fas fa-user-edit"></i> &nbsp; Statistics</a></li>
                               </ul>
                             </li>
                           </ul>

@@ -5,7 +5,7 @@ function medicine(idbook,idclient, date,iddoctor)
     password = document.getElementById("password" + idbook).value,
             book = document.getElementById("book" + idbook),
             inv = document.getElementById("inv" + idbook);
-    var url = "../../../../AcceptMedicine";
+    var url = "AcceptMedicine";
     if (window.XMLHttpRequest) {
         request = new XMLHttpRequest();
     } else if (window.ActiveXObject) {

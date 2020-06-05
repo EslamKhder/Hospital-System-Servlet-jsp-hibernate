@@ -26,7 +26,7 @@ public class AdminServices implements AdminService {
     public Admin getAdmin(SessionFactory sessionfactory) {
         try {
             session = dc.getSession(sessionfactory);
-            admin =  (Admin) session.get(Admin.class, 10);
+            admin =  (Admin) session.get(Admin.class, 1);
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {

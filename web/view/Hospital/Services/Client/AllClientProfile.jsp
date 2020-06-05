@@ -58,17 +58,11 @@
         </style>
     </head>
     <body>
-        <%
-            SessionFactory sessionfactory = (SessionFactory) application.getAttribute("factory");
-            ClientController cc = new ClientController();
-            List<Client> clients = cc.Clients(sessionfactory);
-            pageContext.setAttribute("CLIENTS", clients);
-        %>
         <c:forEach items="${CLIENTS}" var="client">
             <div class="prof">
                 <div class="name">${client.getClientproperties().getName()}</div>
                 <div class="show">
-                    <a href="../../../../ClientProfile?id=${client.getId()}" >Show Profile</a>
+                    <a href="ClientProfile?id=${client.getId()}" >Show Profile</a>
                 </div>
             </div>
         </c:forEach>

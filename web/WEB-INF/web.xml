@@ -80,6 +80,42 @@
         <servlet-name>DoctorProfile</servlet-name>
         <servlet-class>Servlets.Doctor.DoctorProfile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowPharmacy</servlet-name>
+        <servlet-class>Servlets.Client.ShowPharmacy</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AvailableDoctor</servlet-name>
+        <servlet-class>Servlets.Doctor.AvailableDoctor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ClientReservations</servlet-name>
+        <servlet-class>Servlets.Client.ClientReservations</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ClientReservationsToday</servlet-name>
+        <servlet-class>Servlets.Client.ClientReservationsToday</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllClientProfile</servlet-name>
+        <servlet-class>Servlets.Client.AllClientProfile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllDoctorProfile</servlet-name>
+        <servlet-class>Servlets.Doctor.AllDoctorProfile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Pharmecy</servlet-name>
+        <servlet-class>Servlets.Admin.Pharmecy</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Statistics</servlet-name>
+        <servlet-class>Servlets.Admin.Statistics</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DoctorReservations</servlet-name>
+        <servlet-class>Servlets.Doctor.DoctorReservations</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginClient</servlet-name>
         <url-pattern>/LoginClient</url-pattern>
@@ -155,6 +191,42 @@
     <servlet-mapping>
         <servlet-name>DoctorProfile</servlet-name>
         <url-pattern>/DoctorProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowPharmacy</servlet-name>
+        <url-pattern>/ShowPharmacy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AvailableDoctor</servlet-name>
+        <url-pattern>/AvailableDoctor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClientReservations</servlet-name>
+        <url-pattern>/ClientReservations</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClientReservationsToday</servlet-name>
+        <url-pattern>/ClientReservationsToday</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllClientProfile</servlet-name>
+        <url-pattern>/AllClientProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllDoctorProfile</servlet-name>
+        <url-pattern>/AllDoctorProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Pharmecy</servlet-name>
+        <url-pattern>/Pharmecy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Statistics</servlet-name>
+        <url-pattern>/Statistics</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoctorReservations</servlet-name>
+        <url-pattern>/DoctorReservations</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -31,9 +31,19 @@
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="util.css">
-        <link rel="stylesheet" type="text/css" href="SDData.css">
+        <link rel="stylesheet" type="text/css" href="view/Hospital/Services/Client/util.css">
+        <link rel="stylesheet" type="text/css" href="view/Hospital/Services/Client/SDData.css">
         <!--===============================================================================================-->
+        <script>
+            function display1(idclient) {
+                var ph = document.getElementById("ph" + idclient);
+                ph.style.display = "block";
+            }
+            function display2(idclient) {
+                var ph = document.getElementById("ph" + idclient);
+                ph.style.display = "none";
+            }
+        </script>
     </head>
     <style>
         .myname
@@ -87,15 +97,6 @@
     </style>
     <body>
         <div class="myname">${sessionScope.client.getClientproperties().getName()}</div>
-        <jsp:useBean class="Model.Client" scope="session" id="client" />
-        <%
-            ClientController cc = new ClientController();
-            List<Booking> booking = new ArrayList();
-            SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
-            booking = cc.allClientReservation(sessionf,client);
-            pageContext.setAttribute("BOOKING", booking);
-
-        %>
         <div class="limiter">
             <div class="container-table100">
                 <div class="wrap-table100">
@@ -158,16 +159,7 @@
                 </div>
             </div>
         </div>
-        <!--===============================================================================================-->	
-        <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="vendor/bootstrap/js/popper.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="vendor/select2/select2.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="js/Reserve.js"></script>
-        <script src="js/script.js"></script>
+
 
     </body>
 </html>
