@@ -21,6 +21,6 @@ public class AllDoctorProfile extends HttpServlet {
         List<Doctor> doctors = null;
         doctors = dc.allDoctor(sessionf);
         request.setAttribute("DOCTORS", doctors);
-        request.getRequestDispatcher("view/Hospital/Services/Doctor/AllDoctorProfile.jsp").include(request, response);
+        request.getRequestDispatcher("view/AllDoctorProfile.jsp").include(request, response);
     }
 }

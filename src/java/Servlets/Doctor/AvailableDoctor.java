@@ -26,7 +26,7 @@ public class AvailableDoctor extends HttpServlet {
         List<Doctor> doctors  = null;
         doctors = cc.availableDoctor(sessionf);
         request.setAttribute("DOCTORS", doctors);
-        request.getRequestDispatcher("view/Hospital/Services/Client/roombook.jsp").forward(request, response);
+        request.getRequestDispatcher("view/roombook.jsp").forward(request, response);
     }
 
 }

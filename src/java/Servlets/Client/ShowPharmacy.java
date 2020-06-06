@@ -24,6 +24,6 @@ public class ShowPharmacy extends HttpServlet {
         SessionFactory sessionf = (SessionFactory) request.getServletContext().getAttribute("factory");
         booking = cc.Pharmecy(sessionf,client);
         request.setAttribute("BOOKING", booking);
-        request.getRequestDispatcher("view/Hospital/Services/Client/Pharmacy.jsp").include(request, response);
+        request.getRequestDispatcher("view/Pharmacy.jsp").include(request, response);
     }
 }

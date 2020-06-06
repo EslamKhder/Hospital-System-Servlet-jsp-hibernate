@@ -24,6 +24,6 @@ public class AllClientProfile extends HttpServlet {
         SessionFactory sessionf = (SessionFactory) request.getServletContext().getAttribute("factory");
         clients = cc.Clients(sessionf);
         request.setAttribute("CLIENTS", clients);
-        request.getRequestDispatcher("view/Hospital/Services/Client/AllClientProfile.jsp").include(request, response);
+        request.getRequestDispatcher("view/AllClientProfile.jsp").include(request, response);
     }
 }

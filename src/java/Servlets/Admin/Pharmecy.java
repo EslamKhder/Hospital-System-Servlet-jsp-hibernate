@@ -29,7 +29,7 @@ public class Pharmecy extends HttpServlet {
         SessionFactory sessionf = (SessionFactory) request.getServletContext().getAttribute("factory");
         booking = cc.PharmecyBooking(sessionf);
         request.setAttribute("BOOKING", booking);
-        request.getRequestDispatcher("view/Hospital/Services/Admin/Pharmecy.jsp").include(request, response);
+        request.getRequestDispatcher("view/Pharmecy.jsp").include(request, response);
     }
 
 }

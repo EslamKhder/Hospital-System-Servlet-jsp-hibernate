@@ -21,7 +21,7 @@ public class Statistics extends HttpServlet {
         SessionFactory sessionf = (SessionFactory) request.getServletContext().getAttribute("factory");
         booking = cc.statisticsBooking(sessionf);
         request.setAttribute("BOOKING", booking);
-        request.getRequestDispatcher("view/Hospital/Services/Admin/Statistics.jsp").include(request, response);
+        request.getRequestDispatcher("view/Statistics.jsp").include(request, response);
 
     }
 

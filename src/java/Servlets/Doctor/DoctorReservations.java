@@ -32,7 +32,7 @@ public class DoctorReservations extends HttpServlet {
         List<Booking> booking = null;
         booking = dc.myBooking(sessionf, doctor);
         request.setAttribute("BOOKING", booking);
-        request.getRequestDispatcher("view/Hospital/Services/Doctor/DoctorReservations.jsp").include(request, response);
+        request.getRequestDispatcher("view/DoctorReservations.jsp").include(request, response);
     }
 
 }

@@ -25,6 +25,6 @@ public class ClientProfile extends HttpServlet {
         client.setId(Integer.parseInt(id));
         client = cc.getClientData(client, session);
         request.getSession().setAttribute("CLIENT", client);
-        response.sendRedirect("view/Hospital/Profiles/ClientsProfile.jsp");
+        response.sendRedirect("view/ClientsProfile.jsp");
     }
 }

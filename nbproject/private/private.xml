@@ -3,7 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/HospitalSystem/src/java/DatabaseFiles/ServicesImplementation/DoctorServices.java</file>
+            <file>file:/E:/HospitalSystem/src/java/Servlets/Admin/Statistics.java</file>
+            <file>file:/E:/HospitalSystem/src/java/Filters/AdminFilter.java</file>
+            <file>file:/E:/HospitalSystem/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>

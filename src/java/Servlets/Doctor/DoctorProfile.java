@@ -29,7 +29,7 @@ public class DoctorProfile extends HttpServlet {
         DoctorController dc = new DoctorController();
         doctor = dc.getDoctorID(session, doctor);
         request.getSession().setAttribute("DOCTOR", doctor);
-        response.sendRedirect("view/Hospital/Profiles/DoctorsProfile.jsp");
+        response.sendRedirect("view/DoctorsProfile.jsp");
     }
 
 }

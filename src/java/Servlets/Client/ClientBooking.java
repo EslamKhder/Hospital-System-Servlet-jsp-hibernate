@@ -16,7 +16,6 @@ public class ClientBooking extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
             String spec = request.getParameter("spec");
             Client client = (Client) request.getSession().getAttribute("client");
             SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");

@@ -23,7 +23,7 @@ public class ClientReservations extends HttpServlet {
         SessionFactory sessionf = (SessionFactory) request.getServletContext().getAttribute("factory");
         booking = cc.allClientReservation(sessionf,client);
         request.setAttribute("BOOKING", booking);
-        request.getRequestDispatcher("view/Hospital/Services/Client/AllClientReservation.jsp").include(request, response);
+        request.getRequestDispatcher("view/AllClientReservation.jsp").include(request, response);
     }
 
 }
