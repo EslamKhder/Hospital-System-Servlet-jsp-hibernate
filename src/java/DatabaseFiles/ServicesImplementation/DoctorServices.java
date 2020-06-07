@@ -7,7 +7,6 @@ import Model.Doctor;
 import Model.DoctorProperties;
 import Model.Pharmacy;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,8 +22,6 @@ public class DoctorServices implements DoctorService {
     private DatabaseController dc;
     private Session session;
     private Query q;
-    private List<Doctor> doctors;
-    private List<Booking> booking;
     private String result;
     private int out;
     private DoctorProperties doctorproperties;
@@ -33,7 +30,6 @@ public class DoctorServices implements DoctorService {
         dc = new DatabaseController();
         session = null;
         q = null;
-        doctors = new ArrayList();
     }
 
     // Create New Doctor Account
@@ -157,6 +153,7 @@ public class DoctorServices implements DoctorService {
      */
     @Override
     public Doctor isExist(SessionFactory sessionf, Doctor doctor) {
+        List<Doctor> doctors = null;
         try {
             session = dc.getSession(sessionf);
             q = session.createQuery("from Doctor where Code=? and Password=? and DoctorSpecialty=?");
@@ -178,6 +175,7 @@ public class DoctorServices implements DoctorService {
     // Get Data Of Doctor by Use Property (DoctorSpecialty)
     @Override
     public Doctor getDoctorSpec(SessionFactory sessionf, Doctor doctor) {
+        List<Doctor> doctors = null;
         try {
             session = dc.getSession(sessionf);
             Criteria cri = session.createCriteria(Doctor.class);
@@ -195,6 +193,7 @@ public class DoctorServices implements DoctorService {
     // Get Data Of Doctor by Use Property (Doctor Code)
     @Override
     public Doctor getDoctorCode(SessionFactory sessionf, Doctor doctor) {
+        List<Doctor> doctors = null;
         try {
             session = dc.getSession(sessionf);
             Criteria cri = session.createCriteria(Doctor.class);
@@ -249,6 +248,7 @@ public class DoctorServices implements DoctorService {
     // Get ALL DoctorBooking ToDay
     @Override
     public List<Booking> myBooking(SessionFactory sessionfactory, Doctor doctor) {
+        List<Booking> booking = null;
         try {
             session = dc.getSession(sessionfactory);
             q = session.createQuery("from Booking where Date = ?");
@@ -287,6 +287,7 @@ public class DoctorServices implements DoctorService {
     // Get All Doctor
     @Override
     public List<Doctor> allDoctor(SessionFactory sessionf) {
+        List<Doctor> doctors = null;
         try {
             session = dc.getSession(sessionf);
             q = session.createQuery("from Doctor");
@@ -306,13 +307,17 @@ public class DoctorServices implements DoctorService {
     // Get Doctors who are Available
     @Override
     public List<Doctor> availableDoctor(SessionFactory sessionf) {
+        List<Doctor> doctors = null;
+        List<Doctor> doctor = null;
         doctors = this.allDoctor(sessionf);
         if (doctors.isEmpty()) {
             return null;
         } else {
-            doctors = doctors.parallelStream().filter(x -> x.getAvailable() == 1).collect(Collectors.toList());
-        }
-        return doctors;
+            
+            doctor = doctors.stream().filter(x -> x.getAvailable() == 1).collect(Collectors.toList());
+        
+        return doctor;
+    }
     }
 
     public String Date() {
@@ -320,3 +325,18 @@ public class DoctorServices implements DoctorService {
         return sdf.format(new Date());
     }
 }
+//        List<Doctor> doctors = null;
+//        try {
+//            session = dc.getSession(sessionf);
+//            q = session.createQuery("from Doctor where available = 1");
+//            doctors = q.list();
+//            if (doctors.isEmpty()) {
+//                return null;
+//            }
+//
+//        } catch (Exception e) {
+//            session.getTransaction().rollback();
+//        } finally {
+//            session.close();
+//        }
+//        return doctors;

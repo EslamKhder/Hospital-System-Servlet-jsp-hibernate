@@ -94,10 +94,11 @@
                 <h1>CHECKUP</h1>
                 <div class="info">
                     <select id="spec" class="cars">
-                        <c:forEach items="${DOCTORS}" var="doctor">
+                        
+                        <c:forEach items="${DO}" var="doctor">
                             <option value="${doctor.getSpecialty()}">${doctor.getSpecialty()}</option>
                         </c:forEach>
-                        <c:remove var="DOCTORS" />
+                        
                     </select>
                 </div>
             </form>

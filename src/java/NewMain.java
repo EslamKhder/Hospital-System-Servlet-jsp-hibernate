@@ -38,7 +38,7 @@ public class NewMain {
 //        Doctor c = (Doctor) s.get(Doctor.class, 1);
 //        s.close();
 //for(int i =0;i<dc.availableDoctor(sessionf).size();i++){
-    JOptionPane.showMessageDialog(null,dc.availableDoctor(sessionf).size());
+    JOptionPane.showMessageDialog(null,cs.statisticsBooking(sessionf).size());
 //}
 //        Booking book = new Booking();
 //         Doctor doctor = new Doctor(); doctor.setId(1);
