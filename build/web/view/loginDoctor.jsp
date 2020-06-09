@@ -4,6 +4,11 @@
     Author     : Eng Eslam khder
 --%>
 
+<%@page import="javax.swing.JOptionPane"%>
+<%@page import="Controller.DoctorController"%>
+<%@page import="Controller.ClientController"%>
+<%@page import="org.hibernate.SessionFactory"%>
+<%@page import="Model.Doctor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!--
@@ -43,8 +48,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!-- //web font -->
     </head>
     <body>
-
-
+        <%
+            Doctor doctor = new Doctor();
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (int i = 0; i < cookies.length; i++) {
+                    if (cookies[i].getName().equals("codedoctor")) {
+                        doctor.setCode(cookies[i].getValue());
+                    }
+                    if (cookies[i].getName().equals("passworddoctor")) {
+                        doctor.setPassword(cookies[i].getValue());
+                    }
+                }
+                SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
+                DoctorController doctorcontroller = new DoctorController();
+                doctor = doctorcontroller.isExist(doctor,sessionf);
+                if (doctor != null) {
+                    JOptionPane.showMessageDialog(null, doctor.getPassword());
+                    session.setAttribute("doctor", doctor);
+                    response.sendRedirect("MainDoctor.jsp");
+                }
+            }
+        %>
         <!-- main -->
         <div class="w3layouts-main">
 

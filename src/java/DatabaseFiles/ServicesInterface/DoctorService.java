@@ -30,9 +30,16 @@ public interface DoctorService {
     /* Check IF Doctor Is Exist Or Not 
        IF Exist (Return All Data Of Doctor)
        IF Not Exist (Return Null)
+       (Code , Password, Specialty)
      */
     public Doctor isExist(SessionFactory session, Doctor doctor);
-
+    
+    /* Check IF Doctor Is Exist Or Not 
+       IF Exist (Return All Data Of Doctor)
+       IF Not Exist (Return Null)
+    (Code , Password)
+     */
+    public Doctor isExist(Doctor doctor,SessionFactory session);
     //Remove Doctor
     public int removeDoctor(SessionFactory session, Doctor doctor);
 

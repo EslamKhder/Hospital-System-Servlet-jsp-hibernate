@@ -4,6 +4,9 @@
     Author     : Eng Eslam khder
 --%>
 
+<%@page import="Controller.ClientController"%>
+<%@page import="org.hibernate.SessionFactory"%>
+<%@page import="Model.Client"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!--
@@ -41,7 +44,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!-- //web font -->
     </head>
     <body>
-
+        <%
+            Client client = new Client();
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (int i = 0; i < cookies.length; i++) {
+                    if (cookies[i].getName().equals("codeclient")) {
+                        client.setCode(cookies[i].getValue());
+                    }
+                    if (cookies[i].getName().equals("passwordclient")) {
+                        client.setPassword(cookies[i].getValue());
+                    }
+                }
+                SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
+                ClientController clientcontroller = new ClientController();
+                client = clientcontroller.IsExist(client,sessionf);
+                if (client != null) {
+                    session.setAttribute("client", client);
+                    response.sendRedirect("MainClient.jsp");
+                }
+            }
+        %>
 
         <!-- main -->
         <div class="w3layouts-main">

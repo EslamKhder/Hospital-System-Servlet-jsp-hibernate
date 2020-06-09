@@ -16,4 +16,7 @@ public class AdminController {
     public Admin getAdmin(SessionFactory sessionfactory){
         return adminservices.getAdmin(sessionfactory);
     }
+    public Admin IsExist(Admin admin, SessionFactory sessionfactory){
+        return adminservices.IsExist(admin, sessionfactory);
+    }
 }

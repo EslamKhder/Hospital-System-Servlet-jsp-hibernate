@@ -4,6 +4,9 @@
     Author     : Eng Eslam khder
 --%>
 
+<%@page import="Controller.ClientController"%>
+<%@page import="org.hibernate.SessionFactory"%>
+<%@page import="Model.Client"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,6 +29,27 @@
 
     </head>
     <body id="page-top">
+        <%
+            Client client = new Client();
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (int i = 0; i < cookies.length; i++) {
+                    if (cookies[i].getName().equals("codeclient")) {
+                        client.setCode(cookies[i].getValue());
+                    }
+                    if (cookies[i].getName().equals("passwordclient")) {
+                        client.setPassword(cookies[i].getValue());
+                    }
+                }
+                SessionFactory sessionf = (SessionFactory) getServletContext().getAttribute("factory");
+                ClientController clientcontroller = new ClientController();
+                client = clientcontroller.IsExist(client,sessionf);
+                if (client != null) {
+                    request.getSession().setAttribute("client", client);
+                    response.sendRedirect("Mainclient.jsp");
+                }
+            }
+        %>
         <!-- Loader icon -->
         <div class="se-pre-con"></div>
         <!-- Choose Us Section -->

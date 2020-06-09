@@ -44,7 +44,9 @@ public class DoctorController {
     public Doctor isExist(SessionFactory sessionf, Doctor doctor) {
         return doctorservices.isExist(sessionf, doctor);
     }
-
+    public Doctor isExist(Doctor doctor,SessionFactory sessionf){
+        return doctorservices.isExist(doctor, sessionf);
+    }
     public Doctor getDoctorSpec(SessionFactory sessionf, Doctor doctor) {
         return doctorservices.getDoctorSpec(sessionf, doctor);
     }

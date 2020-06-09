@@ -4,6 +4,10 @@
     Author     : Eng Eslam khder
 --%>
 
+<%@page import="javax.swing.JOptionPane"%>
+<%@page import="Controller.AdminController"%>
+<%@page import="org.hibernate.SessionFactory"%>
+<%@page import="Model.Admin"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!--
@@ -30,7 +34,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 window.scrollTo(0, 1);
             }
         </script>
-
         <!-- Custom Theme files -->
         <link href="css/stylelog.css" rel="stylesheet" type="text/css" media="all" />
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
@@ -43,8 +46,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!-- //web font -->
     </head>
     <body>
-
-
+        <%
+            Admin admin = new Admin();
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (int i = 0; i < cookies.length; i++) {
+                    if (cookies[i].getName().equals("codeadmin")) {
+                        admin.setCode(cookies[i].getValue());
+                    }
+                    if (cookies[i].getName().equals("passwordadmin")) {
+                        admin.setPassword(cookies[i].getValue());
+                    }
+                }
+                SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
+                AdminController admincontroller = new AdminController();
+                admin = admincontroller.IsExist(admin,sessionf);
+                if (admin != null) {
+                    request.getSession().setAttribute("admin", admin);
+                    response.sendRedirect("MainAdmin.jsp");
+                }
+            }
+        %>
         <!-- main -->
         <div class="w3layouts-main">
 

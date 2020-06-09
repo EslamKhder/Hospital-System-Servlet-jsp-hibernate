@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.swing.JOptionPane;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -155,7 +154,9 @@ public class DoctorServices implements DoctorService {
     /* Check IF Doctor Is Exist Or Not 
        IF Exist (Return All Data Of Doctor)
        IF Not Exist (Return Null)
+    (Code , Password,Specialty)
      */
+    
     @Override
     public Doctor isExist(SessionFactory sessionf, Doctor doctor) {
         try {
@@ -175,7 +176,29 @@ public class DoctorServices implements DoctorService {
         }
         return doctors.get(0);
     }
-
+    /* Check IF Doctor Is Exist Or Not 
+       IF Exist (Return All Data Of Doctor)
+       IF Not Exist (Return Null)
+    (Code , Password)
+     */
+    @Override
+    public Doctor isExist(Doctor doctor,SessionFactory sessionf){
+        try {
+            session = dc.getSession(sessionf);
+            q = session.createQuery("from Doctor where Code=? and Password=?");
+            q.setString(0, doctor.getCode());
+            q.setString(1, doctor.getPassword());
+            doctors = q.list();
+            if (doctors.isEmpty()) {
+                return null;
+            }
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+        return doctors.get(0);
+    }
     // Get Data Of Doctor by Use Property (DoctorSpecialty)
     @Override
     public Doctor getDoctorSpec(SessionFactory sessionf, Doctor doctor) {
