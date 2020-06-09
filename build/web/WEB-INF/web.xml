@@ -8,6 +8,22 @@
         <filter-name>AdminFilterJsp</filter-name>
         <filter-class>Servlets.Filter.AdminFilterJsp</filter-class>
     </filter>
+    <filter>
+        <filter-name>ClientFilterServlet</filter-name>
+        <filter-class>Servlets.Filter.ClientFilterServlet</filter-class>
+    </filter>
+    <filter>
+        <filter-name>ClientFilterJsp</filter-name>
+        <filter-class>Servlets.Filter.ClientFilterJsp</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ClientFilterJsp</filter-name>
+        <servlet-name>roombook</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterServlet</filter-name>
+        <servlet-name>ClientBooking</servlet-name>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>AdminFilterJsp</filter-name>
         <servlet-name>CreateDoctorAccount</servlet-name>
@@ -69,12 +85,80 @@
         <servlet-name>MainAdmin</servlet-name>
     </filter-mapping>
     <filter-mapping>
-        <filter-name>AdminFilter</filter-name>
+        <filter-name>AdminFilterJsp</filter-name>
         <servlet-name>AllDoctorPro</servlet-name>
     </filter-mapping>
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
         <servlet-name>AllDoctorProfile</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterServlet</filter-name>
+        <servlet-name>CancelBookingClient</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterServlet</filter-name>
+        <servlet-name>ClientBalance</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterServlet</filter-name>
+        <servlet-name>ClientBooking</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterServlet</filter-name>
+        <servlet-name>ClientReservations</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterServlet</filter-name>
+        <servlet-name>ClientReservationsToday</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterServlet</filter-name>
+        <servlet-name>EditClient</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterServlet</filter-name>
+        <servlet-name>RemoveClient</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterServlet</filter-name>
+        <servlet-name>ShowPharmacy</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterServlet</filter-name>
+        <servlet-name>AvailableDoctor</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterJsp</filter-name>
+        <servlet-name>Pharmacy</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterJsp</filter-name>
+        <servlet-name>MainClient</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterJsp</filter-name>
+        <servlet-name>Editclient</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterJsp</filter-name>
+        <servlet-name>ClientReservationstoday</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterJsp</filter-name>
+        <servlet-name>ClientPro</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterJsp</filter-name>
+        <servlet-name>ClientBalanc</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterJsp</filter-name>
+        <servlet-name>AllClientReservation</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterJsp</filter-name>
+        <servlet-name>roombook</servlet-name>
     </filter-mapping>
     <listener>
         <description>ServletContextListener</description>
@@ -224,6 +308,38 @@
         <servlet-name>AllDoctorPro</servlet-name>
         <jsp-file>/view/AllDoctorProfile.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>roombook</servlet-name>
+        <jsp-file>/view/roombook.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>AllClientReservation</servlet-name>
+        <jsp-file>/view/AllClientReservation.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>ClientBalanc</servlet-name>
+        <jsp-file>/view/ClientBalance.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>ClientPro</servlet-name>
+        <jsp-file>/view/ClientProfile.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>ClientReservationstoday</servlet-name>
+        <jsp-file>/view/ClientReservationsToday.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Editclient</servlet-name>
+        <jsp-file>/view/EditClient.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>MainClient</servlet-name>
+        <jsp-file>/view/MainClient.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Pharmacy</servlet-name>
+        <jsp-file>/view/Pharmacy.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginClient</servlet-name>
         <url-pattern>/LoginClient</url-pattern>
@@ -367,6 +483,38 @@
     <servlet-mapping>
         <servlet-name>AllDoctorPro</servlet-name>
         <url-pattern>/view/AllDoctorProfile.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>roombook</servlet-name>
+        <url-pattern>/view/roombook.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllClientReservation</servlet-name>
+        <url-pattern>/view/AllClientReservation.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClientBalanc</servlet-name>
+        <url-pattern>/view/ClientBalance.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClientPro</servlet-name>
+        <url-pattern>/view/ClientProfile.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClientReservationstoday</servlet-name>
+        <url-pattern>/view/ClientReservationsToday.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Editclient</servlet-name>
+        <url-pattern>/view/EditClient.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainClient</servlet-name>
+        <url-pattern>/view/MainClient.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Pharmacy</servlet-name>
+        <url-pattern>/view/Pharmacy.jsp</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

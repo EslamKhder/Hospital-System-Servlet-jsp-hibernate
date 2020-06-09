@@ -1,27 +1,34 @@
 package Servlets.Filter;
 
 import Model.Admin;
+import Model.Client;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AdminFilterJsp implements Filter {
-  @Override
+
+public class ClientFilterServlet implements Filter {
+    
+    @Override
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-         HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-        Admin admin = (Admin) req.getSession().getAttribute("admin");
-        if(admin == null){
-            res.sendRedirect("loginAdmin.jsp");
+        Client client = (Client) req.getSession().getAttribute("client");
+        if (client == null) {
+            res.sendRedirect("view/loginClient.jsp");
         } else {
             chain.doFilter(request, response);
         }
-    }
+    }     
 }
