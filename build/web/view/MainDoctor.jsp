@@ -55,6 +55,8 @@
                             <ul class="dropdown-menu">
                                 <li><a href="../DoctorReservations"><i class="fas fa-user-edit"></i> &nbsp; My Reservations</a></li>
                                 <li><a href="EditPassword.jsp"><i class="fas fa-user-edit"></i> &nbsp; UP_DATE Password</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="../LogoutDoctor"><i class="fas fa-lock"></i>&nbsp; LogOut!</a><li>
                             </ul>
                         </li>
                     </ul>

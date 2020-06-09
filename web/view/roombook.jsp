@@ -108,7 +108,7 @@
 
             <div class="bu">
                 <button class="b1"><a href="view/MainClient.jsp">GO TO MAIN PAGE</a></button>
-                <button class="b2">LOG OUT</button>
+                <button class="b2"><a href="ClientReservationsToday">Go To Reservations (Today)</a></button>
             </div>
         </div>
         <script src="view/js/Booking.js"></script>

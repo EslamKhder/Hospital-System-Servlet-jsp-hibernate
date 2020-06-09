@@ -204,6 +204,18 @@
         <filter-name>DoctorFilterServlet</filter-name>
         <servlet-name>DoctorReservations</servlet-name>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>LogoutAdmin</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClientFilterServlet</filter-name>
+        <servlet-name>LogoutClient</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>DoctorFilterServlet</filter-name>
+        <servlet-name>LogoutDoctor</servlet-name>
+    </filter-mapping>
     <listener>
         <description>ServletContextListener</description>
         <listener-class>Servlets.listener.ConnectionDatabase</listener-class>
@@ -404,6 +416,18 @@
         <servlet-name>MainDoctor</servlet-name>
         <jsp-file>/view/MainDoctor.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutAdmin</servlet-name>
+        <servlet-class>Servlets.Admin.LogoutAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutClient</servlet-name>
+        <servlet-class>Servlets.Client.LogoutClient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutDoctor</servlet-name>
+        <servlet-class>Servlets.Doctor.LogoutDoctor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginClient</servlet-name>
         <url-pattern>/LoginClient</url-pattern>
@@ -599,6 +623,18 @@
     <servlet-mapping>
         <servlet-name>MainDoctor</servlet-name>
         <url-pattern>/view/MainDoctor.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutAdmin</servlet-name>
+        <url-pattern>/LogoutAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutClient</servlet-name>
+        <url-pattern>/LogoutClient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutDoctor</servlet-name>
+        <url-pattern>/LogoutDoctor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

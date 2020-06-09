@@ -71,6 +71,8 @@
                                 <li><a href="ClientBalance.jsp"><i class="fas fa-dollar-sign"></i> &nbsp; Balances</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="../ClientReservations"><i class="fas fa-user-plus"></i> &nbsp; All Detection Reservation</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="../LogoutClient"><i class="fas fa-lock"></i>&nbsp; LogOut!</a><li>
                             </ul>
                         </li>
                     </ul>

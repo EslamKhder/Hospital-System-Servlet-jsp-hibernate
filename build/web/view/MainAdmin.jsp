@@ -58,6 +58,8 @@
                                 <li role="separator" class="divider"></li>
                                 <li><a href="AvailablePhysicians.jsp"><i class="fas fa-user-edit"></i> &nbsp; Available Physicians</a></li>
                                 <li><a href="../Statistics"><i class="fas fa-user-edit"></i> &nbsp; Statistics</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="../LogoutAdmin"><i class="fas fa-lock"></i>&nbsp; LogOut!</a><li>
                               </ul>
                             </li>
                           </ul>

@@ -64,7 +64,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 DoctorController doctorcontroller = new DoctorController();
                 doctor = doctorcontroller.isExist(doctor,sessionf);
                 if (doctor != null) {
-                    JOptionPane.showMessageDialog(null, doctor.getPassword());
                     session.setAttribute("doctor", doctor);
                     response.sendRedirect("MainDoctor.jsp");
                 }
