@@ -16,6 +16,34 @@
         <filter-name>ClientFilterJsp</filter-name>
         <filter-class>Servlets.Filter.ClientFilterJsp</filter-class>
     </filter>
+    <filter>
+        <filter-name>DoctorFilterServlet</filter-name>
+        <filter-class>Servlets.Filter.DoctorFilterServlet</filter-class>
+    </filter>
+    <filter>
+        <filter-name>DoctorFilterJsp</filter-name>
+        <filter-class>Servlets.Filter.DoctorFilterJsp</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>DoctorFilterJsp</filter-name>
+        <servlet-name>DoctorReservation</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>DoctorFilterJsp</filter-name>
+        <servlet-name>DoctorPro</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>DoctorFilterJsp</filter-name>
+        <servlet-name>EditPassword</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>DoctorFilterJsp</filter-name>
+        <servlet-name>EditDoc</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>DoctorFilterServlet</filter-name>
+        <servlet-name>GetMedicine</servlet-name>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>ClientFilterJsp</filter-name>
         <servlet-name>roombook</servlet-name>
@@ -159,6 +187,22 @@
     <filter-mapping>
         <filter-name>ClientFilterJsp</filter-name>
         <servlet-name>roombook</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>DoctorFilterServlet</filter-name>
+        <servlet-name>EditDoctorPassword</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>DoctorFilterServlet</filter-name>
+        <servlet-name>EditDoctor</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>DoctorFilterJsp</filter-name>
+        <servlet-name>MainDoctor</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>DoctorFilterServlet</filter-name>
+        <servlet-name>DoctorReservations</servlet-name>
     </filter-mapping>
     <listener>
         <description>ServletContextListener</description>
@@ -340,6 +384,26 @@
         <servlet-name>Pharmacy</servlet-name>
         <jsp-file>/view/Pharmacy.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>EditDoc</servlet-name>
+        <jsp-file>/view/EditDoctor.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>EditPassword</servlet-name>
+        <jsp-file>/view/EditPassword.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>DoctorPro</servlet-name>
+        <jsp-file>/view/DoctorProfile.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>DoctorReservation</servlet-name>
+        <jsp-file>/view/DoctorReservations.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>MainDoctor</servlet-name>
+        <jsp-file>/view/MainDoctor.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginClient</servlet-name>
         <url-pattern>/LoginClient</url-pattern>
@@ -515,6 +579,26 @@
     <servlet-mapping>
         <servlet-name>Pharmacy</servlet-name>
         <url-pattern>/view/Pharmacy.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditDoc</servlet-name>
+        <url-pattern>/view/EditDoctor.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditPassword</servlet-name>
+        <url-pattern>/view/EditPassword.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoctorPro</servlet-name>
+        <url-pattern>/view/DoctorProfile.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoctorReservation</servlet-name>
+        <url-pattern>/view/DoctorReservations.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainDoctor</servlet-name>
+        <url-pattern>/view/MainDoctor.jsp</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
