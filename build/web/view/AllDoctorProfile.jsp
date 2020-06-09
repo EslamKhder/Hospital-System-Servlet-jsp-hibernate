@@ -1,9 +1,3 @@
-<%-- 
-    Document   : AllClientProfile
-    Created on : May 30, 2020, 5:26:59 PM
-    Author     : Eng Eslam khder
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.List"%>
 <%@page import="Model.Doctor"%>

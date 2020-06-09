@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 import org.hibernate.SessionFactory;
 
 
@@ -20,7 +21,7 @@ public class AllDoctorProfile extends HttpServlet {
         SessionFactory sessionf = (SessionFactory) request.getServletContext().getAttribute("factory");
         List<Doctor> doctors = null;
         doctors = dc.allDoctor(sessionf);
-        request.setAttribute("DOCTORS", doctors);
+        JOptionPane.showMessageDialog(null, doctors.size());
         request.getRequestDispatcher("view/AllDoctorProfile.jsp").include(request, response);
     }
 }

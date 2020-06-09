@@ -1,5 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>Servlets.Filter.AdminFilterServlet</filter-class>
+    </filter>
+    <filter>
+        <filter-name>AdminFilterJsp</filter-name>
+        <filter-class>Servlets.Filter.AdminFilterJsp</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminFilterJsp</filter-name>
+        <servlet-name>CreateDoctorAccount</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>Statistics</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>Pharmecy</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AcceptMedicine</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AllClientProfile</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>DoctorProfile</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>ClientProfile</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>RemoveDoctor</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>CreateDoctorAccount</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilterJsp</filter-name>
+        <servlet-name>RemoveDoc</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilterJsp</filter-name>
+        <servlet-name>AllClientPro</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilterJsp</filter-name>
+        <servlet-name>ClientsProfile</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilterJsp</filter-name>
+        <servlet-name>DoctorsProfile</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilterJsp</filter-name>
+        <servlet-name>AvailablePhy</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilterJsp</filter-name>
+        <servlet-name>MainAdmin</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AllDoctorPro</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AllDoctorProfile</servlet-name>
+    </filter-mapping>
     <listener>
         <description>ServletContextListener</description>
         <listener-class>Servlets.listener.ConnectionDatabase</listener-class>
@@ -101,10 +177,6 @@
         <servlet-class>Servlets.Client.AllClientProfile</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AllDoctorProfile</servlet-name>
-        <servlet-class>Servlets.Doctor.AllDoctorProfile</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Pharmecy</servlet-name>
         <servlet-class>Servlets.Admin.Pharmecy</servlet-class>
     </servlet>
@@ -115,6 +187,42 @@
     <servlet>
         <servlet-name>DoctorReservations</servlet-name>
         <servlet-class>Servlets.Doctor.DoctorReservations</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateDoctorAccount</servlet-name>
+        <jsp-file>/view/CreateDoctorAccount.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveDoc</servlet-name>
+        <jsp-file>/view/RemoveDoctor.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>AllClientPro</servlet-name>
+        <jsp-file>/view/AllClientProfile.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>ClientsProfile</servlet-name>
+        <jsp-file>/view/ClientsProfile.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>DoctorsProfile</servlet-name>
+        <jsp-file>/view/DoctorsProfile.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>AvailablePhy</servlet-name>
+        <jsp-file>/view/AvailablePhysicians.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>MainAdmin</servlet-name>
+        <jsp-file>/view/MainAdmin.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>AllDoctorProfile</servlet-name>
+        <servlet-class>Servlets.Doctor.AllDoctorProfile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllDoctorPro</servlet-name>
+        <jsp-file>/view/AllDoctorProfile.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginClient</servlet-name>
@@ -213,10 +321,6 @@
         <url-pattern>/AllClientProfile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AllDoctorProfile</servlet-name>
-        <url-pattern>/AllDoctorProfile</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>Pharmecy</servlet-name>
         <url-pattern>/Pharmecy</url-pattern>
     </servlet-mapping>
@@ -227,6 +331,42 @@
     <servlet-mapping>
         <servlet-name>DoctorReservations</servlet-name>
         <url-pattern>/DoctorReservations</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateDoctorAccount</servlet-name>
+        <url-pattern>/view/CreateDoctorAccount.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveDoc</servlet-name>
+        <url-pattern>/view/RemoveDoctor.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllClientPro</servlet-name>
+        <url-pattern>/view/AllClientProfile.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClientsProfile</servlet-name>
+        <url-pattern>/view/ClientsProfile.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoctorsProfile</servlet-name>
+        <url-pattern>/view/DoctorsProfile.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AvailablePhy</servlet-name>
+        <url-pattern>/view/AvailablePhysicians.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainAdmin</servlet-name>
+        <url-pattern>/view/MainAdmin.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllDoctorProfile</servlet-name>
+        <url-pattern>/AllDoctorProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllDoctorPro</servlet-name>
+        <url-pattern>/view/AllDoctorProfile.jsp</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

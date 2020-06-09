@@ -1,3 +1,4 @@
+  
 package DatabaseFiles.ServicesImplementation;
 
 import Controller.DatabaseController;
@@ -24,6 +25,8 @@ public class ClientServices implements ClientService {
     private DatabaseController dc;
     private Session session;
     private Query q;
+    private List<Client> clients;
+    private List<Booking> booking;
     private int result;
     private ClientProperties clientproperties;
     private Booking book;
@@ -32,6 +35,8 @@ public class ClientServices implements ClientService {
         dc = new DatabaseController();
         session = null;
         q = null;
+        clients = new ArrayList();
+        booking = new ArrayList();
         clientproperties = new ClientProperties();
         book = new Booking();
     }
@@ -138,7 +143,6 @@ public class ClientServices implements ClientService {
     // Edit Client
     @Override
     public int removeBooking(Doctor doctor, Client client, SessionFactory sessionfactory) {
-        List<Booking> booking = null;
         try {
             session = dc.getSession(sessionfactory);
             session.beginTransaction();
@@ -180,7 +184,6 @@ public class ClientServices implements ClientService {
      */
     @Override
     public Client IsExist(Client client, SessionFactory sessionfactory) {
-        List<Client> clients = null;
         try {
             session = dc.getSession(sessionfactory);
             q = session.createQuery("from Client where Code=? and Password=?");
@@ -230,7 +233,6 @@ public class ClientServices implements ClientService {
     // Get Client By Code 
     @Override
     public Client getClientCode(SessionFactory sessionfactory, Client client) {
-        List<Client> clients = null;
         try {
             session = dc.getSession(sessionfactory);
             Criteria cri = session.createCriteria(Client.class);
@@ -251,7 +253,6 @@ public class ClientServices implements ClientService {
     // Get ALL Booking Booking
     @Override
     public List<Booking> allBooking(SessionFactory sessionfactory) {
-        List<Booking> booking = null;
         try {
             session = dc.getSession(sessionfactory);
             q = session.createQuery("from Booking");
@@ -269,13 +270,11 @@ public class ClientServices implements ClientService {
 
     @Override
     public List<Booking> PharmecyBooking(SessionFactory sessionfactory) {
-        List<Booking> booking = null;
-        List<Booking> book = null;
         booking = this.allBooking(sessionfactory);
         if (booking != null) {
-            book = (List<Booking>) booking.parallelStream()
+            booking = (List<Booking>) booking.parallelStream()
                     .filter(x -> (x.getAcceptmedicine() == 0 && x.getAcceptdoctor() == 1)).collect(Collectors.toList());
-            return book;
+            return booking;
         }
         return null;
     }
@@ -283,13 +282,11 @@ public class ClientServices implements ClientService {
     // Get ALL Booking (Doctor And Client)
     @Override
     public List<Booking> statisticsBooking(SessionFactory sessionfactory) {
-        List<Booking> booking = null;
-        List<Booking> book = null;
         booking = this.allBooking(sessionfactory);
         if (booking != null) {
-            book = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1 && x.getAcceptdoctor() == 1)
+            booking = booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1 && x.getAcceptdoctor() == 1)
                     .collect(Collectors.toList());
-            return book;
+            return booking;
         }
         return null;
     }
@@ -297,13 +294,11 @@ public class ClientServices implements ClientService {
     // Get ALL ClientBooking 
     @Override
     public List<Booking> allClientReservation(SessionFactory sessionfactory, Client client) {
-        List<Booking> booking = null;
-        List<Booking> book = null;
         booking = this.allBooking(sessionfactory);
         if (booking != null) {
-            book = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1
+            booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1
             && x.getClient().getId() == client.getId()).collect(Collectors.toList());
-            return book;
+            return booking;
         }
         return null;
     }
@@ -311,28 +306,28 @@ public class ClientServices implements ClientService {
     // Get ALL ClientBooking ToDay
     @Override
     public List<Booking> clientReservationsToday(SessionFactory sessionfactory, Client client) {
-        List<Booking> booking = null;
-        List<Booking> book = null;
         booking = this.allBooking(sessionfactory);
         if (booking != null) {
-            book = (List<Booking>) booking.parallelStream()
+            booking = (List<Booking>) booking.parallelStream()
                     .filter(x -> (client.getId() == x.getClient().getId() && x.getAcceptdoctor() == 0)).collect(Collectors.toList());
-            return book;
+            return booking;
         }
         return null;
     }
 
     @Override
     public List<Booking> Pharmecy(SessionFactory sessionfactory, Client client) {
-        List<Booking> booking = null;
-        List<Booking> book = null;
         booking = this.allBooking(sessionfactory);
+        try {
             
         if (booking != null) {
-            book = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1 && client.getId() == x.getClient().getId()).collect(Collectors.toList());
-            return book;
+            booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1 && client.getId() == x.getClient().getId()).collect(Collectors.toList());
+            return booking;
         }
-       
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+        
         return null;
     }
     // Reserve A Medical Examination
@@ -357,7 +352,6 @@ public class ClientServices implements ClientService {
     //  Check If Client Booking Or No
     @Override
     public int isBooking(SessionFactory sessionfactory, Client client, Doctor doctor) {
-        List<Booking> booking = null;
         try {
             session = dc.getSession(sessionfactory);
             q = session.createQuery("from Booking where Client_ID = ?");
@@ -385,8 +379,6 @@ public class ClientServices implements ClientService {
     // Get The Booking of The Doctor Today
     @Override
     public Booking myBooking(SessionFactory sessionfactory, Client client, Doctor doctor) {
-        List<Booking> booking = null;
-        List<Booking> book = null;
         try {
             session = dc.getSession(sessionfactory);
             session.beginTransaction();
@@ -396,7 +388,7 @@ public class ClientServices implements ClientService {
             if (booking.isEmpty()) {
                 return null;
             } else {
-                book = (List<Booking>) booking.parallelStream()
+                booking = (List<Booking>) booking.parallelStream()
                         .filter(x -> (client.getId() == x.getClient().getId() && (doctor.getId() == x.getDoctor().getId())))
                         .collect(Collectors.toList());
 
@@ -406,20 +398,18 @@ public class ClientServices implements ClientService {
         } finally {
             session.close();
         }
-        return book.get(0);
+        return booking.get(0);
     }
 
     // Get the only Booking of Client 
     @Override
     public List<Booking> onlyBooking(SessionFactory sessionfactory, Client client, Doctor doctor) {
-        List<Booking> booking = null;
-        List<Booking> book = null;
         booking = this.allBooking(sessionfactory);
         if (booking != null) {
-            book = booking.parallelStream().filter(x -> x.getClient().getId() == client.getId()
+            booking = booking.parallelStream().filter(x -> x.getClient().getId() == client.getId()
                     && x.getDate().toString().equals(this.Date())
                     && x.getDoctor().getId() == doctor.getId()).collect(Collectors.toList());
-            return book;
+            return booking;
         }
         return null;
     }
@@ -444,7 +434,6 @@ public class ClientServices implements ClientService {
     // All Client
     @Override
     public List<Client> Clients(SessionFactory sessionfactory) {
-        List<Client> clients = null;
         try {
             session = dc.getSession(sessionfactory);
             session.beginTransaction();
