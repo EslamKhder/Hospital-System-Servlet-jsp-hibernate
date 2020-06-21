@@ -31,14 +31,16 @@ public class AcceptMedicine extends HttpServlet {
             SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
             Client client = new Client();
             client.setId(idclient);
-            ClientController cc = new ClientController();
-            client = cc.getClientData(client, session);
+            ClientController cc1 = new ClientController(session);
+            ClientController cc2 = new ClientController(session);
+            ClientController cc3 = new ClientController(session);
+            client = cc1.getClientData(client);
             if (client.getPassword().equals(password)) {
                 Doctor doctor = new Doctor();
                 doctor.setId(iddoctor);
-                List<Booking> book = cc.onlyBooking(session, client, doctor);
+                List<Booking> book = cc2.onlyBooking(client, doctor);
                 book.get(0).setAcceptmedicine(1);
-                cc.editBooking(session, book.get(0));
+                cc3.editBooking(book.get(0));
                 response.getWriter().print("success");
             } else {
                 response.getWriter().print("password");

@@ -42,8 +42,8 @@
                     }
                 }
                 SessionFactory sessionf = (SessionFactory) getServletContext().getAttribute("factory");
-                ClientController clientcontroller = new ClientController();
-                client = clientcontroller.IsExist(client,sessionf);
+                ClientController clientcontroller = new ClientController(sessionf);
+                client = clientcontroller.IsExist(client);
                 if (client != null) {
                     request.getSession().setAttribute("client", client);
                     response.sendRedirect("Mainclient.jsp");

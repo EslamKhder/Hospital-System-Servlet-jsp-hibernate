@@ -26,9 +26,9 @@ public class LoginAdmin extends HttpServlet {
             } else if (password.isEmpty()) {
                 response.getWriter().print("password");
             } else {
-                AdminController admincontroller = new AdminController();
                 SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
-                Admin admin = admincontroller.getAdmin(session);
+                AdminController admincontroller = new AdminController(session);
+                Admin admin = admincontroller.getAdmin();
                 if (admin.getCode().equals(code) && admin.getPassword().equals(password)) {
                     Cookie c1 = new Cookie("codeadmin", code);
                     Cookie c2 = new Cookie("passwordadmin", password);

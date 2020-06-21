@@ -10,13 +10,13 @@ import org.hibernate.SessionFactory;
 public class AdminController {
     AdminServices adminservices;
 
-    public AdminController() {
-        adminservices = new AdminServices();
+    public AdminController(SessionFactory sessionfactory) {
+        adminservices = new AdminServices(sessionfactory);
     }
-    public Admin getAdmin(SessionFactory sessionfactory){
-        return adminservices.getAdmin(sessionfactory);
+    public Admin getAdmin(){
+        return adminservices.getAdmin();
     }
-    public Admin IsExist(Admin admin, SessionFactory sessionfactory){
-        return adminservices.IsExist(admin, sessionfactory);
+    public Admin IsExist(Admin admin){
+        return adminservices.IsExist(admin);
     }
 }

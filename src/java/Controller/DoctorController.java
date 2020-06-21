@@ -12,69 +12,75 @@ public class DoctorController {
 
     DoctorServices doctorservices;
 
-    public DoctorController() {
-        doctorservices = new DoctorServices();
+    public DoctorController(SessionFactory sessionf) {
+        doctorservices = new DoctorServices(sessionf);
     }
 
-    public int addDoctor(SessionFactory sessionf, Doctor doctor) {
-        return doctorservices.addDoctor(sessionf, doctor);
+    public int addDoctor(Doctor doctor) {
+        return doctorservices.addDoctor(doctor);
     }
 
-    public Doctor getDoctorID(SessionFactory sessionf, Doctor doctor) {
-        return doctorservices.getDoctorID(sessionf, doctor);
+    public Doctor getDoctorID(Doctor doctor) {
+        return doctorservices.getDoctorID(doctor);
     }
 
-    public String getPasswordDoctor(SessionFactory sessionf, Doctor doctor) {
-        return doctorservices.getPasswordDoctor(sessionf, doctor);
-    }
-    public DoctorProperties getDoctorProperties(SessionFactory session, Doctor doctor){
-        return doctorservices.getDoctorProperties(session, doctor);
-    }
-    public int getDoctorBalance(Doctor doctor, SessionFactory sessionfactory){
-        return doctorservices.getDoctorBalance(doctor, sessionfactory);
-    }
-    public int editDoctorProperties(SessionFactory session, DoctorProperties doctor){
-        return doctorservices.editDoctorProperties(session, doctor);
-    }
-    
-    public int removeDoctor(SessionFactory sessionf, Doctor doctor) {
-        return doctorservices.removeDoctor(sessionf, doctor);
+    public String getPasswordDoctor(Doctor doctor) {
+        return doctorservices.getPasswordDoctor(doctor);
     }
 
-    public Doctor isExist(SessionFactory sessionf, Doctor doctor) {
-        return doctorservices.isExist(sessionf, doctor);
-    }
-    public Doctor isExist(Doctor doctor,SessionFactory sessionf){
-        return doctorservices.isExist(doctor, sessionf);
-    }
-    public Doctor getDoctorSpec(SessionFactory sessionf, Doctor doctor) {
-        return doctorservices.getDoctorSpec(sessionf, doctor);
+    public DoctorProperties getDoctorProperties(Doctor doctor) {
+        return doctorservices.getDoctorProperties(doctor);
     }
 
-    public Doctor getDoctorCode(SessionFactory sessionf, Doctor doctor) {
-        return doctorservices.getDoctorCode(sessionf, doctor);
+    public int getDoctorBalance(Doctor doctor) {
+        return doctorservices.getDoctorBalance(doctor);
     }
 
-    public int editDoctor(SessionFactory sessionfactory, Doctor doctor) {
-        return doctorservices.editDoctor(sessionfactory, doctor);
+    public int editDoctorProperties(DoctorProperties doctor) {
+        return doctorservices.editDoctorProperties( doctor);
     }
 
-    public int getDoctorSpecId(SessionFactory sessionf, Doctor doctor) {
-        return doctorservices.getDoctorSpecId(sessionf, doctor);
+    public int removeDoctor( Doctor doctor) {
+        return doctorservices.removeDoctor(doctor);
     }
 
-    public List<Booking> myBooking(SessionFactory sessionfactory, Doctor doctor) {
-        return doctorservices.myBooking(sessionfactory, doctor);
+    public Doctor isExist( Doctor doctor) {
+        return doctorservices.isExist(doctor);
     }
 
-    public int giveMedicine(SessionFactory sessionfactory, Pharmacy pharmcy) {
-        return doctorservices.giveMedicine(sessionfactory, pharmcy);
+    public Doctor isExistlogin(Doctor doctor) {
+        return doctorservices.isExistlogin(doctor);
     }
 
-    public List<Doctor> allDoctor(SessionFactory sessionf) {
-        return doctorservices.allDoctor(sessionf);
+    public Doctor getDoctorSpec(Doctor doctor) {
+        return doctorservices.getDoctorSpec(doctor);
     }
-    public List<Doctor> availableDoctor(SessionFactory sessionf) {
-        return doctorservices.availableDoctor(sessionf);
+
+    public Doctor getDoctorCode(Doctor doctor) {
+        return doctorservices.getDoctorCode(doctor);
+    }
+
+    public int editDoctor(Doctor doctor) {
+        return doctorservices.editDoctor(doctor);
+    }
+
+    public int getDoctorSpecId(Doctor doctor) {
+        return doctorservices.getDoctorSpecId(doctor);
+    }
+
+    public List<Booking> myBooking( Doctor doctor) {
+        return doctorservices.myBooking(doctor);
+    }
+
+    public int giveMedicine(Pharmacy pharmcy) {
+        return doctorservices.giveMedicine(pharmcy);
+    }
+
+    public List<Doctor> allDoctor() {
+        return doctorservices.allDoctor();
+    }
+
+    public List<Doctor> availableDoctor() {
+        return doctorservices.availableDoctor();
     }
 }

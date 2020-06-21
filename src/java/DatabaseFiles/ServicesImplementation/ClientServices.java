@@ -1,4 +1,3 @@
-  
 package DatabaseFiles.ServicesImplementation;
 
 import Controller.DatabaseController;
@@ -31,22 +30,21 @@ public class ClientServices implements ClientService {
     private ClientProperties clientproperties;
     private Booking book;
 
-    public ClientServices() {
-        dc = new DatabaseController();
-        session = null;
-        q = null;
-        clients = new ArrayList();
-        booking = new ArrayList();
-        clientproperties = new ClientProperties();
-        book = new Booking();
+    public ClientServices(SessionFactory sessionfactory) {
+        this.dc = new DatabaseController();
+        this.q = null;
+        this.clients = new ArrayList();
+        this.booking = new ArrayList();
+        this.clientproperties = new ClientProperties();
+        this.book = new Booking();
+        this.session = dc.getSession(sessionfactory);
+        this.session.beginTransaction();
     }
 
     // Create New Client Account
     @Override
-    public int addClient(Client client, SessionFactory sessionfactory) {
+    public int addClient(Client client) {
         try {
-            session = dc.getSession(sessionfactory);
-            session.beginTransaction();
             session.persist(client);
             session.getTransaction().commit();
             return 1;
@@ -60,12 +58,12 @@ public class ClientServices implements ClientService {
 
     // Geting Client Property (ID)
     @Override
-    public int getClientId(Client client, SessionFactory sessionfactory) {
+    public int getClientId(Client client) {
         try {
-            session = dc.getSession(sessionfactory);
             q = session.createQuery("select id from Client where Code=?");
             q.setString(0, client.getCode());
             result = (int) q.list().get(0);
+            session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -74,29 +72,29 @@ public class ClientServices implements ClientService {
         return result;
     }
 // Geting ClientProperties 
-
-    @Override
-    public ClientProperties getClientProperties(Client client, SessionFactory sessionfactory) {
-        try {
-            session = dc.getSession(sessionfactory);
-            clientproperties = (ClientProperties) session.get(ClientProperties.class, client.getClientproperties().getId());
-        } catch (Exception e) {
-            session.getTransaction().rollback();
-        } finally {
-            session.close();
-        }
-        return clientproperties;
-    }
+//
+//    @Override
+//    public ClientProperties getClientProperties(Client client) {
+//        try {
+//            clientproperties = (ClientProperties) session.get(ClientProperties.class, client.getClientproperties().getId());
+//            session.getTransaction().commit();
+//        } catch (Exception e) {
+//            session.getTransaction().rollback();
+//        } finally {
+//            session.clear();
+//            session.close();
+//        }
+//        return clientproperties;
+//    }
 
     //Get Client Balance
     @Override
-    public int getClientBalance(Client client, SessionFactory sessionfactory) {
+    public int getClientBalance(Client client) {
         try {
-            session = dc.getSession(sessionfactory);
-            session.beginTransaction();
             q = session.createQuery("select balance from Client where id=?");
             q.setInteger(0, client.getId());
-            result = (int)q.list().get(0);
+            result = (int) q.list().get(0);
+            session.getTransaction().commit();
         } catch (HibernateException e) {
             session.getTransaction().rollback();
         } finally {
@@ -107,11 +105,8 @@ public class ClientServices implements ClientService {
 
     // Edit Client
     @Override
-
-    public int editClient(Client client, SessionFactory sessionfactory) {
+    public int editClient(Client client) {
         try {
-            session = dc.getSession(sessionfactory);
-            session.beginTransaction();
             session.update(client);
             session.getTransaction().commit();
             return 1;
@@ -125,10 +120,8 @@ public class ClientServices implements ClientService {
 
     // Edit ClientProperties
     @Override
-    public int editClientProperties(ClientProperties client, SessionFactory sessionfactory) {
+    public int editClientProperties(ClientProperties client) {
         try {
-            session = dc.getSession(sessionfactory);
-            session.beginTransaction();
             session.update(client);
             session.getTransaction().commit();
             return 1;
@@ -142,10 +135,8 @@ public class ClientServices implements ClientService {
 
     // Edit Client
     @Override
-    public int removeBooking(Doctor doctor, Client client, SessionFactory sessionfactory) {
+    public int removeBooking(Doctor doctor, Client client) {
         try {
-            session = dc.getSession(sessionfactory);
-            session.beginTransaction();
             Criteria cri = session.createCriteria(Booking.class);
             cri.add(Restrictions.eq("date", new Date()));
             cri.add(Restrictions.eq("client", client));
@@ -163,10 +154,8 @@ public class ClientServices implements ClientService {
     }
 
     @Override
-    public int removeClient(Client client, SessionFactory sessionfactory) {
+    public int removeClient(Client client) {
         try {
-            session = dc.getSession(sessionfactory);
-            session.beginTransaction();
             session.delete(client.getClientproperties());
             session.getTransaction().commit();
             return 1;
@@ -183,17 +172,16 @@ public class ClientServices implements ClientService {
        IF Not Exist (Return Null)
      */
     @Override
-    public Client IsExist(Client client, SessionFactory sessionfactory) {
+    public Client IsExist(Client client) {
         try {
-            session = dc.getSession(sessionfactory);
             q = session.createQuery("from Client where Code=? and Password=?");
             q.setString(0, client.getCode());
             q.setString(1, client.getPassword());
             clients = q.list();
+            session.getTransaction().commit();
             if (clients.isEmpty()) {
                 return null;
             }
-
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -204,10 +192,10 @@ public class ClientServices implements ClientService {
 
     // Get Client (Data)
     @Override
-    public Client getClientData(Client client, SessionFactory sessionfactory) {
+    public Client getClientData(Client client) {
         try {
-            session = dc.getSession(sessionfactory);
             client = (Client) session.get(Client.class, client.getId());
+            session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -218,10 +206,10 @@ public class ClientServices implements ClientService {
 
     // Get All Properties Of Client
     @Override
-    public ClientProperties getClientProperties(SessionFactory sessionfactory, Client client) {
+    public ClientProperties ClientProperties(Client client) {
         try {
-            session = dc.getSession(sessionfactory);
             clientproperties = (ClientProperties) session.get(ClientProperties.class, client.getId());
+            session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -232,12 +220,12 @@ public class ClientServices implements ClientService {
 
     // Get Client By Code 
     @Override
-    public Client getClientCode(SessionFactory sessionfactory, Client client) {
+    public Client getClientCode(Client client) {
         try {
-            session = dc.getSession(sessionfactory);
             Criteria cri = session.createCriteria(Client.class);
             cri.add(Restrictions.eq("code", client.getCode()));
             clients = cri.list();
+            session.getTransaction().commit();
             if (clients.isEmpty()) {
                 return null;
             }
@@ -252,11 +240,11 @@ public class ClientServices implements ClientService {
 
     // Get ALL Booking Booking
     @Override
-    public List<Booking> allBooking(SessionFactory sessionfactory) {
+    public List<Booking> allBooking() {
         try {
-            session = dc.getSession(sessionfactory);
             q = session.createQuery("from Booking");
             booking = q.list();
+            session.getTransaction().commit();
             if (booking.isEmpty()) {
                 return null;
             }
@@ -269,8 +257,8 @@ public class ClientServices implements ClientService {
     }
 
     @Override
-    public List<Booking> PharmecyBooking(SessionFactory sessionfactory) {
-        booking = this.allBooking(sessionfactory);
+    public List<Booking> PharmecyBooking() {
+        booking = this.allBooking();
         if (booking != null) {
             booking = (List<Booking>) booking.parallelStream()
                     .filter(x -> (x.getAcceptmedicine() == 0 && x.getAcceptdoctor() == 1)).collect(Collectors.toList());
@@ -281,8 +269,8 @@ public class ClientServices implements ClientService {
 
     // Get ALL Booking (Doctor And Client)
     @Override
-    public List<Booking> statisticsBooking(SessionFactory sessionfactory) {
-        booking = this.allBooking(sessionfactory);
+    public List<Booking> statisticsBooking() {
+        booking = this.allBooking();
         if (booking != null) {
             booking = booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1 && x.getAcceptdoctor() == 1)
                     .collect(Collectors.toList());
@@ -293,11 +281,11 @@ public class ClientServices implements ClientService {
 
     // Get ALL ClientBooking 
     @Override
-    public List<Booking> allClientReservation(SessionFactory sessionfactory, Client client) {
-        booking = this.allBooking(sessionfactory);
+    public List<Booking> allClientReservation(Client client) {
+        booking = this.allBooking();
         if (booking != null) {
             booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1
-            && x.getClient().getId() == client.getId()).collect(Collectors.toList());
+                    && x.getClient().getId() == client.getId()).collect(Collectors.toList());
             return booking;
         }
         return null;
@@ -305,8 +293,8 @@ public class ClientServices implements ClientService {
 
     // Get ALL ClientBooking ToDay
     @Override
-    public List<Booking> clientReservationsToday(SessionFactory sessionfactory, Client client) {
-        booking = this.allBooking(sessionfactory);
+    public List<Booking> clientReservationsToday(Client client) {
+        booking = this.allBooking();
         if (booking != null) {
             booking = (List<Booking>) booking.parallelStream()
                     .filter(x -> (client.getId() == x.getClient().getId() && x.getAcceptdoctor() == 0)).collect(Collectors.toList());
@@ -316,26 +304,25 @@ public class ClientServices implements ClientService {
     }
 
     @Override
-    public List<Booking> Pharmecy(SessionFactory sessionfactory, Client client) {
-        booking = this.allBooking(sessionfactory);
+    public List<Booking> Pharmecy(Client client) {
+        booking = this.allBooking();
         try {
-            
-        if (booking != null) {
-            booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1 && client.getId() == x.getClient().getId()).collect(Collectors.toList());
-            return booking;
-        }
+
+            if (booking != null) {
+                booking = booking.parallelStream().filter(x -> x.getAcceptmedicine() == 1 && client.getId() == x.getClient().getId()).collect(Collectors.toList());
+                return booking;
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }
-        
+
         return null;
     }
+
     // Reserve A Medical Examination
     @Override
-    public int Booking(Doctor doctor, Client client, SessionFactory sessionfactory) {
+    public int Booking(Doctor doctor, Client client) {
         try {
-            session = dc.getSession(sessionfactory);
-            session.beginTransaction();
             book.setClient(client);
             book.setDoctor(doctor);
             session.save(book);
@@ -351,12 +338,12 @@ public class ClientServices implements ClientService {
 
     //  Check If Client Booking Or No
     @Override
-    public int isBooking(SessionFactory sessionfactory, Client client, Doctor doctor) {
+    public int isBooking(Client client, Doctor doctor) {
         try {
-            session = dc.getSession(sessionfactory);
             q = session.createQuery("from Booking where Client_ID = ?");
             q.setInteger(0, client.getId());
             booking = q.list();
+            session.getTransaction().commit();
             if (booking.isEmpty()) {
                 return 0;
             } else {
@@ -378,13 +365,12 @@ public class ClientServices implements ClientService {
 
     // Get The Booking of The Doctor Today
     @Override
-    public Booking myBooking(SessionFactory sessionfactory, Client client, Doctor doctor) {
+    public Booking myBooking(Client client, Doctor doctor) {
         try {
-            session = dc.getSession(sessionfactory);
-            session.beginTransaction();
             q = session.createQuery("from Booking where Date = ?");
             q.setString(0, this.Date());
             booking = q.list();
+            session.getTransaction().commit();
             if (booking.isEmpty()) {
                 return null;
             } else {
@@ -403,8 +389,8 @@ public class ClientServices implements ClientService {
 
     // Get the only Booking of Client 
     @Override
-    public List<Booking> onlyBooking(SessionFactory sessionfactory, Client client, Doctor doctor) {
-        booking = this.allBooking(sessionfactory);
+    public List<Booking> onlyBooking(Client client, Doctor doctor) {
+        booking = this.allBooking();
         if (booking != null) {
             booking = booking.parallelStream().filter(x -> x.getClient().getId() == client.getId()
                     && x.getDate().toString().equals(this.Date())
@@ -416,10 +402,8 @@ public class ClientServices implements ClientService {
 
     // Edit Booking Of Client
     @Override
-    public int editBooking(SessionFactory sessionfactory, Booking book) {
+    public int editBooking(Booking book) {
         try {
-            session = dc.getSession(sessionfactory);
-            session.beginTransaction();
             session.update(book);
             session.getTransaction().commit();
             return 1;
@@ -433,12 +417,11 @@ public class ClientServices implements ClientService {
 
     // All Client
     @Override
-    public List<Client> Clients(SessionFactory sessionfactory) {
+    public List<Client> Clients() {
         try {
-            session = dc.getSession(sessionfactory);
-            session.beginTransaction();
             q = session.createQuery("from Client");
             clients = q.list();
+            session.getTransaction().commit();
             if (clients.isEmpty()) {
                 return null;
             }

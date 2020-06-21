@@ -27,9 +27,9 @@ public class LoginClient extends HttpServlet {
             Client client = new Client();
             client.setCode(code);
             client.setPassword(password);
-            ClientController clientcontroller = new ClientController();
             SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
-            client = clientcontroller.IsExist(client, session);
+            ClientController clientcontroller = new ClientController(session);
+            client = clientcontroller.IsExist(client);
             if (client != null) {
                 Cookie c1 = new Cookie("codeclient", code);
                 Cookie c2 = new Cookie("passwordclient", password);

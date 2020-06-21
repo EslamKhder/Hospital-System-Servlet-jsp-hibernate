@@ -20,10 +20,10 @@ public class ClientProfile extends HttpServlet {
             throws ServletException, IOException {
         String id = request.getParameter("id");
         SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
-        ClientController cc = new ClientController();
+        ClientController cc = new ClientController(session);
         Client client = new Client();
         client.setId(Integer.parseInt(id));
-        client = cc.getClientData(client, session);
+        client = cc.getClientData(client);
         request.getSession().setAttribute("CLIENT", client);
         response.sendRedirect("view/ClientsProfile.jsp");
     }

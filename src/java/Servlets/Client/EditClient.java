@@ -32,12 +32,13 @@ public class EditClient extends HttpServlet {
         } else {
             SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
             Client c = (Client)request.getSession().getAttribute("client");
-            ClientController cc = new ClientController();
-            ClientProperties clientproperties = cc.getClientProperties(session, c);
+            ClientController cc1 = new ClientController(session);
+            ClientController cc2 = new ClientController(session);
+            ClientProperties clientproperties = cc1.ClientProperties(c);
             clientproperties.setName(fname);
             clientproperties.setPhone(phone);
             clientproperties.setAddress(address);
-            cc.editClientProperties(clientproperties, session);
+            cc2.editClientProperties(clientproperties);
             c.setClientproperties(clientproperties);
             response.getWriter().print("success");
         }

@@ -27,8 +27,8 @@ public class LoginDoctor extends HttpServlet {
             } else {
                 SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
                 Doctor doctor = new Doctor(code, password, spec);
-                DoctorController doctorcontroller = new DoctorController();
-                doctor = doctorcontroller.isExist(session, doctor);
+                DoctorController dc = new DoctorController(session);
+                doctor = dc.isExist(doctor);
                 if (doctor != null) {
                     Cookie c1 = new Cookie("codedoctor", code);
                     Cookie c2 = new Cookie("passworddoctor", password);
@@ -42,7 +42,7 @@ public class LoginDoctor extends HttpServlet {
                     response.getWriter().print("invalid");
                 }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }
 

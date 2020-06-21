@@ -49,8 +49,8 @@ public class NewDoctorAccount extends HttpServlet {
             SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
             DoctorProperties doctorproperties = new DoctorProperties(phone, gen, name);
             Doctor doctor = new Doctor(code, password, spec, doctorproperties);
-            DoctorController dc = new DoctorController();
-            if (dc.addDoctor(session, doctor) == 1) {
+            DoctorController dc = new DoctorController(session);
+            if (dc.addDoctor(doctor) == 1) {
                 response.getWriter().print("success");
             } else {
                 response.getWriter().print("code");

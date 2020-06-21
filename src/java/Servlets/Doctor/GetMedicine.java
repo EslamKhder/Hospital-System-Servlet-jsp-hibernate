@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 import org.hibernate.SessionFactory;
 
 public class GetMedicine extends HttpServlet {
@@ -18,7 +19,8 @@ public class GetMedicine extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String idclient = request.getParameter("idclient");
+        try {
+            String idclient = request.getParameter("idclient");
         String medicine = request.getParameter("medicine");
         if (medicine.isEmpty()) {
             response.getWriter().print("medicine");
@@ -27,19 +29,27 @@ public class GetMedicine extends HttpServlet {
             Client client = new Client();
             client.setId(Integer.parseInt(idclient));
             Doctor doctor = (Doctor) request.getSession().getAttribute("doctor");
-            DoctorController dc = new DoctorController();
-            ClientController cc = new ClientController();
-            Booking book = cc.myBooking(session, client, doctor);
+            DoctorController dc1 = new DoctorController(session);
+            DoctorController dc2 = new DoctorController(session);
+            DoctorController dc3 = new DoctorController(session);
+            ClientController cc1 = new ClientController(session);
+            ClientController cc2 = new ClientController(session);
+            Booking book = cc1.myBooking(client, doctor);
             Pharmacy pharmacy = new Pharmacy(medicine, book);
-            dc.giveMedicine(session, pharmacy);
+            dc1.giveMedicine(pharmacy);
             book.setAcceptdoctor(1);
             book.setPharmacy(pharmacy);
-            cc.editBooking(session, book);
-            int balance = dc.getDoctorBalance(doctor, session);
+            cc2.editBooking(book);
+            int balance = dc2.getDoctorBalance(doctor);
             doctor.setBalance(balance + 100);
-            dc.editDoctor(session, doctor);
+            dc3.editDoctor(doctor);
             response.getWriter().print("success");
+        }
+        }catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, e.toString());
+
+        }
+        
         }
     }
 
-}

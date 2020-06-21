@@ -33,15 +33,16 @@ public class RemoveDoctor extends HttpServlet {
             response.getWriter().print("identical");
         } else {
             SessionFactory sessionf = (SessionFactory) request.getServletContext().getAttribute("factory");
-            DoctorController dc = new DoctorController();
+            DoctorController dc1 = new DoctorController(sessionf);
+            DoctorController dc2 = new DoctorController(sessionf);
             Doctor doctor = new Doctor();
             doctor.setCode(code);
-            doctor = dc.getDoctorCode(sessionf, doctor);
+            doctor = dc1.getDoctorCode(doctor);
             if (doctor != null) {
-                AdminController ac = new AdminController();
-                Admin ad = ac.getAdmin(sessionf);
+                AdminController ac = new AdminController(sessionf);
+                Admin ad = ac.getAdmin();
                 if (ad.getPassword().equals(password2)) {
-                    dc.removeDoctor(sessionf, doctor);
+                    dc2.removeDoctor(doctor);
                     response.getWriter().print("success");
                 } else {
                     response.getWriter().print("invalid");

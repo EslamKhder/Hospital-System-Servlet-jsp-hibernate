@@ -26,8 +26,8 @@ public class DoctorProfile extends HttpServlet {
         SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
         Doctor doctor = new Doctor();
         doctor.setId(Integer.parseInt(id));
-        DoctorController dc = new DoctorController();
-        doctor = dc.getDoctorID(session, doctor);
+        DoctorController dc = new DoctorController(session);
+        doctor = dc.getDoctorID(doctor);
         request.getSession().setAttribute("DOCTOR", doctor);
         response.sendRedirect("view/DoctorsProfile.jsp");
     }

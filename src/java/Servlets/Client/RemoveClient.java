@@ -24,12 +24,13 @@ public class RemoveClient extends HttpServlet {
         if (password.isEmpty()) {
             response.getWriter().print("password");
         } else {
-            ClientController cc = new ClientController();
             SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
+            ClientController cc1 = new ClientController(session);
+            ClientController cc2 = new ClientController(session);
             Client c = (Client) request.getSession().getAttribute("client");
-            Client client = cc.getClientData(c, session);
+            Client client = cc1.getClientData(c);
             if (client.getPassword().equals(password)) {
-                cc.removeClient(client, session);
+                cc2.removeClient(client);
                 Cookie c1 = new Cookie("codeclient", "");
                 Cookie c2 = new Cookie("passwordclient", "");
                 c1.setMaxAge(0);

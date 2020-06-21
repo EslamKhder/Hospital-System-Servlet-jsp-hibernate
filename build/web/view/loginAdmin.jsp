@@ -59,8 +59,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     }
                 }
                 SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
-                AdminController admincontroller = new AdminController();
-                admin = admincontroller.IsExist(admin,sessionf);
+                AdminController admincontroller = new AdminController(sessionf);
+                admin = admincontroller.IsExist(admin);
                 if (admin != null) {
                     request.getSession().setAttribute("admin", admin);
                     response.sendRedirect("MainAdmin.jsp");

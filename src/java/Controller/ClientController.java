@@ -12,91 +12,91 @@ public class ClientController {
 
     ClientServices clientservices;
 
-    public ClientController() {
-        clientservices = new ClientServices();
+    public ClientController(SessionFactory sessionfactory) {
+        clientservices = new ClientServices(sessionfactory);
     }
 
-    public int addClient(Client client, SessionFactory sessionfactory) {
-        return clientservices.addClient(client, sessionfactory);
+    public int addClient(Client client) {
+        return clientservices.addClient(client);
     }
 
-    public Client IsExist(Client client, SessionFactory sessionfactory) {
-        return clientservices.IsExist(client, sessionfactory);
+    public Client IsExist(Client client) {
+        return clientservices.IsExist(client);
     }
-    public int removeClient(Client client, SessionFactory sessionfactory){
-        return clientservices.removeClient(client, sessionfactory);
+    public int removeClient(Client client){
+        return clientservices.removeClient(client);
     }
-    public int getClientId(Client client, SessionFactory sessionfactory) {
-        return clientservices.getClientId(client, sessionfactory);
+    public int getClientId(Client client) {
+        return clientservices.getClientId(client);
     }
-    public int editClientProperties(ClientProperties client, SessionFactory sessionfactory){
-        return clientservices.editClientProperties(client, sessionfactory);
+    public int editClientProperties(ClientProperties client){
+        return clientservices.editClientProperties(client);
     }
-    public int getClientBalance(Client client, SessionFactory sessionfactory) {
-        return clientservices.getClientBalance(client, sessionfactory);
+    public int getClientBalance(Client client) {
+        return clientservices.getClientBalance(client);
     }
-    public int editClient(Client client, SessionFactory sessionfactory) {
-        return clientservices.editClient(client, sessionfactory);
-    }
-
-    public int removeBooking(Doctor doctor, Client client, SessionFactory sessionfactory) {
-        return clientservices.removeBooking(doctor, client, sessionfactory);
+    public int editClient(Client client) {
+        return clientservices.editClient(client);
     }
 
-    public Client getClientData(Client client, SessionFactory sessionfactory) {
-        return clientservices.getClientData(client, sessionfactory);
+    public int removeBooking(Doctor doctor, Client client) {
+        return clientservices.removeBooking(doctor, client);
     }
 
-    public ClientProperties getClientProperties(SessionFactory sessionfactory, Client client) {
-        return clientservices.getClientProperties(sessionfactory, client);
+    public Client getClientData(Client client) {
+        return clientservices.getClientData(client);
     }
 
-    public Client getClientCode(SessionFactory sessionfactory, Client client) {
-        return clientservices.getClientCode(sessionfactory, client);
+    public ClientProperties ClientProperties(Client client) {
+    return clientservices.ClientProperties(client);
     }
 
-    public int Booking(Doctor doctor, Client client, SessionFactory sessionfactory) {
-        return clientservices.Booking(doctor, client, sessionfactory);
+    public Client getClientCode( Client client) {
+        return clientservices.getClientCode(client);
     }
 
-    public List<Booking> PharmecyBooking(SessionFactory sessionfactory) {
-        return clientservices.PharmecyBooking(sessionfactory);
+    public int Booking(Doctor doctor, Client client) {
+        return clientservices.Booking(doctor, client);
     }
 
-    public List<Booking> statisticsBooking(SessionFactory sessionfactory) {
-        return clientservices.statisticsBooking(sessionfactory);
+    public List<Booking> PharmecyBooking() {
+        return clientservices.PharmecyBooking();
     }
 
-    public List<Booking> allClientReservation(SessionFactory sessionfactory, Client client) {
-        return clientservices.allClientReservation(sessionfactory, client);
+    public List<Booking> statisticsBooking() {
+        return clientservices.statisticsBooking();
     }
 
-    public List<Booking> clientReservationsToday(SessionFactory sessionfactory, Client client) {
-        return clientservices.clientReservationsToday(sessionfactory, client);
+    public List<Booking> allClientReservation(Client client) {
+        return clientservices.allClientReservation( client);
     }
 
-    public List<Booking> Pharmecy(SessionFactory sessionfactory, Client client) {
-        return clientservices.Pharmecy(sessionfactory, client);
+    public List<Booking> clientReservationsToday(Client client) {
+        return clientservices.clientReservationsToday(client);
     }
 
-    public int isBooking(SessionFactory sessionfactory, Client client, Doctor doctor) {
-        return clientservices.isBooking(sessionfactory, client, doctor);
+    public List<Booking> Pharmecy( Client client) {
+        return clientservices.Pharmecy(client);
     }
 
-    public List<Booking> allBooking(SessionFactory sessionfactory) {
-        return clientservices.allBooking(sessionfactory);
+    public int isBooking( Client client, Doctor doctor) {
+        return clientservices.isBooking( client, doctor);
     }
 
-    public Booking myBooking(SessionFactory sessionfactory, Client client, Doctor doctor) {
-        return clientservices.myBooking(sessionfactory, client, doctor);
+    public List<Booking> allBooking() {
+        return clientservices.allBooking();
     }
-    public List<Booking> onlyBooking(SessionFactory sessionfactory, Client client, Doctor doctor){
-        return clientservices.onlyBooking(sessionfactory, client, doctor);
+
+    public Booking myBooking(Client client, Doctor doctor) {
+        return clientservices.myBooking(client, doctor);
     }
-    public int editBooking(SessionFactory sessionfactory, Booking book) {
-        return clientservices.editBooking(sessionfactory, book);
+    public List<Booking> onlyBooking(Client client, Doctor doctor){
+        return clientservices.onlyBooking(client, doctor);
     }
-    public List<Client> Clients(SessionFactory sessionfactory){
-        return clientservices.Clients(sessionfactory);
+    public int editBooking( Booking book) {
+        return clientservices.editBooking(book);
+    }
+    public List<Client> Clients(){
+        return clientservices.Clients();
     }
 }

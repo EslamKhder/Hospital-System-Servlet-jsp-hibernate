@@ -9,7 +9,6 @@ import Controller.DoctorController;
 import Model.Booking;
 import Model.Doctor;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,11 +25,11 @@ public class DoctorReservations extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DoctorController dc = new DoctorController();
         SessionFactory sessionf = (SessionFactory) request.getServletContext().getAttribute("factory");
+        DoctorController dc = new DoctorController(sessionf);
         Doctor doctor = (Doctor) request.getSession().getAttribute("doctor");
         List<Booking> booking = null;
-        booking = dc.myBooking(sessionf, doctor);
+        booking = dc.myBooking(doctor);
         request.setAttribute("BOOKING", booking);
         request.getRequestDispatcher("view/DoctorReservations.jsp").include(request, response);
     }

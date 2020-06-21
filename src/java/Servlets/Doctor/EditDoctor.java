@@ -29,11 +29,12 @@ public class EditDoctor extends HttpServlet {
         } else {
             SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
             Doctor d = (Doctor) request.getSession().getAttribute("doctor");
-            DoctorController dc = new DoctorController();
-            DoctorProperties Doctorproperties = dc.getDoctorProperties(session, d);
+            DoctorController dc1 = new DoctorController(session);
+            DoctorController dc2 = new DoctorController(session);
+            DoctorProperties Doctorproperties = dc1.getDoctorProperties(d);
             Doctorproperties.setName(name);
             Doctorproperties.setPhone(phone);
-            dc.editDoctorProperties(session, Doctorproperties);
+            dc2.editDoctorProperties(Doctorproperties);
             d.setDoctorproperties(Doctorproperties);
             response.getWriter().print("success");
         }

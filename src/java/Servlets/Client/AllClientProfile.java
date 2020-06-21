@@ -19,10 +19,10 @@ public class AllClientProfile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ClientController cc = new ClientController();
         List<Client> clients = null;
         SessionFactory sessionf = (SessionFactory) request.getServletContext().getAttribute("factory");
-        clients = cc.Clients(sessionf);
+        ClientController cc = new ClientController(sessionf);
+        clients = cc.Clients();
         request.setAttribute("CLIENTS", clients);
         request.getRequestDispatcher("view/AllClientProfile.jsp").include(request, response);
     }

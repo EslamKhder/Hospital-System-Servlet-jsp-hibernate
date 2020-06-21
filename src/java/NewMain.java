@@ -6,17 +6,6 @@ import HibernateFiles.HibernateUtil;
 import Model.Booking;
 import Model.Client;
 import Model.ClientProperties;
-import Model.Doctor;
-import Model.DoctorProperties;
-import Model.Enums.Gender;
-import Model.Pharmacy;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import javax.swing.JOptionPane;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 /*
 @Column(name = "Date")
@@ -27,58 +16,58 @@ import org.hibernate.SessionFactory;
 public class NewMain {
 
     public static void main(String[] args) {
-        ClientServices cs = new ClientServices();
-        SessionFactory sessionf = HibernateUtil.getSessionFactory();
-        DoctorController dc = new DoctorController();
-//        ClientController cc = new ClientController();
-        Client client = new Client();
-        client.setId(1);
-//        Session s = sessionf.openSession();
-//        client.setCode("00000");
-//        Doctor c = (Doctor) s.get(Doctor.class, 1);
-//        s.close();
-//for(int i =0;i<dc.availableDoctor(sessionf).size();i++){
-    JOptionPane.showMessageDialog(null,cs.statisticsBooking(sessionf).size());
-//}
-//        Booking book = new Booking();
-//         Doctor doctor = new Doctor(); doctor.setId(1);
-//         book.setDoctor(doctor);
-//         book.setClient(c);
-//         c.getBooking().add(book);
-         //book.setClient(c);
-//        ClientProperties cp = new ClientProperties("sooooooooooooo", "0111", 20, Gender.Male, "shiben");
-//        cp.setId(3);
-//        Client c = new Client("4000", "4000", cp);
-//        c.setId(4);
-//        s.getTransaction().commit();
-//        s.close();
-        //JOptionPane.showMessageDialog(null, c.getClientproperties().getAddress());
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//            String date = sdf.format(new Date());
-//            JOptionPane.showMessageDialog(null, date);
+//        ClientServices cs = new ClientServices();
 //        SessionFactory sessionf = HibernateUtil.getSessionFactory();
-//        Session s = sessionf.openSession();
-//        s.beginTransaction();
-//         DoctorProperties dp = new DoctorProperties();
-//         dp.setId(2);
-//         dp.setGender(Gender.Male);
-//         dp.setName("ahmed elghazaly");
-//         dp.setPhone("01113903660");
-//        Doctor doctor = new Doctor(2000, "2000", "Eyes Doctor", dp);
-//        doctor.setId(2);
-//        s.update(doctor);
-//        s.getTransaction().commit();
-//        Query q;
-//        q = s.createQuery("from Booking where Client_ID = ?");
-//        q.setInteger(0, 23);
-//        if(q.list().isEmpty()){
-//            JOptionPane.showMessageDialog(null, "no");
-//        } else {
-//            List<Booking> bb = q.list();
-//            JOptionPane.showMessageDialog(null, bb.get(0).getDate());
-//        }
-//        ClientProperties cp = new ClientProperties("solom", "0111", 20, Gender.Male, "shiben");
-//        Client c = new Client(5001, "5000", cp);
+//        DoctorController dc = new DoctorController();
+////        ClientController cc = new ClientController();
+//        Client client = new Client();
+//        client.setId(1);
+////        Session s = sessionf.openSession();
+////        client.setCode("00000");
+////        Doctor c = (Doctor) s.get(Doctor.class, 1);
+////        s.close();
+////for(int i =0;i<dc.availableDoctor(sessionf).size();i++){
+//    JOptionPane.showMessageDialog(null,cs.statisticsBooking(sessionf).size());
+////}
+////        Booking book = new Booking();
+////         Doctor doctor = new Doctor(); doctor.setId(1);
+////         book.setDoctor(doctor);
+////         book.setClient(c);
+////         c.getBooking().add(book);
+//         //book.setClient(c);
+////        ClientProperties cp = new ClientProperties("sooooooooooooo", "0111", 20, Gender.Male, "shiben");
+////        cp.setId(3);
+////        Client c = new Client("4000", "4000", cp);
+////        c.setId(4);
+////        s.getTransaction().commit();
+////        s.close();
+//        //JOptionPane.showMessageDialog(null, c.getClientproperties().getAddress());
+////        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+////            String date = sdf.format(new Date());
+////            JOptionPane.showMessageDialog(null, date);
+////        SessionFactory sessionf = HibernateUtil.getSessionFactory();
+////        Session s = sessionf.openSession();
+////        s.beginTransaction();
+////         DoctorProperties dp = new DoctorProperties();
+////         dp.setId(2);
+////         dp.setGender(Gender.Male);
+////         dp.setName("ahmed elghazaly");
+////         dp.setPhone("01113903660");
+////        Doctor doctor = new Doctor(2000, "2000", "Eyes Doctor", dp);
+////        doctor.setId(2);
+////        s.update(doctor);
+////        s.getTransaction().commit();
+////        Query q;
+////        q = s.createQuery("from Booking where Client_ID = ?");
+////        q.setInteger(0, 23);
+////        if(q.list().isEmpty()){
+////            JOptionPane.showMessageDialog(null, "no");
+////        } else {
+////            List<Booking> bb = q.list();
+////            JOptionPane.showMessageDialog(null, bb.get(0).getDate());
+////        }
+////        ClientProperties cp = new ClientProperties("solom", "0111", 20, Gender.Male, "shiben");
+////        Client c = new Client(5001, "5000", cp);
 //        Client c = new Client();
 //        c.setId(1);
 //        Doctor doo = new Doctor();

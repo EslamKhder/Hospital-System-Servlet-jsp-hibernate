@@ -18,10 +18,10 @@ public class ClientReservations extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Client client = (Client) request.getSession().getAttribute("client");
-        ClientController cc = new ClientController();
         List<Booking> booking = null;
         SessionFactory sessionf = (SessionFactory) request.getServletContext().getAttribute("factory");
-        booking = cc.allClientReservation(sessionf,client);
+        ClientController cc = new ClientController(sessionf);
+        booking = cc.allClientReservation(client);
         request.setAttribute("BOOKING", booking);
         request.getRequestDispatcher("view/AllClientReservation.jsp").include(request, response);
     }

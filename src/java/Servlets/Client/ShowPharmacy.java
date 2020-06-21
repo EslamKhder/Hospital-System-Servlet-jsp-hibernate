@@ -19,10 +19,10 @@ public class ShowPharmacy extends HttpServlet {
             throws ServletException, IOException {
             
         Client client = (Client) request.getSession().getAttribute("client");
-        ClientController cc = new ClientController();
         List<Booking> booking = null;
         SessionFactory sessionf = (SessionFactory) request.getServletContext().getAttribute("factory");
-        booking = cc.Pharmecy(sessionf,client);
+        ClientController cc = new ClientController(sessionf);
+        booking = cc.Pharmecy(client);
         request.setAttribute("BOOKING", booking);
         request.getRequestDispatcher("view/Pharmacy.jsp").include(request, response);
     }

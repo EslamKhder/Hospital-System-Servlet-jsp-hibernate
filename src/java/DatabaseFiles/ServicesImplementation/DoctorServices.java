@@ -29,19 +29,20 @@ public class DoctorServices implements DoctorService {
     private int out;
     private DoctorProperties doctorproperties;
 
-    public DoctorServices() {
-        dc = new DatabaseController();
-        session = null;
-        q = null;
-        doctors = new ArrayList();
+    public DoctorServices(SessionFactory sessionfactory) {
+        this.dc = new DatabaseController();
+        this.q = null;
+        this.doctors = new ArrayList();
+        this.booking = new ArrayList();
+        this.doctorproperties = new DoctorProperties();
+        this.session = dc.getSession(sessionfactory);
+        this.session.beginTransaction();
     }
 
     // Create New Doctor Account
     @Override
-    public int addDoctor(SessionFactory sessionf, Doctor doctor) {
+    public int addDoctor(Doctor doctor) {
         try {
-            session = dc.getSession(sessionf);
-            session.beginTransaction();
             session.persist(doctor);
             session.getTransaction().commit();
             return 1;
@@ -56,11 +57,10 @@ public class DoctorServices implements DoctorService {
 
     // Geting Doctor Property (ID)
     @Override
-    public Doctor getDoctorID(SessionFactory sessionf, Doctor doctor) {
+    public Doctor getDoctorID(Doctor doctor) {
         try {
-            session = dc.getSession(sessionf);
             doctor = (Doctor) session.get(Doctor.class, doctor.getId());
-
+            session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -71,12 +71,12 @@ public class DoctorServices implements DoctorService {
 
     // Get Password Of Doctor
     @Override
-    public String getPasswordDoctor(SessionFactory sessionf, Doctor doctor) {
+    public String getPasswordDoctor(Doctor doctor) {
         try {
-            session = dc.getSession(sessionf);
             q = session.createQuery("select password from Doctor where code=?");
             q.setString(0, doctor.getCode());
             result = (String) q.list().get(0);
+            session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -87,10 +87,10 @@ public class DoctorServices implements DoctorService {
 
     // Get DoctorProperties
     @Override
-    public DoctorProperties getDoctorProperties(SessionFactory sessionfactory, Doctor doctor) {
+    public DoctorProperties getDoctorProperties(Doctor doctor) {
         try {
-            session = dc.getSession(sessionfactory);
             doctorproperties = (DoctorProperties) session.get(DoctorProperties.class, doctor.getDoctorproperties().getId());
+            session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -101,14 +101,12 @@ public class DoctorServices implements DoctorService {
     //Get Doctor Balance
 
     @Override
-    public int getDoctorBalance(Doctor doctor, SessionFactory sessionfactory) {
+    public int getDoctorBalance(Doctor doctor) {
         try {
-            session = dc.getSession(sessionfactory);
-            session.beginTransaction();
             q = session.createQuery("select balance from Doctor where id=?");
             q.setInteger(0, doctor.getId());
             out = (int) q.list().get(0);
-
+            session.getTransaction().commit();
         } catch (HibernateException e) {
             session.getTransaction().rollback();
         } finally {
@@ -119,10 +117,8 @@ public class DoctorServices implements DoctorService {
 
     // Edit DoctorProperties
     @Override
-    public int editDoctorProperties(SessionFactory sessionfactory, DoctorProperties doctor) {
+    public int editDoctorProperties(DoctorProperties doctor) {
         try {
-            session = dc.getSession(sessionfactory);
-            session.beginTransaction();
             session.update(doctor);
             session.getTransaction().commit();
             return 1;
@@ -136,10 +132,9 @@ public class DoctorServices implements DoctorService {
 
     //Remove Doctor
     @Override
-    public int removeDoctor(SessionFactory sessionf, Doctor doctor) {
+    public int removeDoctor( Doctor doctor) {
         try {
-            session = dc.getSession(sessionf);
-            session.beginTransaction();
+
             session.delete(doctor);
             session.getTransaction().commit();
             return 1;
@@ -158,14 +153,14 @@ public class DoctorServices implements DoctorService {
      */
     
     @Override
-    public Doctor isExist(SessionFactory sessionf, Doctor doctor) {
+    public Doctor isExist(Doctor doctor) {
         try {
-            session = dc.getSession(sessionf);
             q = session.createQuery("from Doctor where Code=? and Password=? and DoctorSpecialty=?");
             q.setString(0, doctor.getCode());
             q.setString(1, doctor.getPassword());
             q.setString(2, doctor.getSpecialty());
             doctors = q.list();
+            session.getTransaction().commit();
             if (doctors.isEmpty()) {
                 return null;
             }
@@ -182,13 +177,13 @@ public class DoctorServices implements DoctorService {
     (Code , Password)
      */
     @Override
-    public Doctor isExist(Doctor doctor,SessionFactory sessionf){
+    public Doctor isExistlogin(Doctor doctor){
         try {
-            session = dc.getSession(sessionf);
             q = session.createQuery("from Doctor where Code=? and Password=?");
             q.setString(0, doctor.getCode());
             q.setString(1, doctor.getPassword());
             doctors = q.list();
+            session.getTransaction().commit();
             if (doctors.isEmpty()) {
                 return null;
             }
@@ -201,14 +196,13 @@ public class DoctorServices implements DoctorService {
     }
     // Get Data Of Doctor by Use Property (DoctorSpecialty)
     @Override
-    public Doctor getDoctorSpec(SessionFactory sessionf, Doctor doctor) {
+    public Doctor getDoctorSpec(Doctor doctor) {
         try {
-            session = dc.getSession(sessionf);
             Criteria cri = session.createCriteria(Doctor.class);
             cri.add(Restrictions.eq("Specialty", doctor.getSpecialty()));
             doctors = cri.list();
-
-        } catch (Exception e) {
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
             session.getTransaction().rollback();
         } finally {
             session.close();
@@ -218,17 +212,17 @@ public class DoctorServices implements DoctorService {
 
     // Get Data Of Doctor by Use Property (Doctor Code)
     @Override
-    public Doctor getDoctorCode(SessionFactory sessionf, Doctor doctor) {
+    public Doctor getDoctorCode(Doctor doctor) {
         try {
-            session = dc.getSession(sessionf);
             Criteria cri = session.createCriteria(Doctor.class);
             cri.add(Restrictions.eq("code", doctor.getCode()));
             doctors = cri.list();
+            session.getTransaction().commit();
             if (doctors.isEmpty()) {
                 return null;
             }
 
-        } catch (Exception e) {
+        } catch (HibernateException e) {
             session.getTransaction().rollback();
         } finally {
             session.close();
@@ -238,11 +232,8 @@ public class DoctorServices implements DoctorService {
 
     // UpDate Infromation Of Data
     @Override
-    public int editDoctor(SessionFactory sessionfactory, Doctor doctor) {
-
+    public int editDoctor(Doctor doctor) {
         try {
-            session = dc.getSession(sessionfactory);
-            session.beginTransaction();
             session.update(doctor);
             session.getTransaction().commit();
             return 1;
@@ -256,12 +247,12 @@ public class DoctorServices implements DoctorService {
 
     // Get Id Of Doctor By Using
     @Override
-    public int getDoctorSpecId(SessionFactory sessionf, Doctor doctor) {
+    public int getDoctorSpecId(Doctor doctor) {
         try {
-            session = dc.getSession(sessionf);
             q = session.createQuery("select id from Doctor where DoctorSpecialty=?");
             q.setString(0, doctor.getSpecialty());
             out = (int) q.list().get(0);
+            session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -272,12 +263,12 @@ public class DoctorServices implements DoctorService {
 
     // Get ALL DoctorBooking ToDay
     @Override
-    public List<Booking> myBooking(SessionFactory sessionfactory, Doctor doctor) {
+    public List<Booking> myBooking(Doctor doctor) {
         try {
-            session = dc.getSession(sessionfactory);
             q = session.createQuery("from Booking where Date = ?");
             q.setString(0, this.Date());
             booking = q.list();
+            session.getTransaction().commit();
             if (booking.isEmpty()) {
                 return null;
             } else {
@@ -293,10 +284,8 @@ public class DoctorServices implements DoctorService {
     }
 
     @Override
-    public int giveMedicine(SessionFactory sessionfactory, Pharmacy pharmcy) {
+    public int giveMedicine(Pharmacy pharmcy) {
         try {
-            session = dc.getSession(sessionfactory);
-            session.beginTransaction();
             session.save(pharmcy);
             session.getTransaction().commit();
             return 1;
@@ -310,11 +299,11 @@ public class DoctorServices implements DoctorService {
  
     // Get All Doctor
     @Override
-    public List<Doctor> allDoctor(SessionFactory sessionf) {
+    public List<Doctor> allDoctor() {
         try {
-            session = dc.getSession(sessionf);
             q = session.createQuery("from Doctor");
             doctors = q.list();
+            session.getTransaction().commit();
             if (doctors.isEmpty()) {
                 return null;
             }
@@ -329,8 +318,8 @@ public class DoctorServices implements DoctorService {
 
     // Get Doctors who are Available
     @Override
-    public List<Doctor> availableDoctor(SessionFactory sessionf) {
-        doctors = this.allDoctor(sessionf);
+    public List<Doctor> availableDoctor() {
+        doctors = this.allDoctor();
         if (doctors.isEmpty()) {
             return null;
         } else {

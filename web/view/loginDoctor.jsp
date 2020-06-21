@@ -61,8 +61,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     }
                 }
                 SessionFactory sessionf = (SessionFactory) application.getAttribute("factory");
-                DoctorController doctorcontroller = new DoctorController();
-                doctor = doctorcontroller.isExist(doctor,sessionf);
+                DoctorController doctorcontroller = new DoctorController(sessionf);
+                doctor = doctorcontroller.isExistlogin(doctor);
                 if (doctor != null) {
                     session.setAttribute("doctor", doctor);
                     response.sendRedirect("MainDoctor.jsp");
