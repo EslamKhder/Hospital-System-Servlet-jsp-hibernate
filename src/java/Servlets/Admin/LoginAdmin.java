@@ -26,6 +26,7 @@ public class LoginAdmin extends HttpServlet {
             } else if (password.isEmpty()) {
                 response.getWriter().print("password");
             } else {
+                
                 SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
                 AdminController admincontroller = new AdminController(session);
                 Admin admin = admincontroller.getAdmin();

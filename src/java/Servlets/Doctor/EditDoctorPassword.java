@@ -36,12 +36,11 @@ public class EditDoctorPassword extends HttpServlet {
             SessionFactory sessionf = (SessionFactory) request.getServletContext().getAttribute("factory");
             Doctor doctor;
             doctor = (Doctor) request.getSession().getAttribute("doctor");
-            DoctorController dc1 = new DoctorController(sessionf);
-            DoctorController dc2 = new DoctorController(sessionf);
-            String password = dc1.getPasswordDoctor(doctor);
+            DoctorController dc = new DoctorController(sessionf);
+            String password = dc.getPasswordDoctor(doctor);
             if (password.equals(opassword)) {
                 doctor.setPassword(npassword2);
-                dc2.editDoctor(doctor);
+                dc.editDoctor(doctor);
                 response.getWriter().print("success");
             } else {
                 response.getWriter().print("opasswordinvalid");

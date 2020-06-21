@@ -32,8 +32,8 @@ public class ClientReservationsToday extends HttpServlet {
         Client client = (Client) request.getSession().getAttribute("client");
         List<Booking> booking = null;
         SessionFactory sessionf = (SessionFactory) request.getServletContext().getAttribute("factory");
-        ClientController cc1 = new ClientController(sessionf);
-        booking = cc1.clientReservationsToday(client);
+        ClientController cc = new ClientController(sessionf);
+        booking = cc.clientReservationsToday(client);
         request.setAttribute("BOOKING", booking);
         request.getRequestDispatcher("view/ClientReservationsToday.jsp").include(request, response);
     }

@@ -31,15 +31,14 @@ public class ClientBalance extends HttpServlet {
             response.getWriter().print("identical");
         } else {
             SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
-            ClientController cc1 = new ClientController(session);
-            ClientController cc2 = new ClientController(session);
+            ClientController cc = new ClientController(session);
             Client client = (Client) request.getSession().getAttribute("client");
             AdminController am = new AdminController(session);
             Admin admin = am.getAdmin();
             if (admin.getPassword().equals(password2)) {
-                int bal = cc1.getClientBalance(client);
+                int bal = cc.getClientBalance(client);
                 client.setBalance(balance + bal);
-                cc2.editClient(client);
+                cc.editClient(client);
                 response.getWriter().print("success");
             } else {
                 response.getWriter().print("invalidadmin");

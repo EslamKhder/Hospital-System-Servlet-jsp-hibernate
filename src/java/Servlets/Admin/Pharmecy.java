@@ -24,11 +24,10 @@ public class Pharmecy extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         List<Booking> booking = null;
         SessionFactory sessionf = (SessionFactory) request.getServletContext().getAttribute("factory");
-        ClientController cc1 = new ClientController(sessionf);
-        booking = cc1.PharmecyBooking();
+        ClientController cc = new ClientController(sessionf);
+        booking = cc.PharmecyBooking();
         request.setAttribute("BOOKING", booking);
         request.getRequestDispatcher("view/Pharmecy.jsp").include(request, response);
     }

@@ -24,14 +24,13 @@ public class CancelBookingClient extends HttpServlet {
         SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
         Client client = (Client) request.getSession().getAttribute("client");
         Doctor doctor = new Doctor();
+        DoctorController dc = new DoctorController(session);
         doctor.setId(Integer.parseInt(iddoctor));
-        ClientController cc1 = new ClientController(session);
-        ClientController cc2 = new ClientController(session);
-        ClientController cc3 = new ClientController(session);
-        cc1.removeBooking(doctor, client);
-        int balance = cc2.getClientBalance(client);
+        ClientController cc = new ClientController(session);
+        cc.removeBooking(doctor, client);
+        int balance = cc.getClientBalance(client);
         client.setBalance(balance + 100);
-        cc3.editClient(client);
+        cc.editClient(client);
         response.getWriter().print("success");
     }
 }

@@ -636,7 +636,6 @@
         <servlet-name>LogoutDoctor</servlet-name>
         <url-pattern>/LogoutDoctor</url-pattern>
     </servlet-mapping>
-    
     <session-config>
         <session-timeout>
             30

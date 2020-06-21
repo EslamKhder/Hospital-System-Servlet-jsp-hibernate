@@ -21,8 +21,8 @@ import org.hibernate.criterion.Restrictions;
 
 public class ClientServices implements ClientService {
 
+    private SessionFactory sessionfactory;
     private DatabaseController dc;
-    private Session session;
     private Query q;
     private List<Client> clients;
     private List<Booking> booking;
@@ -31,20 +31,22 @@ public class ClientServices implements ClientService {
     private Booking book;
 
     public ClientServices(SessionFactory sessionfactory) {
+        this.sessionfactory = sessionfactory;
         this.dc = new DatabaseController();
         this.q = null;
         this.clients = new ArrayList();
         this.booking = new ArrayList();
         this.clientproperties = new ClientProperties();
         this.book = new Booking();
-        this.session = dc.getSession(sessionfactory);
-        this.session.beginTransaction();
     }
 
     // Create New Client Account
     @Override
     public int addClient(Client client) {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             session.persist(client);
             session.getTransaction().commit();
             return 1;
@@ -59,7 +61,10 @@ public class ClientServices implements ClientService {
     // Geting Client Property (ID)
     @Override
     public int getClientId(Client client) {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             q = session.createQuery("select id from Client where Code=?");
             q.setString(0, client.getCode());
             result = (int) q.list().get(0);
@@ -71,26 +76,32 @@ public class ClientServices implements ClientService {
         }
         return result;
     }
-// Geting ClientProperties 
-//
-//    @Override
-//    public ClientProperties getClientProperties(Client client) {
-//        try {
-//            clientproperties = (ClientProperties) session.get(ClientProperties.class, client.getClientproperties().getId());
-//            session.getTransaction().commit();
-//        } catch (Exception e) {
-//            session.getTransaction().rollback();
-//        } finally {
-//            session.clear();
-//            session.close();
-//        }
-//        return clientproperties;
-//    }
+ //Geting ClientProperties 
+
+    @Override
+    public ClientProperties getClientProperties(Client client) {
+        Session session = null;
+        try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
+            clientproperties = (ClientProperties) session.get(ClientProperties.class, client.getClientproperties().getId());
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.clear();
+            session.close();
+        }
+        return clientproperties;
+    }
 
     //Get Client Balance
     @Override
     public int getClientBalance(Client client) {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             q = session.createQuery("select balance from Client where id=?");
             q.setInteger(0, client.getId());
             result = (int) q.list().get(0);
@@ -106,7 +117,10 @@ public class ClientServices implements ClientService {
     // Edit Client
     @Override
     public int editClient(Client client) {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             session.update(client);
             session.getTransaction().commit();
             return 1;
@@ -121,7 +135,10 @@ public class ClientServices implements ClientService {
     // Edit ClientProperties
     @Override
     public int editClientProperties(ClientProperties client) {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             session.update(client);
             session.getTransaction().commit();
             return 1;
@@ -136,7 +153,10 @@ public class ClientServices implements ClientService {
     // Edit Client
     @Override
     public int removeBooking(Doctor doctor, Client client) {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             Criteria cri = session.createCriteria(Booking.class);
             cri.add(Restrictions.eq("date", new Date()));
             cri.add(Restrictions.eq("client", client));
@@ -155,7 +175,10 @@ public class ClientServices implements ClientService {
 
     @Override
     public int removeClient(Client client) {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             session.delete(client.getClientproperties());
             session.getTransaction().commit();
             return 1;
@@ -173,7 +196,10 @@ public class ClientServices implements ClientService {
      */
     @Override
     public Client IsExist(Client client) {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             q = session.createQuery("from Client where Code=? and Password=?");
             q.setString(0, client.getCode());
             q.setString(1, client.getPassword());
@@ -193,7 +219,10 @@ public class ClientServices implements ClientService {
     // Get Client (Data)
     @Override
     public Client getClientData(Client client) {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             client = (Client) session.get(Client.class, client.getId());
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -207,7 +236,10 @@ public class ClientServices implements ClientService {
     // Get All Properties Of Client
     @Override
     public ClientProperties ClientProperties(Client client) {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             clientproperties = (ClientProperties) session.get(ClientProperties.class, client.getId());
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -221,7 +253,10 @@ public class ClientServices implements ClientService {
     // Get Client By Code 
     @Override
     public Client getClientCode(Client client) {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             Criteria cri = session.createCriteria(Client.class);
             cri.add(Restrictions.eq("code", client.getCode()));
             clients = cri.list();
@@ -241,7 +276,10 @@ public class ClientServices implements ClientService {
     // Get ALL Booking Booking
     @Override
     public List<Booking> allBooking() {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             q = session.createQuery("from Booking");
             booking = q.list();
             session.getTransaction().commit();
@@ -322,7 +360,10 @@ public class ClientServices implements ClientService {
     // Reserve A Medical Examination
     @Override
     public int Booking(Doctor doctor, Client client) {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             book.setClient(client);
             book.setDoctor(doctor);
             session.save(book);
@@ -339,7 +380,10 @@ public class ClientServices implements ClientService {
     //  Check If Client Booking Or No
     @Override
     public int isBooking(Client client, Doctor doctor) {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             q = session.createQuery("from Booking where Client_ID = ?");
             q.setInteger(0, client.getId());
             booking = q.list();
@@ -366,7 +410,10 @@ public class ClientServices implements ClientService {
     // Get The Booking of The Doctor Today
     @Override
     public Booking myBooking(Client client, Doctor doctor) {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             q = session.createQuery("from Booking where Date = ?");
             q.setString(0, this.Date());
             booking = q.list();
@@ -403,7 +450,10 @@ public class ClientServices implements ClientService {
     // Edit Booking Of Client
     @Override
     public int editBooking(Booking book) {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             session.update(book);
             session.getTransaction().commit();
             return 1;
@@ -418,7 +468,10 @@ public class ClientServices implements ClientService {
     // All Client
     @Override
     public List<Client> Clients() {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             q = session.createQuery("from Client");
             clients = q.list();
             session.getTransaction().commit();

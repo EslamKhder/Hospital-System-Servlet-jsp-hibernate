@@ -52,10 +52,9 @@ public class NewClientAccount extends HttpServlet {
             ClientProperties clientproperties = new ClientProperties(name, phone, age, gen, address);
             Client client = new Client(code, password, clientproperties);
             SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
-            ClientController clientcontroller1 = new ClientController(session);
-            ClientController clientcontroller2 = new ClientController(session);
-            if (clientcontroller1.addClient(client) == 1) {
-                client.setId(clientcontroller2.getClientId(client));
+            ClientController clientcontroller = new ClientController(session);
+            if (clientcontroller.addClient(client) == 1) {
+                client.setId(clientcontroller.getClientId(client));
                 Cookie c1 = new Cookie("codeclient", code);
                 Cookie c2 = new Cookie("passwordclient", password);
                 c1.setMaxAge(60 * 60 * 24);

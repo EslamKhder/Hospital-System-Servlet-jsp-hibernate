@@ -26,6 +26,9 @@ public class ClientController {
     public int removeClient(Client client){
         return clientservices.removeClient(client);
     }
+    public ClientProperties getClientProperties(Client client) {
+        return clientservices.getClientProperties(client);
+    }
     public int getClientId(Client client) {
         return clientservices.getClientId(client);
     }

@@ -16,7 +16,7 @@ public interface ClientService {
     public int getClientId(Client client);
 
     // Geting ClientProperties 
-//    public ClientProperties getClientProperties(Client client);
+    public ClientProperties getClientProperties(Client client);
 
     //Get Client Balance
     public int getClientBalance(Client client);

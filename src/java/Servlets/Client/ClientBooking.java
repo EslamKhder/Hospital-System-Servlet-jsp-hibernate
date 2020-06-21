@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
 import org.hibernate.SessionFactory;
 
 public class ClientBooking extends HttpServlet {
@@ -17,15 +16,11 @@ public class ClientBooking extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String spec = request.getParameter("spec");
+            String spec = request.getParameter("spec");
             Client client = (Client) request.getSession().getAttribute("client");
             SessionFactory session = (SessionFactory) request.getServletContext().getAttribute("factory");
-            ClientController cc1 = new ClientController(session);
-            ClientController cc2 = new ClientController(session);
-            ClientController cc3 = new ClientController(session);
-            ClientController cc4 = new ClientController(session);
-            int balance = cc1.getClientBalance(client);
+            ClientController cc = new ClientController(session);
+            int balance = cc.getClientBalance(client);
             if (balance < 100) {
                 response.getWriter().print("ivbalance");
             } else {
@@ -34,15 +29,14 @@ public class ClientBooking extends HttpServlet {
                 doctor.setSpecialty(spec);                
                 int id = dc.getDoctorSpecId(doctor);
                 doctor.setId(id);
-                if (cc2.isBooking(client, doctor) == 1) {
+                if (cc.isBooking(client, doctor) == 1) {
                     response.getWriter().print("invalid");
                 } else {
-                    cc3.Booking(doctor, client);
+                    cc.Booking(doctor, client);
                     client.setBalance(balance - 100);
-                    cc4.editClient(client);
+                    cc.editClient(client);
                     response.getWriter().print("success");
                 }
             }
-            
     }
 }

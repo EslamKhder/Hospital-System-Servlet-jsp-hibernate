@@ -15,25 +15,27 @@ import org.hibernate.SessionFactory;
  */
 public class AdminServices implements AdminService {
 
+    private SessionFactory sessionfactory;
     private DatabaseController dc;
-    private Session session;
     private Admin admin;
     private Query q;
     private List<Admin> admins;
 
     public AdminServices(SessionFactory sessionfactory) {
+        this.sessionfactory = sessionfactory;
         this.dc = new DatabaseController();
         this.admin = new Admin();
-        q = null;
+        this.q = null;
         this.admins = new ArrayList();
-        this.session = dc.getSession(sessionfactory);
-        this.session.beginTransaction();
     }
 
     @Override
     // Get Data Of Admin
     public Admin getAdmin() {
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             admin =  (Admin) session.get(Admin.class, 1);
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -49,7 +51,10 @@ public class AdminServices implements AdminService {
      */
     @Override
     public Admin IsExist(Admin admin){
+        Session session = null;
         try {
+            session = dc.getSession(sessionfactory);
+            session.beginTransaction();
             q = session.createQuery("from Admin where Code=? and Password=?");
             q.setString(0, admin.getCode());
             q.setString(1, admin.getPassword());
