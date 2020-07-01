@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -36,8 +37,9 @@ public class Doctor {
     
     @Column(name = "Available")
     private int available;
-    
+     
     @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @JoinColumn(name = "DoctorProperties_ID")
     private DoctorProperties doctorproperties;
     
     @OneToMany(mappedBy = "doctor",cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)

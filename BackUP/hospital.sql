@@ -137,8 +137,7 @@ INSERT INTO `doctorproperties` (`ID`, `Gender`, `Name`, `Phone_Number`) VALUES
 (1, 'Male', 'Ahmed El Ghazaly', '01113903660'),
 (2, 'Male', 'Eman Zaref', '01003574980'),
 (3, 'FeMale', 'Asmaa Ahmed', '01245124511'),
-(4, 'Male', 'Ayman Ahmed', '01032456210'),
-(5, 'FeMale', 'jgjg', '01113903660');
+(4, 'Male', 'Ayman Ahmed', '01032456210');
 
 -- --------------------------------------------------------
 

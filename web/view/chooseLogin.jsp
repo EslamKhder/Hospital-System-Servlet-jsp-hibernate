@@ -1,10 +1,6 @@
 
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<link href="//fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
 	<!-- //web font -->
 	<!-- Custom Theme files -->
-	<link href="css/stylechoose.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body class="body">
@@ -39,13 +35,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</a>
 			  </div>
 			  <div class="maindiv2">
-                              <a href="loginDoctor.jsp" class="btn btn-1">
+                              <a href="Doctor.jsp" class="btn btn-1">
 				  <span class="txt">Sign As Doctor</span>
 				  <span class="round"><i class="fa fa-chevron-right"></i></span>
 				</a>
 			  </div>
 			  <div class="maindiv3">
-                              <a href="loginAdmin.jsp" class="btn btn-1">
+                              <a href="Admin.jsp" class="btn btn-1">
 				  <span class="txt">Sign As Administrator</span>
 				  <span class="round"><i class="fa fa-chevron-right"></i></span>
 				</a>

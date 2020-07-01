@@ -6,6 +6,8 @@ import HibernateFiles.HibernateUtil;
 import Model.Booking;
 import Model.Client;
 import Model.ClientProperties;
+import javax.swing.JOptionPane;
+import org.hibernate.SessionFactory;
 
 /*
 @Column(name = "Date")
@@ -16,10 +18,15 @@ import Model.ClientProperties;
 public class NewMain {
 
     public static void main(String[] args) {
+        
 //        ClientServices cs = new ClientServices();
-//        SessionFactory sessionf = HibernateUtil.getSessionFactory();
+        SessionFactory sessionf = HibernateUtil.getSessionFactory();
 //        DoctorController dc = new DoctorController();
-////        ClientController cc = new ClientController();
+        Client client = new Client();
+        client.setId(1);
+        ClientController cc = new ClientController(sessionf);
+        
+        
 //        Client client = new Client();
 //        client.setId(1);
 ////        Session s = sessionf.openSession();
@@ -27,7 +34,8 @@ public class NewMain {
 ////        Doctor c = (Doctor) s.get(Doctor.class, 1);
 ////        s.close();
 ////for(int i =0;i<dc.availableDoctor(sessionf).size();i++){
-//    JOptionPane.showMessageDialog(null,cs.statisticsBooking(sessionf).size());
+    JOptionPane.showMessageDialog(null,cc.getClientData(client).getCode());
+    JOptionPane.showMessageDialog(null,cc.getClientData(client).getClientproperties().getName());
 ////}
 ////        Booking book = new Booking();
 ////         Doctor doctor = new Doctor(); doctor.setId(1);

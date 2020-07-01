@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -31,6 +32,7 @@ public class Client {
     private int balance;
 
     @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "ClientProperties_ID")
     private ClientProperties clientproperties;
     
     @OneToMany(mappedBy = "client",cascade = CascadeType.REMOVE)

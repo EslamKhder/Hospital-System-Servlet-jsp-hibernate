@@ -33,7 +33,6 @@ public class Pharmacy {
     private Date date;
     
     @OneToOne(mappedBy = "pharmacy")
-    @JoinColumn(name = "Booking_ID")
     private Booking booking;
 
     public Pharmacy() {
